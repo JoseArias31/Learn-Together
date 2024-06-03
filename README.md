@@ -1,3 +1,3 @@
-# Cooperative-Learning-Web
+# Learn Together
 
 Pilot
