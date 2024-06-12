@@ -1,11 +1,7 @@
 import Link from 'next/link';
-import '../src/app/globals.css'
+import '../globals.css'
 
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/hAxxS7kVijD
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+
 
 
 export default function Component() {

@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import '../src/app/globals.css'
+import '../globals.css'
 import Image from 'next/image'
-import logo from '../public/Logo.png';
+import logo from '../../../public/Logo.png';
 
 
 export default function NavBar() {
