@@ -1,0 +1,36 @@
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 40px;
+  }
+  
+  .program-card {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .program-card h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .program-card p {
+    margin: 10px 0;
+    color: #666;
+  }
+  
+  .program-link {
+    text-decoration: none;
+    color: #0070f3;
+    font-weight: bold;
+  }
+  
+  .program-link:hover {
+    text-decoration: underline;
+  }
+  

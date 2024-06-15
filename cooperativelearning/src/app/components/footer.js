@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import '../globals.css'
-
-
+import Image from 'next/image'
+import logo from '../../../public/Logo.png';
 
 
 export default function Component() {
@@ -10,8 +10,8 @@ export default function Component() {
       <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <div className="space-y-4">
           <Link href="#" className="flex items-center space-x-2" prefetch={false}>
-            <MountainIcon className="h-6 w-6" />
-            <span className="text-lg font-bold text-white">Acme Inc.</span>
+          <Image className='relative z-10' src={logo} alt="Logo" width={41} />
+            <span className="text-lg font-bold text-white">Learn Together</span>
           </Link>
           <p className="text-gray-500 dark:text-gray-400 text-white">
             Acme Inc. is a leading provider of innovative solutions for businesses of all sizes. We strive to deliver
