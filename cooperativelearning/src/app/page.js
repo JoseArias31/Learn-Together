@@ -3,6 +3,10 @@ import NavBar from "./components/navBar"
 import Footer from "./components/footer";
 import MainButton from "./components/MainBotton";
 import WebDevelopmentPrograms from "./components/Cards";
+import SecondaryButton from "./components/SecondaryBotton";
+import CourseCards from "./components/CourseCards"
+import ThirdButton from "./components/ThirdBotton"
+
 
 export default function Home() {
   return (
@@ -17,6 +21,12 @@ export default function Home() {
  <h1 className="text-start mt-10 text-6xl font-kodchasan ml-20">Explore</h1>
  <h2 className="text-start font-kodchasan ml-20 mt-10"><strong>Learn Together</strong> offers a wide range of educational programs to help you achieve your goals.</h2>
  <WebDevelopmentPrograms />
+<SecondaryButton />
+<h1 className="text-center mt-10 text-6xl font-kodchasan">Feature Courses</h1>
+<h2 className="text-center font-kodchasan">Explore our wide range of courses and find the perfect one for you.
+</h2>
+<CourseCards />
+<ThirdButton />
     <Footer />
     </>
   );
