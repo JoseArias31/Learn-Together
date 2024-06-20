@@ -1,5 +1,5 @@
 const Programs = () => {
-    returni (
+    return (
       
 <h1>This is the Programs page</h1>
 
