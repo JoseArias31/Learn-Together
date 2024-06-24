@@ -2,12 +2,14 @@
 // components/Login.js
 import { useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const router = useRouter();
 
   const handleLogin = async () => {
     setLoading(true);
@@ -21,7 +23,7 @@ export default function Login() {
     if (error) {
       setError(error.message);
     } else {
-      alert('Login successful');
+      router.push('/dashboard');
     }
 
     setLoading(false);
