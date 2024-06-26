@@ -1,51 +1,30 @@
-// src/app/dashboard/page.js
+
 "use client";
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { supabase } from '../lib/supabaseClient';
-
+import useUserProfile from './useUserProfile';
+import ButtonGoHome from './ButtonGoHome';
 const Dashboard = () => {
-  const [userEmail, setUserEmail] = useState(null);
-  const router = useRouter();
+  const { user, loading, error } = useUserProfile();
 
-  useEffect(() => {
-    const checkUser = async () => {
-      const session = supabase.auth.getSession();
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-      if (!session) {
-        router.push('/login');
-      }
-    };
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
-    checkUser(); // Call checkUser function
-  }, [router]); // Add router to dependencies array
+  if (!user) {
+    return null;
+  }
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const { data: user, error } = await supabase.auth.getUser();
-
-        if (error) {
-          throw error;
-        } else {
-          setUserEmail(user.email); // Set user's email to state
-       
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error.message);
-      }
-    };
-
-    fetchUserData(); // Call fetchUserData function
-  }, []); // Empty dependencies array to run only once on mount
-
-  
   return (
-    <div>
-      <h1>Dashboard</h1>
-    
-      {userEmail && <p>Welcome {userEmail} to the dashboard!</p>}
+    <div className="card">
+      <h2>User Profile:</h2>
+      <code className="highlight">{user.email}</code>
+      <div className="heading">Last Signed In:</div>
+      <code className="highlight">{new Date(user.last_sign_in_at).toUTCString()}</code>
+      <ButtonGoHome />
     </div>
   );
 };
