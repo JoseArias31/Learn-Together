@@ -1,7 +1,7 @@
 const Programs = () => {
     return (
       
-<h1>This is the Programs page</h1>
+<h1>This is the Programs page.</h1>
 
         
     )
