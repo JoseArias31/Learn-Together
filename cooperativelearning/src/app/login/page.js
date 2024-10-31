@@ -77,7 +77,7 @@ export default function Login() {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <div className="text-sm text-center">
                   <a href="/signup" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Create an account
+                    Create an account!
                   </a>
                 </div>
       </div>
