@@ -22,7 +22,7 @@ const WebDevelopmentPrograms = () => {
       link: "/react"
     },
     {
-      title: "Node.js",
+      title: "Node js",
       description: "Unlock the potential of server-side development with Node.js.",
       linkText: "Explore Node.js",
       link: "/nodejs"
