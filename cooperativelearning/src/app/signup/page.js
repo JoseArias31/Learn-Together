@@ -11,26 +11,25 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   // const [displayName, setDisplayName] = useState('');
   // const [phone, setPhone] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const inputStyle = 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 w-[800px]';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess(true);
+    setError(null);
+    setIsSubmitting(true);
 
     const { user, error } = await supabase.auth.signUp({
       email,
       password,
-    }, {
-      // data: { username, display_name: displayName, phone },
-      data: { email, password },
     });
 
     if (error) {
       setError(error.message);
+      setIsSubmitting(false);
     } else {
       setSuccess(true);
       router.push('/');
@@ -109,8 +108,8 @@ const Signup = () => {
        </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {success && <p style={{ color: 'green' }}>{success}</p>}
-        <button type="submit" style={{ padding: '0.5rem 1rem' }}className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600' onClick={handleSubmit} disabled={success}>
-        {success ? 'Creating...' : 'Create'}
+        <button type="submit" style={{ padding: '0.5rem 1rem' }}className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600' disabled={isSubmitting}>
+        {isSubmitting ? 'Creating...' : 'Create'}
         </button>
         {error && <p style={{ color: 'red' }}>{error}</p>}
       <div className="text-sm text-center">
