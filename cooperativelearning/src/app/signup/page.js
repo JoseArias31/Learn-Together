@@ -32,7 +32,7 @@ const Signup = () => {
       setIsSubmitting(false);
     } else {
       setSuccess(true);
-      router.push('/');
+      router.push('/login');
       
     }
  

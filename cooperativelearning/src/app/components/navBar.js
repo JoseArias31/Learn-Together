@@ -1,10 +1,26 @@
+'use client'
+
 import Link from 'next/link';
 import '../globals.css'
 import Image from 'next/image'
 import logo from '../../../public/Logo.png';
+import { getUser } from '../auth/register/keepLogginIn'
+import { useEffect, useState } from 'react';
 
 
-export default function NavBar() {
+const NavBar = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // Llamamos a la función getUser para saber si el usuario está loggeado
+    const checkUser = async () => {
+      const loggedInUser = await getUser();
+      setUser(loggedInUser);
+    };
+    checkUser();
+  }, []);
+
+
 
 
   return(
@@ -26,9 +42,22 @@ export default function NavBar() {
         </Link>
       </li>
       <li>
-        <Link href="/login" className="text-white">
-          Sign in
-        </Link>
+      {user ? (
+            <button
+              onClick={() => {
+                // Aquí puedes agregar la lógica para cerrar sesión
+                // Supabase tiene un método para esto: await supabase.auth.signOut();
+                setUser(null); // Esto es solo un ejemplo; en un caso real, deberías también borrar la sesión en Supabase
+              }}
+              className="text-white"
+            >
+              Sign out
+            </button>
+          ) : (
+            <Link href="/login" className="text-white">
+              Sign in
+            </Link>
+          )}
       </li>
    
     </ul>
@@ -36,9 +65,10 @@ export default function NavBar() {
   </nav>
 
 
-)
-
-
+);
 }
+
+
+export default NavBar;
 
 
