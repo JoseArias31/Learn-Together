@@ -5,6 +5,7 @@ import '../globals.css'
 import Image from 'next/image'
 import logo from '../../../public/Logo.png';
 import { getUser } from '../auth/register/keepLogginIn'
+import { signOutUser } from '../auth/register/signOut';
 import { useEffect, useState } from 'react';
 
 
@@ -19,6 +20,16 @@ const NavBar = () => {
     };
     checkUser();
   }, []);
+  
+  const handlgeSignOut = async () => {
+    const { success, error } = await signOutUser();
+    if (success) {
+      setUser(null); // Actualiza el estado para reflejar que el usuario no está loggeado
+    } else {
+      console.log("Error signing out:", error);
+    }
+  };
+
 
 
 
@@ -44,11 +55,7 @@ const NavBar = () => {
       <li>
       {user ? (
             <button
-              onClick={() => {
-                // Aquí puedes agregar la lógica para cerrar sesión
-                // Supabase tiene un método para esto: await supabase.auth.signOut();
-                setUser(null); // Esto es solo un ejemplo; en un caso real, deberías también borrar la sesión en Supabase
-              }}
+              onClick={handlgeSignOut}
               className="text-white"
             >
               Sign out
