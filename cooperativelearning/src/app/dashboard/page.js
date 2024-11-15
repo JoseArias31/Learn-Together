@@ -1,30 +1,194 @@
 
 "use client";
 
-import useUserProfile from './useUserProfile';
-import ButtonGoHome from './ButtonGoHome';
+// import useUserProfile from './useUserProfile';
+// import ButtonGoHome from './ButtonGoHome';
+
+import useCharts from "../../scripts/dashboard/useCharts";
+import useSidebarToggle from "../../scripts/dashboard/useSidebarToggle";
+
 const Dashboard = () => {
-  const { user, loading, error } = useUserProfile();
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  if (!user) {
-    return null;
-  }
-
+  // Initialize charts
+  useCharts();
   return (
-    <div className="card">
-      <h2>User Profile:</h2>
-      <code className="highlight">{user.email}</code>
-      <div className="heading">Last Signed In:</div>
-      <code className="highlight">{new Date(user.last_sign_in_at).toUTCString()}</code>
-      <ButtonGoHome />
+    <div className="bg-gray-900 text-gray-100 overflow-x-clip">
+      {/* Header Section */}
+      <header className="p-4 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <button
+            id="menuButton"
+            className="text-gray-100 text-3xl lg:hidden hover:text-gray-400"
+            aria-label="Open Menu"
+          >
+            <i className="bx bx-menu"></i>
+          </button>
+          <div className="flex items-center gap-2 text-teal-400 cursor-pointer">
+            <i className="bx bx-infinite text-3xl"></i>
+            <span className="text-xl font-semibold">Finavise</span>
+          </div>
+        </div>
+
+        <div className="flex items-center">
+          <div className="relative hidden lg:flex w-[500px]">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-full py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+            <i className="bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-gray-300 font-medium">John Doe</span>
+          <img
+            src="../src/user.png"
+            alt="User Avatar"
+            className="w-10 h-10 rounded-full border border-gray-600"
+          />
+        </div>
+      </header>
+
+      <div className="flex p-3 gap-4">
+        {/* Sidebar Section */}
+        <aside
+          id="sidebar"
+          className="w-42 hidden lg:block rounded-lg bg-gray-800 p-2 py-5 fixed lg:relative lg:translate-x-0 transform -translate-x-full transition-transform duration-200 ease-in-out"
+        >
+          <nav className="space-y-4">
+            <a
+              href="#"
+              className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
+            >
+              <i className="bx bx-home-alt text-teal-400"></i>
+              <span>Dashboard</span>
+            </a>
+            <a
+              href="#"
+              className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
+            >
+              <i className="bx bx-line-chart text-teal-400"></i>
+              <span>Analytics</span>
+            </a>
+            <a
+              href="#"
+              className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
+            >
+              <i className="bx bx-wallet text-teal-400"></i>
+              <span>Transactions</span>
+            </a>
+            <a
+              href="#"
+              className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
+            >
+              <i className="bx bx-user text-teal-400"></i>
+              <span>Account</span>
+            </a>
+            <a
+              href="#"
+              className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
+            >
+              <i className="bx bx-cog text-teal-400"></i>
+              <span>Settings</span>
+            </a>
+          </nav>
+        </aside>
+
+        {/* Main Section */}
+        <main className="flex-1 bg-gray-900 flex gap-4 flex-col lg:flex-row ml-0 lg:ml-42">
+          <section className="w-full lg:flex-1 p-4 space-y-6 bg-gray-800 flex flex-col rounded-lg">
+            {/* Revenue Flow Card */}
+            <div className="bg-gray-700 p-5 rounded-md">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center space-x-3">
+                  <i className="bx bx-trending-up text-teal-400 text-2xl"></i>
+                  <h2 className="text-lg font-semibold text-gray-100">
+                    Revenue Flow
+                  </h2>
+                </div>
+                <span className="text-xl font-bold text-gray-100">$24,300</span>
+              </div>
+              <canvas id="revenueFlowChart" className="w-full"></canvas>
+            </div>
+
+            <div className="flex gap-4 flex-col md:flex-row">
+              {/* Income Card */}
+              <div className="bg-gray-700 p-5 flex-1 rounded-md flex items-center justify-between">
+                <div className="flex md:items-center gap-2 flex-col lg:flex-row items-start">
+                  <i className="bx bx-dollar-circle text-teal-400 text-2xl"></i>
+                  <h2 className="text-sm md:text-lg font-semibold text-gray-100">
+                    Income
+                  </h2>
+                </div>
+                <div className="text-xl font-bold text-gray-100 flex flex-col items-end lg:flex-row lg:items-center gap-2">
+                  <span className="text-sm lg:text-lg">$15,200</span>
+                  <span className="text-green-400 text-sm">+8%</span>
+                </div>
+              </div>
+
+              {/* Expense Card */}
+              <div className="bg-gray-700 p-4 md:p-5 flex-1 rounded-md flex items-center justify-between">
+                <div className="flex md:items-center gap-2 flex-col lg:flex-row items-start">
+                  <i className="bx bx-cart text-teal-400 text-2xl"></i>
+                  <h2 className="text-sm md:text-lg font-semibold text-gray-100">
+                    Expenses
+                  </h2>
+                </div>
+                <div className="text-xl font-bold text-gray-100 flex flex-col items-end lg:flex-row lg:items-center gap-2">
+                  <span className="text-sm lg:text-lg">$6,700</span>
+                  <span className="text-red-400 text-sm">-5%</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Right Side Content */}
+          <section className="w-full lg:w-[300px] p-4 flex flex-col justify-between gap-4 bg-gray-800 rounded-lg">
+            {/* Credit Card */}
+            <div className="bg-gradient-to-r from-teal-500 to-blue-600 p-5 rounded-lg text-white">
+              <h3 className="text-xl font-semibold mb-2">Credit Card</h3>
+              <p className="text-sm mb-4">Valid Thru: 12/25</p>
+              <div className="mb-6">
+                <span className="block text-lg font-bold tracking-wide">
+                  •••• •••• •••• 1234
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <div>
+                  <span className="text-xs uppercase text-gray-200">
+                    Card Holder
+                  </span>
+                  <p className="text-lg font-medium">John Doe</p>
+                </div>
+                <div>
+                  <span className="text-xs uppercase text-gray-200">
+                    Balance
+                  </span>
+                  <p className="text-lg font-medium">$5,300</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Available Balance */}
+            <div className="bg-gray-700 p-5 rounded-md overflow-hidden">
+              <div className="flex items-center justify-between mb-4">
+                <i className="bx bx-wallet text-teal-400 text-2xl"></i>
+                <h2 className="text-lg font-semibold text-gray-100">
+                  Available
+                </h2>
+              </div>
+              <div className="flex justify-center px-10 overflow-hidden">
+                <canvas
+                  id="availableBalanceChart"
+                  className="w-20 md:w-32 lg:w-40"
+                ></canvas>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
     </div>
   );
 };
