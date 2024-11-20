@@ -35,14 +35,14 @@ const Dashboard = () => {
           <div className="relative hidden lg:flex w-[500px]">
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="What should I study?"
               className="w-full py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
             />
             <i className="bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-gray-300 font-medium">John Doe</span>
+          <span className="text-gray-300 font-medium">Hello John Doe!</span>
           <img
             src="../src/user.png"
             alt="User Avatar"
@@ -63,29 +63,23 @@ const Dashboard = () => {
               className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
             >
               <i className="bx bx-home-alt text-teal-400"></i>
-              <span>Dashboard</span>
+              <span>Home</span>
             </a>
             <a
-              href="#"
+              href="/"
               className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
             >
               <i className="bx bx-line-chart text-teal-400"></i>
-              <span>Analytics</span>
+              <span>My Programs</span>
             </a>
             <a
-              href="#"
+              href="my-programs"
               className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
             >
               <i className="bx bx-wallet text-teal-400"></i>
-              <span>Transactions</span>
+              <span>AI Assistance</span>
             </a>
-            <a
-              href="#"
-              className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
-            >
-              <i className="bx bx-user text-teal-400"></i>
-              <span>Account</span>
-            </a>
+            
             <a
               href="#"
               className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
@@ -148,27 +142,12 @@ const Dashboard = () => {
           <section className="w-full lg:w-[300px] p-4 flex flex-col justify-between gap-4 bg-gray-800 rounded-lg">
             {/* Credit Card */}
             <div className="bg-gradient-to-r from-teal-500 to-blue-600 p-5 rounded-lg text-white">
-              <h3 className="text-xl font-semibold mb-2">Credit Card</h3>
-              <p className="text-sm mb-4">Valid Thru: 12/25</p>
-              <div className="mb-6">
-                <span className="block text-lg font-bold tracking-wide">
-                  •••• •••• •••• 1234
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <div>
-                  <span className="text-xs uppercase text-gray-200">
-                    Card Holder
-                  </span>
-                  <p className="text-lg font-medium">John Doe</p>
-                </div>
-                <div>
-                  <span className="text-xs uppercase text-gray-200">
-                    Balance
-                  </span>
-                  <p className="text-lg font-medium">$5,300</p>
-                </div>
-              </div>
+              <h3 className="text-xl font-semibold mb-2">Programs Registered</h3>
+              <p className="text-sm mb-4">Front-end Web Development</p>
+              <p className="text-sm mb-4">Data Bases</p>
+              <p className="text-sm mb-4">English</p>
+            
+           
             </div>
 
             {/* Available Balance */}
