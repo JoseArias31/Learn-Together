@@ -6,7 +6,7 @@
 
 import useCharts from "../../scripts/dashboard/useCharts";
 import useSidebarToggle from "../../scripts/dashboard/useSidebarToggle";
-
+import Image from 'next/image';
 const Dashboard = () => {
 
   const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
@@ -43,11 +43,7 @@ const Dashboard = () => {
         </div>
         <div className="flex items-center gap-2">
           <span className="text-gray-300 font-medium">Hello John Doe!</span>
-          <img
-            src="../src/user.png"
-            alt="User Avatar"
-            className="w-10 h-10 rounded-full border border-gray-600"
-          />
+          
         </div>
       </header>
 
@@ -146,7 +142,14 @@ const Dashboard = () => {
               <p className="text-sm mb-4">Front-end Web Development</p>
               <p className="text-sm mb-4">Data Bases</p>
               <p className="text-sm mb-4">English</p>
-            
+              <Image 
+          // add style to center
+              src="/add sign.png"
+              alt="add simbol"
+              width={30}
+              height={30}
+
+              ></Image>
            
             </div>
 
