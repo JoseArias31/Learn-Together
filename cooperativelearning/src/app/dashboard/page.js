@@ -8,6 +8,7 @@ import Link from "next/link";
 import useCharts from "../../scripts/dashboard/useCharts";
 import useSidebarToggle from "../../scripts/dashboard/useSidebarToggle";
 import Image from 'next/image';
+import logo from '../../../public/Logo.png'
 const Dashboard = () => {
 
   const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
@@ -28,7 +29,8 @@ const Dashboard = () => {
           </button>
           <div className="flex items-center gap-2 text-teal-400 cursor-pointer">
             <i className="bx bx-infinite text-3xl"></i>
-            <span className="text-xl font-semibold">Finavise</span>
+            {/* remove background logo */}
+            <Image className='relative z-10' src={logo} alt="Logo" width={41} />
           </div>
         </div>
 
