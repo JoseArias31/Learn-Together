@@ -1,6 +1,7 @@
 
 "use client";
 
+import Link from "next/link";
 // import useUserProfile from './useUserProfile';
 // import ButtonGoHome from './ButtonGoHome';
 
@@ -54,35 +55,35 @@ const Dashboard = () => {
           className="w-42 hidden lg:block rounded-lg bg-gray-800 p-2 py-5 fixed lg:relative lg:translate-x-0 transform -translate-x-full transition-transform duration-200 ease-in-out"
         >
           <nav className="space-y-4">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
             >
               <i className="bx bx-home-alt text-teal-400"></i>
               <span>Home</span>
-            </a>
-            <a
-              href="/"
+            </Link>
+            <Link
+              href="/programs"
               className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
             >
               <i className="bx bx-line-chart text-teal-400"></i>
               <span>My Programs</span>
-            </a>
-            <a
-              href="my-programs"
+            </Link>
+            <Link
+              href="/ai-assistance"
               className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
             >
               <i className="bx bx-wallet text-teal-400"></i>
               <span>AI Assistance</span>
-            </a>
+            </Link>
             
-            <a
-              href="#"
+            <Link
+              href="/settings"
               className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
             >
               <i className="bx bx-cog text-teal-400"></i>
               <span>Settings</span>
-            </a>
+            </Link>
           </nav>
         </aside>
 
@@ -142,15 +143,20 @@ const Dashboard = () => {
               <p className="text-sm mb-4">Front-end Web Development</p>
               <p className="text-sm mb-4">Data Bases</p>
               <p className="text-sm mb-4">English</p>
+              <div className="flex justify-center text-blue-500 hover:text-blue-700 ">
+                <Link href="/programs">
+              <div className="hover:scale-110 transition duration-300">
               <Image 
-          // add style to center
+         
               src="/add sign.png"
               alt="add simbol"
               width={30}
               height={30}
 
               ></Image>
-           
+           </div>
+           </Link>
+           </div>           
             </div>
 
             {/* Available Balance */}
