@@ -9,6 +9,8 @@ import useCharts from "../../scripts/dashboard/useCharts";
 import useSidebarToggle from "../../scripts/dashboard/useSidebarToggle";
 import Image from 'next/image';
 import logo from '../../../public/Logo.png'
+import ProgramCarousel from "../components/ProgramCarousel";
+
 const Dashboard = () => {
 
   const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
@@ -93,7 +95,7 @@ const Dashboard = () => {
         <main className="flex-1 bg-gray-900 flex gap-4 flex-col lg:flex-row ml-0 lg:ml-42">
           <section className="w-full lg:flex-1 p-4 space-y-6 bg-gray-800 flex flex-col rounded-lg">
             {/* Revenue Flow Card */}
-            <div className="bg-gray-700 p-5 rounded-md">
+            {/* <div className="bg-gray-700 p-5 rounded-md">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-3">
                   <i className="bx bx-trending-up text-teal-400 text-2xl"></i>
@@ -104,7 +106,10 @@ const Dashboard = () => {
                 <span className="text-xl font-bold text-gray-100">$24,300</span>
               </div>
               <canvas id="revenueFlowChart" className="w-full"></canvas>
-            </div>
+            </div> */}
+<ProgramCarousel />
+
+
 
             <div className="flex gap-4 flex-col md:flex-row">
               {/* Income Card */}
@@ -162,19 +167,35 @@ const Dashboard = () => {
             </div>
 
             {/* Available Balance */}
-            <div className="bg-gray-700 p-5 rounded-md overflow-hidden">
-              <div className="flex items-center justify-between mb-4">
-                <i className="bx bx-wallet text-teal-400 text-2xl"></i>
-                <h2 className="text-lg font-semibold text-gray-100">
-                  Available
+            <div className="flex bg-gray-700 p-3 rounded-md overflow-hidden flex-row justify-between">
+              <div className="flex flex-col justify-between mb-4">
+                
+                <h2 className="text-base font-semibold text-gray-100">
+                  Account Status
                 </h2>
+                <br></br>
+                <h2 className="text-base font-semibold text-gray-100">
+                  Membership
+                </h2>
+                <br></br>
+                <h2 className="text-base font-semibold text-gray-100">
+                  Subscription
+                </h2>
+                <br></br>
+                <h2 className="text-base font-semibold text-gray-100">
+                  Programs Completed
+                </h2>
+
               </div>
-              <div className="flex justify-center px-10 overflow-hidden">
-                <canvas
-                  id="availableBalanceChart"
-                  className="w-20 md:w-32 lg:w-40"
-                ></canvas>
+              <div className="flex flex-col justify-between mb-4">
+
+<h3 className="text-sm">Active</h3>
+<h3 className="text-sm">Student</h3>
+<h3 className="text-sm">Montly</h3>
+<h3 className="text-sm">2</h3>
+
               </div>
+              
             </div>
           </section>
         </main>
