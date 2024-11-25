@@ -11,7 +11,7 @@ const slides = [
   { id: 6, bg: "bg-gray-300", text: "Sixth slide", route: "/CEO" },
 ];
 
-const ImageCarousel = () => {
+const CategoryCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
@@ -26,7 +26,7 @@ const ImageCarousel = () => {
 
   return (
     <>
-   <h1>Join a Program</h1>
+   <h1>Browse Categories</h1>
     <div
       data-hs-carousel='{
         "loadingClasses": "opacity-0",
@@ -108,4 +108,4 @@ const ImageCarousel = () => {
   );
 };
 
-export default ImageCarousel;
+export default CategoryCarousel;

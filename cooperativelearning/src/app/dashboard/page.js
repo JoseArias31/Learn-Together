@@ -9,8 +9,8 @@ import useCharts from "../../scripts/dashboard/useCharts";
 import useSidebarToggle from "../../scripts/dashboard/useSidebarToggle";
 import Image from 'next/image';
 import logo from '../../../public/Logo.png'
-import ProgramCarousel from "../components/ProgramCarousel";
-
+import ImageCarousel from "../components/ProgramCarousel";
+import CategoryCarousel from "../components/CategoryCarousel";
 const Dashboard = () => {
 
   const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
@@ -107,8 +107,8 @@ const Dashboard = () => {
               </div>
               <canvas id="revenueFlowChart" className="w-full"></canvas>
             </div> */}
-<ProgramCarousel />
-
+<ImageCarousel />
+<CategoryCarousel />
 
 
             <div className="flex gap-4 flex-col md:flex-row">
