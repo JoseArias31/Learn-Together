@@ -9,11 +9,22 @@ const slides = [
   { id: 4, bg: "bg-gray-100", text: "Fourth slide", route: "/Data-Bases" },
   { id: 5, bg: "bg-gray-200", text: "Fifth slide", route: "/Maching-Learning" },
   { id: 6, bg: "bg-gray-300", text: "Sixth slide", route: "/CEO" },
+  { id: 7, bg: "bg-gray-100", text: "First slide", route: "/Web-Development" },
+  { id: 8, bg: "bg-gray-200", text: "Second slide", route: "/English" },
+  { id: 9, bg: "bg-gray-300", text: "Third slide", route: "/UI-UX" },
+  { id: 10, bg: "bg-gray-100", text: "Fourth slide", route: "/Data-Bases" },
+  { id: 11, bg: "bg-gray-200", text: "Fifth slide", route: "/Maching-Learning" },
+  { id: 12, bg: "bg-gray-300", text: "Sixth slide", route: "/CEO" },
+  { id: 13, bg: "bg-gray-100", text: "First slide", route: "/Web-Development" },
+  { id: 14, bg: "bg-gray-200", text: "Second slide", route: "/English" },
+  { id: 15, bg: "bg-gray-300", text: "Third slide", route: "/UI-UX" },
+  { id: 16, bg: "bg-gray-100", text: "Fourth slide", route: "/Data-Bases" },
+  { id: 17, bg: "bg-gray-200", text: "Fifth slide", route: "/Maching-Learning" },
+  { id: 18, bg: "bg-gray-300", text: "Sixth slide", route: "/CEO" }
 ];
 
 const ImageCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
@@ -37,33 +48,41 @@ const ImageCarousel = () => {
       className="relative"
     >
          
-      <div className="hs-carousel w-full overflow-hidden bg-white rounded-lg">
-        <div className="relative min-h-72">
-          <div
-            className="hs-carousel-body absolute top-0 bottom-0 left-0 flex transition-transform duration-700"
-            style={{
-              transform: `translateX(-${currentSlide * 100}%)`,
-            }}
-          >
-            {slides.map((slide) => (
-              <div key={slide.id} className="hs-carousel-slide px-1 flex-shrink-0 w-full">
-              <Link href={slide.route}><div className={`flex justify-center h-full ${slide.bg} p-6`}>
-                  <span className="self-center text-sm text-gray-800">
-                    {slide.text}
-                  </span>
-                </div>
-                </Link>
-              </div>
-            ))}
-          </div>
+         <div className="hs-carousel w-full overflow-hidden bg-white rounded-lg">
+  <div className="relative min-h-20 overflow-hidden">
+    <div
+      className="hs-carousel-body absolute top-0 bottom-0 left-0 flex transition-transform duration-700"
+      style={{
+        transform: `translateX(-${currentSlide * 100}px)`,
+      }}
+    >
+      {slides.map((slide) => (
+        <div
+          key={slide.id}
+          className="hs-carousel-slide px-1 flex-shrink-0 w-[100px] md:w-[150px] lg:w-[200px]"
+        >
+          <Link href={slide.route}>
+            <div className={`flex justify-center h-full ${slide.bg} p-6`}>
+              <span className="self-center text-sm text-gray-800">
+                {slide.text}
+              </span>
+            </div>
+          </Link>
         </div>
-      </div>
+      ))}
+    </div>
+  </div>
+</div>
+
 
       {/* Navigation Buttons */}
       <button
         type="button"
         onClick={prevSlide}
-        className="hs-carousel-prev absolute inset-y-0 left-0 flex justify-center items-center w-[46px] h-full text-gray-800 hover:bg-gray-800/10 focus:outline-none rounded-s-lg"
+        disabled={currentSlide === 0}
+        className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-200 p-2 rounded-full ${
+          currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''
+        }`}
       >
         <span aria-hidden="true">
           <svg
@@ -85,7 +104,10 @@ const ImageCarousel = () => {
       <button
         type="button"
         onClick={nextSlide}
-        className="hs-carousel-next absolute inset-y-0 right-0 flex justify-center items-center w-[46px] h-full text-gray-800 hover:bg-gray-800/10 focus:outline-none rounded-e-lg"
+        disabled={currentSlide === slides.length - 1}
+        className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-200 p-2 rounded-full ${
+          currentSlide === slides.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
+        }`}
       >
         <span aria-hidden="true">
           <svg
