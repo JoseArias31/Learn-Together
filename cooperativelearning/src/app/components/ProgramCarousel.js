@@ -51,9 +51,9 @@ const ImageCarousel = () => {
          <div className="hs-carousel w-full overflow-hidden bg-white rounded-lg">
   <div className="relative min-h-20 overflow-hidden">
     <div
-      className="hs-carousel-body absolute top-0 bottom-0 left-0 flex transition-transform duration-700"
+      className="hs-carousel-body absolute top-0 bottom-0 left-0 flex transition-transform duration-700 bg-gray-800"
       style={{
-        transform: `translateX(-${currentSlide * 100}px)`,
+        transform: `translateX(-${currentSlide * 200}px)`,
       }}
     >
       {slides.map((slide) => (
@@ -62,7 +62,7 @@ const ImageCarousel = () => {
           className="hs-carousel-slide px-1 flex-shrink-0 w-[100px] md:w-[150px] lg:w-[200px]"
         >
           <Link href={slide.route}>
-            <div className={`flex justify-center h-full ${slide.bg} p-6`}>
+            <div className={`flex justify-center h-full ${slide.bg} p-6 rounded-lg`}>
               <span className="self-center text-sm text-gray-800">
                 {slide.text}
               </span>

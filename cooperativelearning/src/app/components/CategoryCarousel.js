@@ -37,17 +37,17 @@ const CategoryCarousel = () => {
       className="relative"
     >
          
-      <div className="hs-carousel w-full overflow-hidden bg-white rounded-lg">
-        <div className="relative min-h-72">
+      <div className="hs-carousel w-full overflow-hidden bg-white rounded-lg ">
+        <div className="relative min-h-60 overflow-hidden ">
           <div
-            className="hs-carousel-body absolute top-0 bottom-0 left-0 flex transition-transform duration-700"
+            className="hs-carousel-body absolute top-0 bottom-0 left-0 flex transition-transform duration-700 bg-gray-800"
             style={{
-              transform: `translateX(-${currentSlide * 100}%)`,
+              transform: `translateX(-${currentSlide * 200}px)`,
             }}
           >
             {slides.map((slide) => (
-              <div key={slide.id} className="hs-carousel-slide px-1 flex-shrink-0 w-full">
-              <Link href={slide.route}><div className={`flex justify-center h-full ${slide.bg} p-6`}>
+              <div key={slide.id} className="hs-carousel-slide px-5  flex-shrink-0 w-[300px] md:w-[350px] lg:w[600px]">
+              <Link href={slide.route}><div className={`flex justify-center h-full ${slide.bg} p-6 rounded-lg`}>
                   <span className="self-center text-sm text-gray-800">
                     {slide.text}
                   </span>
@@ -63,7 +63,8 @@ const CategoryCarousel = () => {
       <button
         type="button"
         onClick={prevSlide}
-        className="hs-carousel-prev absolute inset-y-0 left-0 flex justify-center items-center w-[46px] h-full text-gray-800 hover:bg-gray-800/10 focus:outline-none rounded-s-lg"
+        disabled={currentSlide === 0}
+        className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-200 p-2 rounded-full ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''} `}
       >
         <span aria-hidden="true">
           <svg
@@ -83,9 +84,12 @@ const CategoryCarousel = () => {
       </button>
 
       <button
-        type="button"
-        onClick={nextSlide}
-        className="hs-carousel-next absolute inset-y-0 right-0 flex justify-center items-center w-[46px] h-full text-gray-800 hover:bg-gray-800/10 focus:outline-none rounded-e-lg"
+         type="button"
+         onClick={nextSlide}
+         disabled={currentSlide === slides.length - 1}
+         className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-200 p-2 rounded-full ${
+           currentSlide === slides.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
+         }`}
       >
         <span aria-hidden="true">
           <svg
