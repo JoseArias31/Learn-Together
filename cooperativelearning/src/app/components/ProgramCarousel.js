@@ -80,7 +80,7 @@ const ImageCarousel = () => {
         type="button"
         onClick={prevSlide}
         disabled={currentSlide === 0}
-        className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-200 p-2 rounded-full ${
+        className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-400 p-2 rounded-full hover:bg-gray-700 ${
           currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''
         }`}
       >
@@ -104,8 +104,8 @@ const ImageCarousel = () => {
       <button
         type="button"
         onClick={nextSlide}
-        disabled={currentSlide === slides.length - 1}
-        className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-200 p-2 rounded-full ${
+        disabled={currentSlide === slides.length - 7}
+        className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-400 p-2 rounded-full hover:bg-gray-700 ${
           currentSlide === slides.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
         }`}
       >

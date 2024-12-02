@@ -64,7 +64,7 @@ const CategoryCarousel = () => {
         type="button"
         onClick={prevSlide}
         disabled={currentSlide === 0}
-        className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-200 p-2 rounded-full ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''} `}
+        className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-400 p-2 rounded-full hover:bg-gray-700 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''} `}
       >
         <span aria-hidden="true">
           <svg
@@ -86,8 +86,8 @@ const CategoryCarousel = () => {
       <button
          type="button"
          onClick={nextSlide}
-         disabled={currentSlide === slides.length - 1}
-         className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-200 p-2 rounded-full ${
+         disabled={currentSlide === slides.length - 2}
+         className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-400 p-2 rounded-full hover:bg-gray-700 ${
            currentSlide === slides.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
          }`}
       >

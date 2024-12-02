@@ -14,16 +14,15 @@ export default function Component() {
             <span className="text-lg font-bold text-white">Learn Together</span>
           </Link>
           <p className="text-gray-500 dark:text-gray-400 text-white">
-            Acme Inc. is a leading provider of innovative solutions for businesses of all sizes. We strive to deliver
-            exceptional products and services to our customers.
+          Learn Together is a powerful and leading website that provides literary any program and is guided by AI technology through both chat and voice. Make your learning journey an adventure.
           </p>
         </div>
         <div className="grid gap-4">
           <h3 className="text-lg font-semibold text-white">Quick Links</h3>
           <div className="grid gap-2">
             <Link
-              href="#"
-              className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+              href="/about"
+              className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50 text-white"
               prefetch={false}
             >
               About
@@ -36,7 +35,7 @@ export default function Component() {
               Contact
             </Link>
             <Link
-              href="#"
+              href="/privacy-policy"
               className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50 text-white"
               prefetch={false}
             >

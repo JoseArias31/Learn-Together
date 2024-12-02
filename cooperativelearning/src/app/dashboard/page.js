@@ -11,6 +11,14 @@ import Image from 'next/image';
 import logo from '../../../public/Logo.png'
 import ImageCarousel from "../components/ProgramCarousel";
 import CategoryCarousel from "../components/CategoryCarousel";
+import Footer from "../components/footer"
+import home from '../../../public/home.png'
+import ai from '../../../public/ai.png'
+import programs from '../../../public/programs.png'
+import settings from '../../../public/settings.png'
+
+
+
 const Dashboard = () => {
 
   const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
@@ -56,7 +64,7 @@ const Dashboard = () => {
         {/* Sidebar Section */}
         <aside
           id="sidebar"
-          className="w-42 hidden lg:block rounded-lg bg-gray-800 p-2 py-5 fixed lg:relative lg:translate-x-0 transform -translate-x-full transition-transform duration-200 ease-in-out"
+          className="w-42 hidden lg:block rounded-lg bg-gray-800 p-2 py-5 fixed lg:relative lg:translate-x-0 transform -translate-x-full transition-transform duration-200 ease-in-out content-center"
         >
           <nav className="space-y-4">
             <Link
@@ -64,6 +72,11 @@ const Dashboard = () => {
               className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
             >
               <i className="bx bx-home-alt text-teal-400"></i>
+              <Image  
+              src={home}
+              alt="home"
+              width={20}
+              />
               <span>Home</span>
             </Link>
             <Link
@@ -71,6 +84,12 @@ const Dashboard = () => {
               className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
             >
               <i className="bx bx-line-chart text-teal-400"></i>
+              
+              <Image  
+              src={programs}
+              alt="programs"
+              width={20}
+              />
               <span>My Programs</span>
             </Link>
             <Link
@@ -78,6 +97,12 @@ const Dashboard = () => {
               className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
             >
               <i className="bx bx-wallet text-teal-400"></i>
+             
+              <Image  
+              src={ai}
+              alt="aiAssistance"
+              width={20}
+              />
               <span>AI Assistance</span>
             </Link>
             
@@ -86,6 +111,12 @@ const Dashboard = () => {
               className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
             >
               <i className="bx bx-cog text-teal-400"></i>
+              
+              <Image  
+              src={settings}
+              alt="settings"
+              width={20}
+              />
               <span>Settings</span>
             </Link>
           </nav>
@@ -200,6 +231,7 @@ const Dashboard = () => {
           </section>
         </main>
       </div>
+      <Footer />
     </div>
   );
 };
