@@ -148,12 +148,12 @@ const Dashboard = () => {
                 <div className="flex md:items-center gap-2 flex-col lg:flex-row items-start">
                   <i className="bx bx-dollar-circle text-teal-400 text-2xl"></i>
                   <h2 className="text-sm md:text-lg font-semibold text-gray-100">
-                    Income
+                    Total Programs
                   </h2>
                 </div>
                 <div className="text-xl font-bold text-gray-100 flex flex-col items-end lg:flex-row lg:items-center gap-2">
-                  <span className="text-sm lg:text-lg">$15,200</span>
-                  <span className="text-green-400 text-sm">+8%</span>
+            
+                  <span className="text-green-400 text-sm">10</span>
                 </div>
               </div>
 
@@ -162,12 +162,12 @@ const Dashboard = () => {
                 <div className="flex md:items-center gap-2 flex-col lg:flex-row items-start">
                   <i className="bx bx-cart text-teal-400 text-2xl"></i>
                   <h2 className="text-sm md:text-lg font-semibold text-gray-100">
-                    Expenses
+                   Total Courses
                   </h2>
                 </div>
                 <div className="text-xl font-bold text-gray-100 flex flex-col items-end lg:flex-row lg:items-center gap-2">
-                  <span className="text-sm lg:text-lg">$6,700</span>
-                  <span className="text-red-400 text-sm">-5%</span>
+                
+                  <span className="text-green-400 text-sm">50</span>
                 </div>
               </div>
             </div>
