@@ -45,7 +45,7 @@ const ImageCarousel = () => {
         "isCentered": true,
         "slidesQty": { "xs": 1, "lg": 2 }
       }'
-      className="relative"
+      className="relative "
     >
          
          <div className="hs-carousel w-full overflow-hidden bg-white rounded-lg">

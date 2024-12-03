@@ -16,7 +16,8 @@ import home from '../../../public/home.png'
 import ai from '../../../public/ai.png'
 import programs from '../../../public/programs.png'
 import settings from '../../../public/settings.png'
-
+import mic from '../../../public/mic.png'
+import micopen from '../../../public/micopen.png'
 
 
 const Dashboard = () => {
@@ -26,7 +27,8 @@ const Dashboard = () => {
   // Initialize charts
   useCharts();
   return (
-    <div className="bg-gray-900 text-gray-100 overflow-x-clip">
+    <div className="bg-custom-gradient text-gray-100 overflow-x-clip">
+    
       {/* Header Section */}
       <header className="p-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
@@ -49,8 +51,10 @@ const Dashboard = () => {
             <input
               type="text"
               placeholder="What should I study?"
-              className="w-full py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="border-green-400 w-full py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
             />
+
+          
             <i className="bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
           </div>
         </div>
@@ -59,8 +63,18 @@ const Dashboard = () => {
           
         </div>
       </header>
+      <div className="justify-items-center mb-14">      
+        <h1 className="text-center font-sans mt-8 text-7xl">Unlock the Future</h1>
+      <h1 className="text-center mb-8 text-4xl text-green-400">Your AI Learning Hub</h1>
+      <div >
+<button className="hover:scale-110 transition-all duration-300">
+      <Image  src={mic} alt="micai" width={40}/>
+      </button>
+      </div>
+      <h3>Click the mic to ask your AI tutor!</h3>
+     </div>
 
-      <div className="flex p-3 gap-4">
+      <div className="flex p-3 gap-4 bg-custom-gradient h-screen">
         {/* Sidebar Section */}
         <aside
           id="sidebar"
@@ -123,7 +137,7 @@ const Dashboard = () => {
         </aside>
 
         {/* Main Section */}
-        <main className="flex-1 bg-gray-900 flex gap-4 flex-col lg:flex-row ml-0 lg:ml-42">
+        <main className="flex-1 bg-custom-gradient flex gap-4 flex-col lg:flex-row ml-0 lg:ml-42">
           <section className="w-full lg:flex-1 p-4 space-y-6 bg-gray-800 flex flex-col rounded-lg">
             {/* Revenue Flow Card */}
             {/* <div className="bg-gray-700 p-5 rounded-md">
@@ -148,7 +162,7 @@ const Dashboard = () => {
                 <div className="flex md:items-center gap-2 flex-col lg:flex-row items-start">
                   <i className="bx bx-dollar-circle text-teal-400 text-2xl"></i>
                   <h2 className="text-sm md:text-lg font-semibold text-gray-100">
-                    Total Programs
+                    Total Categories
                   </h2>
                 </div>
                 <div className="text-xl font-bold text-gray-100 flex flex-col items-end lg:flex-row lg:items-center gap-2">
@@ -162,7 +176,7 @@ const Dashboard = () => {
                 <div className="flex md:items-center gap-2 flex-col lg:flex-row items-start">
                   <i className="bx bx-cart text-teal-400 text-2xl"></i>
                   <h2 className="text-sm md:text-lg font-semibold text-gray-100">
-                   Total Courses
+                   Total Programs
                   </h2>
                 </div>
                 <div className="text-xl font-bold text-gray-100 flex flex-col items-end lg:flex-row lg:items-center gap-2">
@@ -231,6 +245,20 @@ const Dashboard = () => {
           </section>
         </main>
       </div>
+
+      <div className="bg-custom-gradient flex items-center justify-center">
+        <div>
+      <h1>Type your preferable interests to build a route map</h1>
+          <div className="relative hidden lg:flex w-[500px]">
+            <input
+              type="text"
+              placeholder="What should I study?"
+              className="border-green-400 w-full py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+            <i className="bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+          </div>
+        </div>
       <Footer />
     </div>
   );
