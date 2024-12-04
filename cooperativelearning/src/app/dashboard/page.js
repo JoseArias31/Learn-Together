@@ -74,7 +74,7 @@ const Dashboard = () => {
       <h3>Click the mic to ask your AI tutor!</h3>
      </div>
 
-      <div className="flex p-3 gap-4 bg-custom-gradient h-screen">
+      <div className="flex p-3 gap-4 bg-custom-gradient">
         {/* Sidebar Section */}
         <aside
           id="sidebar"
@@ -246,17 +246,19 @@ const Dashboard = () => {
         </main>
       </div>
 
-      <div className="bg-custom-gradient flex items-center justify-center">
-        <div>
-      <h1>Type your preferable interests to build a route map</h1>
+      <div className="bg-custom-gradient flex items-center justify-center mt-36 mb-32 ">
+        <div className="place-items-center">
+      <h1 className="mb-4">Type your preferable interests to build a route map</h1>
           <div className="relative hidden lg:flex w-[500px]">
             <input
               type="text"
-              placeholder="What should I study?"
-              className="border-green-400 w-full py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              placeholder="I'd Like to become a Web Developer..."
+              className="border-green-400 w-full items-start h-[100px] py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
             />
-            <i className="bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+       
           </div>
+          <Link href="/ai-assistance">
+          <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mt-6">Check Journey</button></Link>
           </div>
         </div>
       <Footer />
