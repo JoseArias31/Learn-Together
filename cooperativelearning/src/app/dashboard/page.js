@@ -8,7 +8,7 @@ import Link from "next/link";
 import useCharts from "../../scripts/dashboard/useCharts";
 import useSidebarToggle from "../../scripts/dashboard/useSidebarToggle";
 import Image from 'next/image';
-import logo from '../../../public/Logo.png'
+import logo from '../../../public/logoNB.png'
 import ImageCarousel from "../components/ProgramCarousel";
 import CategoryCarousel from "../components/CategoryCarousel";
 import Footer from "../components/footer"
@@ -18,13 +18,17 @@ import programs from '../../../public/programs.png'
 import settings from '../../../public/settings.png'
 import mic from '../../../public/mic.png'
 import micopen from '../../../public/micopen.png'
+import { AutoChangingText } from "../components/autoChangingText";
+
 
 
 const Dashboard = () => {
 
   const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
 
-  // Initialize charts
+  // Auto Changing Text loop
+
+
   useCharts();
   return (
     <div className="bg-custom-gradient text-gray-100 overflow-x-clip">
@@ -42,12 +46,12 @@ const Dashboard = () => {
           <div className="flex items-center gap-2 text-teal-400 cursor-pointer">
             <i className="bx bx-infinite text-3xl"></i>
             {/* remove background logo */}
-            <Image className='relative z-10' src={logo} alt="Logo" width={41} />
+            <Image className='relative z-10' src={logo} alt="Logo" width={50} />
           </div>
         </div>
 
         <div className="flex items-center">
-          <div className="relative hidden lg:flex w-[500px]">
+          <div className="relative hidden lg:flex w-[600px]">
             <input
               type="text"
               placeholder="What should I study?"
@@ -246,17 +250,10 @@ const Dashboard = () => {
         </main>
       </div>
 
-      <div className="bg-custom-gradient flex items-center justify-center">
-        <div>
+      <div className="bg-custom-gradient flex items-center justify-center mt-40 mb-40">
+        <div className="text-center">
       <h1>Type your preferable interests to build a route map</h1>
-          <div className="relative hidden lg:flex w-[500px]">
-            <input
-              type="text"
-              placeholder="What should I study?"
-              className="border-green-400 w-full py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
-            />
-            <i className="bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-          </div>
+          <AutoChangingText />
           </div>
         </div>
       <Footer />
