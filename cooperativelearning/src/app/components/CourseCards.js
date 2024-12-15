@@ -36,7 +36,7 @@ const Courses = () => {
           <div className="course-icon">{course.icon}</div>
           <h3>{course.title}</h3>
           <p>{course.description}</p>
-          <a href={course.link} className="enroll-button">Enroll</a>
+          <a href={course.linkgit} className="enroll-button">Enroll</a>
         </div>
       ))}
     </div>

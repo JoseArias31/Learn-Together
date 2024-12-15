@@ -8,7 +8,7 @@ import Link from "next/link";
 import useCharts from "../../scripts/dashboard/useCharts";
 import useSidebarToggle from "../../scripts/dashboard/useSidebarToggle";
 import Image from 'next/image';
-import logo from '../../../public/Logo.png'
+import logo from '../../../public/logoNB.png'
 import ImageCarousel from "../components/ProgramCarousel";
 import CategoryCarousel from "../components/CategoryCarousel";
 import Footer from "../components/footer"
@@ -18,13 +18,17 @@ import programs from '../../../public/programs.png'
 import settings from '../../../public/settings.png'
 import mic from '../../../public/mic.png'
 import micopen from '../../../public/micopen.png'
+import { AutoChangingText } from "../components/autoChangingText";
+
 
 
 const Dashboard = () => {
 
   const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
 
-  // Initialize charts
+  // Auto Changing Text loop
+
+
   useCharts();
   return (
     <div className="bg-custom-gradient text-gray-100 overflow-x-clip">
@@ -42,22 +46,17 @@ const Dashboard = () => {
           <div className="flex items-center gap-2 text-teal-400 cursor-pointer">
             <i className="bx bx-infinite text-3xl"></i>
             {/* remove background logo */}
-            <Image className='relative z-10' src={logo} alt="Logo" width={41} />
+            <Image className='relative z-10' src={logo} alt="Logo" width={50} />
           </div>
         </div>
-
-        <div className="flex items-center">
-          <div className="relative hidden lg:flex w-[500px]">
-            <input
-              type="text"
-              placeholder="What should I study?"
-              className="border-green-400 w-full py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
-            />
-
-          
-            <i className="bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        <div className=" flex items-center justify-center">
+        <div className="text-center">
+     
+          <AutoChangingText />
+          <h1 className="mt-2">Type your preferable interests to build a route map</h1>
           </div>
         </div>
+       
         <div className="flex items-center gap-2">
           <span className="text-gray-300 font-medium">Hello John Doe!</span>
           
@@ -138,7 +137,7 @@ const Dashboard = () => {
 
         {/* Main Section */}
         <main className="flex-1 bg-custom-gradient flex gap-4 flex-col lg:flex-row ml-0 lg:ml-42">
-          <section className="w-full lg:flex-1 p-4 space-y-6 bg-gray-800 flex flex-col rounded-lg">
+          <section className="w-full lg:flex-1 p-4 space-y-6 bg-gray-800 flex flex-col rounded-lg justify-evenly">
             {/* Revenue Flow Card */}
             {/* <div className="bg-gray-700 p-5 rounded-md">
               <div className="flex items-center justify-between mb-4">
@@ -246,19 +245,16 @@ const Dashboard = () => {
         </main>
       </div>
 
-      <div className="bg-custom-gradient flex items-center justify-center mt-36 mb-32 ">
-        <div className="place-items-center">
-      <h1 className="mb-4">Type your preferable interests to build a route map</h1>
-          <div className="relative hidden lg:flex w-[500px]">
+      <div className="flex items-center flex-col mt-14 mb-20 ">
+          <div className=" flex flex-col text-center relative gap-4 hidden lg:flex w-[600px]">
+            <h1 className="text-4xl">It is time for AI to give you a hand </h1>
+            <h1>Ask it anything to figure it out best program for you!</h1>
             <input
               type="text"
-              placeholder="I'd Like to become a Web Developer..."
-              className="border-green-400 w-full items-start h-[100px] py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              placeholder="What should I study?"
+              className="border-green-400 w-full py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 h-[100px]"
             />
-       
-          </div>
-          <Link href="/ai-assistance">
-          <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mt-6">Check Journey</button></Link>
+
           </div>
         </div>
       <Footer />
