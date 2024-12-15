@@ -49,19 +49,14 @@ const Dashboard = () => {
             <Image className='relative z-10' src={logo} alt="Logo" width={50} />
           </div>
         </div>
-
-        <div className="flex items-center">
-          <div className="relative hidden lg:flex w-[600px]">
-            <input
-              type="text"
-              placeholder="What should I study?"
-              className="border-green-400 w-full py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
-            />
-
-          
-            <i className="bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        <div className=" flex items-center justify-center">
+        <div className="text-center">
+     
+          <AutoChangingText />
+          <h1 className="mt-2">Type your preferable interests to build a route map</h1>
           </div>
         </div>
+       
         <div className="flex items-center gap-2">
           <span className="text-gray-300 font-medium">Hello John Doe!</span>
           
@@ -142,7 +137,7 @@ const Dashboard = () => {
 
         {/* Main Section */}
         <main className="flex-1 bg-custom-gradient flex gap-4 flex-col lg:flex-row ml-0 lg:ml-42">
-          <section className="w-full lg:flex-1 p-4 space-y-6 bg-gray-800 flex flex-col rounded-lg">
+          <section className="w-full lg:flex-1 p-4 space-y-6 bg-gray-800 flex flex-col rounded-lg justify-evenly">
             {/* Revenue Flow Card */}
             {/* <div className="bg-gray-700 p-5 rounded-md">
               <div className="flex items-center justify-between mb-4">
@@ -250,10 +245,16 @@ const Dashboard = () => {
         </main>
       </div>
 
-      <div className="bg-custom-gradient flex items-center justify-center mt-40 mb-40">
-        <div className="text-center">
-      <h1>Type your preferable interests to build a route map</h1>
-          <AutoChangingText />
+      <div className="flex items-center flex-col mt-14 mb-20 ">
+          <div className=" flex flex-col text-center relative gap-4 hidden lg:flex w-[600px]">
+            <h1 className="text-4xl">It is time for AI to give you a hand </h1>
+            <h1>Ask it anything to figure it out best program for you!</h1>
+            <input
+              type="text"
+              placeholder="What should I study?"
+              className="border-green-400 w-full py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 h-[100px]"
+            />
+
           </div>
         </div>
       <Footer />
