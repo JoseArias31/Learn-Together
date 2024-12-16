@@ -18,6 +18,7 @@ import programs from '../../../public/programs.png'
 import settings from '../../../public/settings.png'
 import mic from '../../../public/mic.png'
 import micopen from '../../../public/micopen.png'
+import VoiceInteraction from "../components/VoiceInteraction";
 import { AutoChangingText } from "../components/autoChangingText";
 
 
@@ -66,9 +67,12 @@ const Dashboard = () => {
         <h1 className="text-center font-sans mt-8 text-7xl">Unlock the Future</h1>
       <h1 className="text-center mb-8 text-4xl text-green-400">Your AI Learning Hub</h1>
       <div >
-<button className="hover:scale-110 transition-all duration-300">
-      <Image  src={mic} alt="micai" width={40}/>
-      </button>
+
+
+
+      
+<VoiceInteraction />
+
       </div>
       <h3>Click the mic to ask your AI tutor!</h3>
      </div>
@@ -246,17 +250,16 @@ const Dashboard = () => {
       </div>
 
       <div className="flex items-center flex-col mt-14 mb-20 ">
-          <div className=" flex flex-col text-center relative gap-4 hidden lg:flex w-[600px]">
-            <h1 className="text-4xl">It is time for AI to give you a hand </h1>
-            <h1>Ask it anything to figure it out best program for you!</h1>
-            <input
-              type="text"
-              placeholder="What should I study?"
-              className="border-green-400 w-full py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 h-[100px]"
-            />
+  <div className="flex flex-col text-center relative gap-4 hidden lg:flex w-[600px] items-center">
+    <h1 className="text-4xl">It is time for AI to give you a hand </h1>
+    <h1>Ask it anything to figure it out best program for you!</h1>
+    <textarea
+      placeholder="What should I study?"
+      className="border-green-400 w-[400px] content-center py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none min-h-[100px]"
+    />
+  </div>
+</div>
 
-          </div>
-        </div>
       <Footer />
     </div>
   );
