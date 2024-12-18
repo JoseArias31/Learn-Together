@@ -10,7 +10,7 @@ import ThirdButton from "./components/ThirdBotton"
 
 export default function Home() {
   return (
-   <>
+   <div className="bg-custom-gradient text-white">
     <NavBar />  
     <h1 className="text-center mt-20 text-6xl font-kodchasan">Choose literary any program and unlock your potential like this website</h1>
     <div className="mt-10">
@@ -28,6 +28,6 @@ export default function Home() {
 <CourseCards />
 <ThirdButton />
     <Footer />
-    </>
+    </div>
   );
 }

@@ -30,11 +30,11 @@ const courses = [
 
 const Courses = () => {
   return (
-    <div className="courses-grid">
+    <div className="courses-grid" >
       {courses.map((course, index) => (
-        <div className="course-card" key={index}>
+        <div className="course-card" style={{background: "#1a202c"}}  key={index}>
           <div className="course-icon">{course.icon}</div>
-          <h3>{course.title}</h3>
+          <h3 className="text-green-400">{course.title}</h3>
           <p>{course.description}</p>
           <a href={course.linkgit} className="enroll-button">Enroll</a>
         </div>
