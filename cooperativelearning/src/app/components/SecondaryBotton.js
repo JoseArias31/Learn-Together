@@ -1,14 +1,32 @@
-import React from "react";
-import {Button} from "@nextui-org/react";
+"use client";
+import React, { useState } from "react";
 import Link from "next/link";
+
 export default function SecondaryButton() {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const baseStyle2 = {
+    background: isHovered ? "#1e40af" : "black", // Change background on hover
+  
+    borderRadius: "10px",
+    padding: "0.5rem 1rem",
+    color: "#fff",
+    cursor: "pointer",
+    transition: "background 0.3s ease",
+    textDecoration: "none", // For Link
+  };
+
   return (
-  <div className="mt-5 mb-10 font-bold" style={{textAlignLast:"center"}}>
-  <Link href="/programs" passHref>
-   <Button href="login" color="default" className="text-white" style={{background:"#0C0C1D", border: "1px solid #fff", borderRadius: "10px", paddingLeft:"1rem", paddingRight:"1rem", paddingTop:"0.5rem", paddingBottom:"0.5rem"}} >
-      More
-    </Button>
-    </Link>
+    <div className="mt-5 mb-10 font-bold" style={{ textAlign: "center" }}>
+      <Link href="/programs" passHref>
+        <button
+          style={baseStyle2}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          More
+        </button>
+      </Link>
     </div>
   );
 }

@@ -36,7 +36,7 @@ const NavBar = () => {
 
   return(
 
-    <nav className="p-4 flex justify-start items-center" style={{background:'#0C0C1D', justifyContent:'space-between'}}>
+    <nav className="p-4 flex justify-start items-center" style={{background:'black', justifyContent:'space-between'}}>
 
 <div className='flex items-center gap-4'>
     <Image className='relative z-10' src={logo} alt="Logo" width={41} />

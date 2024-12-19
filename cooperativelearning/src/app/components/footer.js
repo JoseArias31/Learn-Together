@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import '../globals.css'
 import Image from 'next/image'
-import logo from '../../../public/Logo.png';
+import logo from '../../../public/logoNB.png';
 
 
 export default function Component() {
   return (
-    <footer className="bg-gray-100 py-12 dark:bg-gray-800" style={{background:'#0C0C1D'}}>
+    <footer className="bg-gray-100 py-12 dark:bg-gray-800" style={{background:'black'}}>
       <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <div className="space-y-4">
           <Link href="#" className="flex items-center space-x-2" prefetch={false}>
