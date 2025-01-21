@@ -12,7 +12,7 @@ export default function ThirdButton() {
 
 const [isHover, setHover] = useState(false);
 const style3 ={
-  background: isHover ? "#1e40af" : "black",
+  background: isHover ? "#1e40af" : "#000000bf",
 
     borderRadius: "10px",
      paddingLeft:"1rem",

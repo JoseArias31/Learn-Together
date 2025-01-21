@@ -36,11 +36,21 @@ const NavBar = () => {
 
   return(
 
-    <nav className="p-4 flex justify-start items-center" style={{background:'black', justifyContent:'space-between'}}>
+    <nav className="p-4 flex justify-start items-center" style={{background:'#000000bf', justifyContent:'space-between'}}>
 
 <div className='flex items-center gap-4'>
     <Image className='relative z-10' src={logo} alt="Logo" width={41} />
-    <h1 className='text-white' style={{fontSize:'1.875rem'}}>Learn Together</h1>
+    <h1
+  className="text-white font-bold text-2xl sm:text-3xl md:text-4xl font-sans tracking-wide"
+  style={{
+    background: "linear-gradient(to right, #4CAF50, #1E90FF)",
+    WebkitBackgroundClip: "text",
+    color: "transparent",
+  }}
+>
+  Learn Together
+</h1>
+
     </div>
 
 

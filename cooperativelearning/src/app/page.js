@@ -11,7 +11,7 @@ import ThirdButton from "./components/ThirdBotton"
 
 export default function Home() {
   return (
-   <div className="bg-custom-gradient text-white">
+    <div class="absolute text-white top-0 z-[-2]  w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
     <NavBar />  
     <h1 className="text-center mt-20 text-2xl font-kodchasan" style={{fontSize: "2rem"}}>Choose literary any program and unlock your potential like this website</h1>
     <div className="mt-10">

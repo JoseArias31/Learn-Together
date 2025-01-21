@@ -15,6 +15,7 @@ module.exports = {
       },
       fontFamily: {
         kodchasan: ['Kodchasan', 'sans-serif'],
+        sans: ['Poppins', 'sans-serif'],
       },
       animation: {
         'constant-glow': 'constant-glow 1.5s ease-in-out infinite', // Nombre de la animación
