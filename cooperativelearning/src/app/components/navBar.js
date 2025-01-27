@@ -55,8 +55,8 @@ const NavBar = () => {
 
 
        
-    <ul className="flex space-x-4" style={{justifyContent:'right'}}>
-    
+    <ul className="flex space-x-4 mr-6" style={{justifyContent:'right'}}>
+   
       <li className='content-center'>
         <Link href="/contact" className="text-white">
           Contact
@@ -66,10 +66,11 @@ const NavBar = () => {
       {user ? (
             <button
               onClick={handlgeSignOut}
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex w-full justify-center rounded-md bg-[#1e40af] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#4CAF50] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Sign out
             </button>
+            
           ) : (
             <Link href="/login" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
               Sign in
