@@ -30,25 +30,23 @@ const courses = [
 
 const Courses = () => {
   return (
-    <div className="courses-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      {courses.map((course, index) => (
-        <div
-          className="course-card w-full max-w-[400px] mx-auto p-6 rounded-lg shadow-lg"
-          style={{ background: "#000000bf" }}
-          key={index}
-        >
-          <div className="course-icon mb-4">{course.icon}</div>
-          <h3 className="text-green-400 text-xl font-bold mb-4">{course.title}</h3>
-          <p className="text-white mb-6">{course.description}</p>
-          <a
-            href={course.link}
-            className="enroll-button cursor-pointer h-10 px-6 text-sm font-medium bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full shadow-lg hover:shadow-xl hover:from-blue-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300"
-          >
-            Enroll
-          </a>
-        </div>
-      ))}
-    </div>
+    <div className="courses-grid grid !grid-cols-1 sm:!grid-cols-2 md:!grid-cols-3 lg:!grid-cols-4 gap-6 p-2">
+
+    {courses.map((course, index) => (
+      <div
+         className="course-card w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[500px] mx-auto p-4 rounded-lg shadow-lg"
+        style={{ background: "#000000bf" }}
+        key={index}
+      >
+        <h3 className="text-green-400 text-xl font-bold mb-4">{course.title}</h3>
+        <p className="text-white mb-6">{course.description}</p>
+        <a href={course.link} className="text-blue-400 underline">
+          Learn more
+        </a>
+      </div>
+    ))}
+  </div>
+  
   );
 };
 
