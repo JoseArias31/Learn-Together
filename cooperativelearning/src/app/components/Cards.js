@@ -44,12 +44,19 @@ const WebDevelopmentPrograms = () => {
   
 
   return (
-    <div className="programs-grid ">
+    <div className="programs-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
       {programs.map((program, index) => (
-        <div className="program-card w-[500px] justify-center" style={{background: "#000000bf"}} key={index}>
-          <h3 className="text-green-400">{program.title}</h3>
-          <p>{program.description}</p>
-          <a href={program.link} className="program-link" style={{color:"white"}}>
+        <div
+          className="program-card w-full max-w-[500px] mx-auto p-6 rounded-lg shadow-lg justify-center"
+          style={{ background: "#000000bf" }}
+          key={index}
+        >
+          <h3 className="text-green-400 text-xl font-bold mb-4">{program.title}</h3>
+          <p className="text-white mb-4">{program.description}</p>
+          <a
+            href={program.link}
+            className="program-link text-white hover:text-green-400 transition-colors duration-300"
+          >
             {program.linkText} →
           </a>
         </div>
