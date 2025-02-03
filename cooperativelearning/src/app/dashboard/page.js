@@ -16,8 +16,8 @@ import home from '../../../public/home.png'
 import ai from '../../../public/ai.png'
 import programs from '../../../public/programs.png'
 import settings from '../../../public/settings.png'
-import mic from '../../../public/mic.png'
-import micopen from '../../../public/micopen.png'
+// import mic from '../../../public/mic.png'
+// import micopen from '../../../public/micopen.png'
 import VoiceInteraction from "../components/VoiceInteraction";
 import { AutoChangingText } from "../components/autoChangingText";
 
