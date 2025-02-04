@@ -1,4 +1,4 @@
-"'use client'"
+
 
 import { supabase } from "../lib/supabaseClient"
 import Link from "next/link";
@@ -30,9 +30,11 @@ export default async function Programs () {
         {programs.map((program) => (
           <li key={program.programid} className="group">
             <Link
-              href={`/programs/${program.programname}`}
-              className="block h-full rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
-            >
+  href={`/programs/${program.programname.replace(/ /g, '-')}`} // Reemplaza espacios con guiones
+  className="block h-full rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+>
+  
+
               <div className="p-6">
                 <h2 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
                   {program.programname}

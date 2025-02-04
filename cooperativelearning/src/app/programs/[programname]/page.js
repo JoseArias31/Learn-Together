@@ -1,79 +1,64 @@
-// import { supabase } from "../../lib/supabaseClient";
-// import NavBar from "../../components/navBar";
-// import Footer from "../../components/footer";
-// import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
+import { supabase } from "src/app/lib/supabaseClient";
+import NavBar from "../../components/navBar";
+import Footer from "../../components/footer";
 
-// // This function runs on each request to fetch the program and its courses
-// export async function getServerSideProps({ params }) {
-//   const { programname } = params;
+export default async function ProgramPage({ params }) {
+  const programname = params.programname.replace(/-/g, ' ');
 
-//   // Fetch the program by name
-//   const { data: programData, error: programError } = await supabase
-//     .from("programs")
-//     .select("*")
-//     .eq("programname", programname)
-//     .single(); // Assuming `programname` is unique
+  // 1. Fetch the program by name
+  const { data: programData, error: programError } = await supabase
+    .from("programs")
+    .select("*")
+    .eq("programname", programname)
+    .single(); // Assuming `programname` is unique
 
-//   if (programError) {
-//     return { props: { error: `Error fetching program: ${programError.message}` } };
-//   }
+  if (programError) {
+    console.error(`Error fetching program: ${programError.message}`);
+    return <div>Error loading program. Please try again later.</div>;
+  }
 
-//   // Fetch the courses for that program
-//   const { data: coursesData, error: coursesError } = await supabase
-//     .from("courses")
-//     .select("*")
-//     .eq("programid", programData.programid); // Foreign key to `programid`
+  if (!programData) {
+    return <div>Program not found.</div>;
+  }
 
-//   if (coursesError) {
-//     return { props: { error: `Error fetching courses: ${coursesError.message}` } };
-//   }
+  // 2. Fetch courses for the program using programData.programid
+  const { data: coursesData, error: coursesError } = await supabase
+    .from("courses")
+    .select("*")
+    .eq("programid", programData.programid); // Foreign key to `programid`
 
-//   return {
-//     props: {
-//       program: programData,
-//       courses: coursesData,
-//     },
-//   };
-// }
+  if (coursesError) {
+    console.error(`Error fetching courses: ${coursesError.message}`);
+    return <div>Error loading courses. Please try again later.</div>;
+  }
 
-// export default function CoursesPage({ program, courses, error }) {
-//   if (error) return <div>Error: {error}</div>;
+  return (
+    <>
+      <NavBar />
+      <div className="container mx-auto px-6 py-8">
+        <h1 className="text-3xl font-bold mb-6 capitalize">
+          {programData.programname} Courses
+        </h1>
 
-//   return (
-//     <>
-//       <NavBar />
-//       <div className="container mx-auto px-6 py-8">
-//         <h1 className="text-3xl font-bold mb-6 capitalize">
-//           {program.programname} Courses
-//         </h1>
+        {coursesData.length > 0 ? (
+          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {coursesData.map((course) => (
+              <li
+                key={course.courseid}
+                className="border rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300"
+              >
+                <h2 className="text-xl font-semibold">{course.coursename}</h2>
+                <p className="text-gray-600">{course.description}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No courses available for this program.</p>
+        )}
+      </div>
+      <Footer />
+    </>
+  );
+}
 
-//         <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-//           {courses.map((course) => (
-//             <li
-//               key={course.courseid}
-//               className="border rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300"
-//             >
-//               <h2 className="text-xl font-semibold">{course.coursename}</h2>
-//               <p className="text-gray-600">{course.description}</p>
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-//       <Footer />
-//     </>
-//   );
-// }
-
-// CoursesPage.propTypes = {
-//   program: PropTypes.shape({
-//     programname: PropTypes.string.isRequired,
-//   }).isRequired,
-//   courses: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       courseid: PropTypes.number.isRequired,
-//       coursename: PropTypes.string.isRequired,
-//       description: PropTypes.string,
-//     })
-//   ).isRequired,
-//   error: PropTypes.string,
-// };
