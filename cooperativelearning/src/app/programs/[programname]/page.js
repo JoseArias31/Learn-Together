@@ -49,7 +49,10 @@ export default async function ProgramPage({ params }) {
                 className="border rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300"
               >
                 <h2 className="text-xl font-semibold">{course.coursename}</h2>
+                <div className="flex flex-col gap-6 ">
                 <p className="text-gray-600">{course.description}</p>
+                <p className="text-gray-600">{course.duration}</p>
+                </div>
               </li>
             ))}
           </ul>
