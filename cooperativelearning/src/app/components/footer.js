@@ -6,7 +6,7 @@ import logo from '../../../public/logoNB.png';
 
 export default function Component() {
   return (
-    <footer className="bg-gray-100 py-12 dark:bg-gray-800" style={{background:'black'}}>
+    <footer className="bg-gray-100 pl-6 pr-6 py-12 dark:bg-gray-800 " style={{background:'black'}}>
       <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <div className="space-y-4">
           <Link href="#" className="flex items-center space-x-2" prefetch={false}>
