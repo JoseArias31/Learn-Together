@@ -9,7 +9,7 @@ export default function MainButton() {
   const [isHovered, setIsHovered] = useState(false);
   
   const baseStyle = {
-    background: isHovered ? "#000000bf" : "#1e40af", // Cambia el color en hover
+    background: isHovered ? "#003161" : "#1e40af", // Cambia el color en hover
 
   
     borderRadius: "10px",

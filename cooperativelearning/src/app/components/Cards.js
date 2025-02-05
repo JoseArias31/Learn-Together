@@ -1,66 +1,54 @@
-import React from "react";
-import "./styles/cards.css";  // Ensure to include CSS styles
+import React, { useEffect, useState } from "react";
+import "./styles/cards.css"; // Keeping your styles
+import { supabase } from "../lib/supabaseClient";
 
 const WebDevelopmentPrograms = () => {
-  const programs = [
-    {
-      title: "HTML & CSS",
-      description: "Dive into the world of web design and learn the building blocks of the web.",
-      linkText: "Explore HTML & CSS",
-      link: "/html-css"
-    },
-    {
-      title: "JavaScript",
-      description: "Uncover the power of JavaScript and enhance your web development skills.",
-      linkText: "Explore JavaScript",
-      link: "/javascript"
-    },
-    {
-      title: "React",
-      description: "Delve into the world of React and build dynamic user interfaces.",
-      linkText: "Explore React",
-      link: "/react"
-    },
-    {
-      title: "Node.js",
-      description: "Unlock the potential of server-side development with Node.js.",
-      linkText: "Explore Node.js",
-      link: "/nodejs"
-    },
-    {
-      title: "Databases",
-      description: "Learn about databases and how to manage data effectively.",
-      linkText: "Explore Databases",
-      link: "/databases"
-    },
-    {
-      title: "DevOps",
-      description: "Stay ahead of the curve with DevOps and continuous integration.",
-      linkText: "Explore DevOps",
-      link: "/devops"
-    },
-  ];
+  const [programs, setPrograms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        const { data, error } = await supabase.from("programs").select("*");
+        if (error) throw error;
+        setPrograms(data || []);
+      } catch (error) {
+        setError("Failed to load programs.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPrograms();
+  }, []);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {programs.map((program, index) => (
-        <div
-          className="program-card w-full max-w-[400px] mx-auto p-6 rounded-lg shadow-lg justify-center"
-          style={{ background: "#000000bf" }}
-          key={index}
-        >
-          <h3 className="text-green-400 text-xl font-bold mb-4">{program.title}</h3>
-          <p className="text-white mb-4">{program.description}</p>
-          <a
-            href={program.link}
-            className="program-link text-white hover:text-green-400 transition-colors duration-300"
+      {loading ? (
+        <p className="text-center text-white">Loading programs...</p>
+      ) : error ? (
+        <p className="text-center text-red-400">{error}</p>
+      ) : programs.length > 0 ? (
+        programs.map((program) => (
+          <div
+            className="program-card w-full max-w-[400px] mx-auto p-6 rounded-lg shadow-lg justify-center"
+            style={{ background: "#000000bf" }}
+            key={program.programid}
           >
-            {program.linkText} →
-          </a>
-        </div>
-      ))}
+            <h3 className="text-green-400 text-xl font-bold mb-4">{program.programname}</h3>
+            <p className="text-white mb-4">{program.description}</p>
+            <a
+              href={`/${program.programname}`}
+              className="program-link text-white hover:text-green-400 transition-colors duration-300"
+            >
+              {program.linkText} →
+            </a>
+          </div>
+        ))
+      ) : (
+        <p className="text-center text-white">No programs available.</p>
+      )}
     </div>
   );
 };

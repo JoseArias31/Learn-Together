@@ -6,7 +6,7 @@ export default function SecondaryButton() {
   const [isHovered, setIsHovered] = useState(false);
 
   const baseStyle2 = {
-    background: isHovered ? "#000000bf" : "#1e40af", // Change background on hover
+    background: isHovered ? "#003161" : "#1e40af", // Change background on hover
   
    
 
