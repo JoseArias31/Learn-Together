@@ -28,7 +28,7 @@ const style3 ={
 
   return (
   <div className="mt-5 mb-10 font-bold" style={{textAlignLast:"center"}}>
-  <Link href="/programs" passHref>
+  <Link href="/courses" passHref>
    <Button href="login" color="default" className="text-white" style={style3} 
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}>

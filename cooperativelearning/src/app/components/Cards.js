@@ -30,7 +30,7 @@ const WebDevelopmentPrograms = () => {
       ) : error ? (
         <p className="text-center text-red-400">{error}</p>
       ) : programs.length > 0 ? (
-        programs.map((program) => (
+        programs.slice(0,6).map((program) => (
           <div
             className="program-card w-full max-w-[400px] mx-auto p-6 rounded-lg shadow-lg justify-center"
             style={{ background: "#000000bf" }}
