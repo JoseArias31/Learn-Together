@@ -39,10 +39,10 @@ const WebDevelopmentPrograms = () => {
             <h3 className="text-green-400 text-xl font-bold mb-4">{program.programname}</h3>
             <p className="text-white mb-4">{program.description}</p>
             <a
-              href={`/${program.programname}`}
+              href={`/programs/${program.programname.replace(/ /g, '-')}`}
               className="program-link text-white hover:text-green-400 transition-colors duration-300"
             >
-              {program.linkText} →
+              Explore →
             </a>
           </div>
         ))
