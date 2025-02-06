@@ -26,7 +26,7 @@ export default function SecondaryButton() {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          More
+          More Programs
         </button>
       </Link>
     </div>

@@ -32,7 +32,7 @@ const style3 ={
    <Button href="login" color="default" className="text-white" style={style3} 
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}>
-     Check for More
+     More Courses
     </Button>
     </Link>
     </div>
