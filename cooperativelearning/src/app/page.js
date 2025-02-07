@@ -15,14 +15,14 @@ function Home() {
     <div className="absolute text-white m-0 p-0 top-0 z-[-2] w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
       <NavBar />
       <h1 className="text-center mt-10 sm:mt-16 md:mt-20 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl px-4 sm:px-6">
-  Choose literally any program and unlock your potential like this website
+  Choose literally any program and unlock your potential
 </h1>
 <div className="flex justify-center mt-5">
 <AutoChangingText />
 </div>
       <div className="mt-10">
-        <h2 className="text-center font-kodchasan text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-2xl mb-2">
-          You can get help with AI assistance anytime, anywhere
+        <h2 className="text-center font-kodchasan text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-2xl mb-2 "> 
+          Get help with AI assistance anytime, anywhere
         </h2>
 
         {/* <h2 className="text-center font-kodchasan text-base sm:text-lg md:text-xl lg:text-xl xl:text-xl">

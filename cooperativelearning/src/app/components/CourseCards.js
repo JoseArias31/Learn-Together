@@ -37,9 +37,9 @@ const Courses = () => {
   style={{
     background: "linear-gradient(145deg,rgb(0, 0, 0),rgb(25, 38, 63))",
     backdropFilter: "blur(10px)", // Glass morphism effect
-    border: "1px solid rgba(72, 255, 0, 0.3)", // Neon green border
+    border: "1px solid rgb(25, 38, 63)", // Neon green border
     borderRadius: "30px 10px 30px 10px", // Asymmetrical rounded corners
-    boxShadow: "0 4px 30px rgba(72, 255, 0, 0.1)", // Soft neon shadow
+    boxShadow: "0 4px 30px rgb(25, 38, 63)", // Soft neon shadow
   }}
   key={course.courseid}
   href={`/programs/programname/courses/${course.coursename.replace(/ /g, '-')}`}
