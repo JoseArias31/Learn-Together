@@ -7,7 +7,9 @@ const useCharts = () => {
     let revenueChart, balanceChart;
 
     // Initialize Revenue Flow Chart
-    const revenueCtx = document.getElementById("revenueFlowChart")?.getContext("2d");
+    const revenueCtx = document
+      .getElementById("revenueFlowChart")
+      ?.getContext("2d");
     if (revenueCtx) {
       revenueChart = new Chart(revenueCtx, {
         type: "bar",
@@ -36,7 +38,9 @@ const useCharts = () => {
     }
 
     // Initialize Available Balance Pie Chart
-    const balanceCtx = document.getElementById("availableBalanceChart")?.getContext("2d");
+    const balanceCtx = document
+      .getElementById("availableBalanceChart")
+      ?.getContext("2d");
     if (balanceCtx) {
       balanceChart = new Chart(balanceCtx, {
         type: "pie",

@@ -10,7 +10,7 @@ export const AutoChangingText = () => {
   function handleKeyPress(e) {
     if (e.key === "Enter") {
       setEnter("Enter");
-      console.log("Enter key pressed!: ", enter); 
+      console.log("Enter key pressed!: ", enter);
       alert(`Enter key pressed!:  ${enter}`);
     }
   }
@@ -35,13 +35,13 @@ export const AutoChangingText = () => {
     } else {
       // Remove letters one by one
       interval = setInterval(() => {
-        setCurrentText((prev) =>
-          prev.length > 0 ? prev.slice(0, -1) : prev
-        );
+        setCurrentText((prev) => (prev.length > 0 ? prev.slice(0, -1) : prev));
         if (currentText === "") {
           clearInterval(interval);
           setIsAdding(true);
-          setCurrentIndex((prevIndex) => (prevIndex + 1) % ProgramsOptions.length); // Move to the next program
+          setCurrentIndex(
+            (prevIndex) => (prevIndex + 1) % ProgramsOptions.length
+          ); // Move to the next program
         }
       }, 100); // Erasing speed
     }
@@ -55,7 +55,7 @@ export const AutoChangingText = () => {
         type="text"
         placeholder={`${currentText}`}
         className="border-green-400  py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 mt-5"
-        onChange={(e) => setEnter(e.target.value) }
+        onChange={(e) => setEnter(e.target.value)}
         onKeyDown={handleKeyPress}
       />
     </div>

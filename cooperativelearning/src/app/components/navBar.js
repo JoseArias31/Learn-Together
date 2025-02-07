@@ -1,13 +1,12 @@
-'use client'
+"use client";
 
-import Link from 'next/link';
-import '../globals.css'
-import Image from 'next/image'
-import logo from '../../../public/logoNB.png';
-import { getUser } from '../auth/register/keepLogginIn'
-import { signOutUser } from '../auth/register/signOut';
-import { useEffect, useState } from 'react';
-
+import Link from "next/link";
+import "../globals.css";
+import Image from "next/image";
+import logo from "../../../public/logoNB.png";
+import { getUser } from "../auth/register/keepLogginIn";
+import { signOutUser } from "../auth/register/signOut";
+import { useEffect, useState } from "react";
 
 const NavBar = () => {
   const [user, setUser] = useState(null);
@@ -24,7 +23,7 @@ const NavBar = () => {
     };
     checkUser();
   }, []);
-  
+
   const handlgeSignOut = async () => {
     const { success, error } = await signOutUser();
     if (success) {
@@ -34,20 +33,19 @@ const NavBar = () => {
     }
   };
 
-
-
-
-
   return (
-    <nav className="relative p-4 flex justify-between items-center" style={{ background: '#000000bf' }}>
+    <nav
+      className="relative p-4 flex justify-between items-center"
+      style={{ background: "#000000bf" }}
+    >
       <div className="flex items-center gap-4">
         <Image className="relative z-10" src={logo} alt="Logo" width={41} />
         <h1
           className="text-white font-bold text-2xl sm:text-3xl md:text-4xl font-sans tracking-wide"
           style={{
-            background: 'linear-gradient(to right, #4CAF50, #1E90FF)',
-            WebkitBackgroundClip: 'text',
-            color: 'transparent',
+            background: "linear-gradient(to right, #4CAF50, #1E90FF)",
+            WebkitBackgroundClip: "text",
+            color: "transparent",
           }}
         >
           Learn Together
@@ -76,7 +74,9 @@ const NavBar = () => {
 
       {/* Menú desplegable - se superpone en móviles */}
       <div
-        className={`absolute top-0 right-0 w-full h-screen bg-black bg-opacity-70 transition-all duration-300 ease-in-out ${menuOpen ? 'block' : 'hidden'}`}
+        className={`absolute top-0 right-0 w-full h-screen bg-black bg-opacity-70 transition-all duration-300 ease-in-out ${
+          menuOpen ? "block" : "hidden"
+        }`}
         style={{ zIndex: 10 }}
       >
         <div className="flex justify-end p-4">
@@ -119,9 +119,12 @@ const NavBar = () => {
                 className="flex w-full justify-center rounded-md bg-[#1e40af] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#4CAF50] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign out
-              </button> 
+              </button>
             ) : (
-              <Link href="/login" className="flex w-full justify-center rounded-md bg-[#1e40af] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#4CAF50] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              <Link
+                href="/login"
+                className="flex w-full justify-center rounded-md bg-[#1e40af] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#4CAF50] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
                 Sign in
               </Link>
             )}
@@ -130,7 +133,10 @@ const NavBar = () => {
       </div>
 
       {/* Menú horizontal (visible en pantallas grandes) */}
-      <ul className="hidden lg:flex space-x-4 mr-6" style={{ justifyContent: 'right' }}>
+      <ul
+        className="hidden lg:flex space-x-4 mr-6"
+        style={{ justifyContent: "right" }}
+      >
         <li className="content-center">
           <Link href="/contact" className="text-white relative group">
             Contact
@@ -154,7 +160,10 @@ const NavBar = () => {
               Sign out
             </button>
           ) : (
-            <Link href="/login" className="flex w-full justify-center rounded-md bg-[#1e40af] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#4CAF50] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            <Link
+              href="/login"
+              className="flex w-full justify-center rounded-md bg-[#1e40af] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#4CAF50] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
               Sign in
             </Link>
           )}

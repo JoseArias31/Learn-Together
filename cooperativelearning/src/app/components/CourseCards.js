@@ -3,7 +3,6 @@ import "./styles/coursecards.css";
 import { supabase } from "../lib/supabaseClient";
 import Link from "next/link";
 
-
 const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,27 +32,31 @@ const Courses = () => {
       ) : courses.length > 0 ? (
         courses.slice(0, 8).map((course) => (
           <Link
-  className="course-card w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[500px] mx-auto p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-neon"
-  style={{
-    background: "linear-gradient(145deg,rgb(0, 0, 0),rgb(25, 38, 63))",
-    backdropFilter: "blur(10px)", // Glass morphism effect
-    border: "1px solid rgb(25, 38, 63)", // Neon green border
-    borderRadius: "30px 10px 30px 10px", // Asymmetrical rounded corners
-    boxShadow: "0 4px 30px rgb(25, 38, 63)", // Soft neon shadow
-  }}
-  key={course.courseid}
-  href={`/programs/programname/courses/${course.coursename.replace(/ /g, '-')}`}
->
-  <h3 className="text-green-400 text-2xl font-bold mb-4 hover:text-green-300 transition-colors duration-300">
-    {course.coursename}
-  </h3>
-  <p className="!text-white mb-6 text-start opacity-80 hover:opacity-100 transition-opacity duration-300">
-    {course.description}
-  </p>
-  <p className="text-white mb-6 text-start opacity-80 hover:opacity-100 transition-opacity duration-300">
-    {course.duration}
-  </p>
-</Link>
+            className="course-card w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[500px] mx-auto p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-neon"
+            style={{
+              background:
+                "linear-gradient(145deg,rgb(0, 0, 0),rgb(25, 38, 63))",
+              backdropFilter: "blur(10px)", // Glass morphism effect
+              border: "1px solid rgb(25, 38, 63)", // Neon green border
+              borderRadius: "30px 10px 30px 10px", // Asymmetrical rounded corners
+              boxShadow: "0 4px 30px rgb(25, 38, 63)", // Soft neon shadow
+            }}
+            key={course.courseid}
+            href={`/programs/programname/courses/${course.coursename.replace(
+              / /g,
+              "-"
+            )}`}
+          >
+            <h3 className="text-green-400 text-2xl font-bold mb-4 hover:text-green-300 transition-colors duration-300">
+              {course.coursename}
+            </h3>
+            <p className="!text-white mb-6 text-start opacity-80 hover:opacity-100 transition-opacity duration-300">
+              {course.description}
+            </p>
+            <p className="text-white mb-6 text-start opacity-80 hover:opacity-100 transition-opacity duration-300">
+              {course.duration}
+            </p>
+          </Link>
         ))
       ) : (
         <p className="text-center text-white">No courses available.</p>
@@ -63,4 +66,3 @@ const Courses = () => {
 };
 
 export default Courses;
-

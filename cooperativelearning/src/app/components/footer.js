@@ -1,20 +1,28 @@
-import Link from 'next/link';
-import '../globals.css'
-import Image from 'next/image'
-import logo from '../../../public/logoNB.png';
-
+import Link from "next/link";
+import "../globals.css";
+import Image from "next/image";
+import logo from "../../../public/logoNB.png";
 
 export default function Component() {
   return (
-    <footer className="bg-gray-100 pl-6 pr-6 py-12 dark:bg-gray-800 " style={{background:'black'}}>
+    <footer
+      className="bg-gray-100 pl-6 pr-6 py-12 dark:bg-gray-800 "
+      style={{ background: "black" }}
+    >
       <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <div className="space-y-4">
-          <Link href="#" className="flex items-center space-x-2" prefetch={false}>
-          <Image className='relative z-10' src={logo} alt="Logo" width={41} />
+          <Link
+            href="#"
+            className="flex items-center space-x-2"
+            prefetch={false}
+          >
+            <Image className="relative z-10" src={logo} alt="Logo" width={41} />
             <span className="text-lg font-bold text-white">Learn Together</span>
           </Link>
           <p className="text-gray-500 dark:text-gray-400 text-white">
-          Learn Together is a powerful and leading website that provides literary any program and is guided by AI technology through both chat and voice. Make your learning journey an adventure.
+            Learn Together is a powerful and leading website that provides
+            literary any program and is guided by AI technology through both
+            chat and voice. Make your learning journey an adventure.
           </p>
         </div>
         <div className="grid gap-4">
@@ -71,7 +79,7 @@ export default function Component() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
 function FacebookIcon(props) {
@@ -90,9 +98,8 @@ function FacebookIcon(props) {
     >
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     </svg>
-  )
+  );
 }
-
 
 function LinkedinIcon(props) {
   return (
@@ -112,9 +119,8 @@ function LinkedinIcon(props) {
       <rect width="4" height="12" x="2" y="9" />
       <circle cx="4" cy="4" r="2" />
     </svg>
-  )
+  );
 }
-
 
 function MountainIcon(props) {
   return (
@@ -132,9 +138,8 @@ function MountainIcon(props) {
     >
       <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
     </svg>
-  )
+  );
 }
-
 
 function TwitterIcon(props) {
   return (
@@ -152,5 +157,5 @@ function TwitterIcon(props) {
     >
       <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
     </svg>
-  )
+  );
 }

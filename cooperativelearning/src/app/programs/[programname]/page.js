@@ -3,9 +3,8 @@ import { supabase } from "src/app/lib/supabaseClient";
 import NavBar from "../../components/navBar";
 import Footer from "../../components/footer";
 
-
 export default async function ProgramPage({ params }) {
-  const programname = params.programname.replace(/-/g, ' ');
+  const programname = params.programname.replace(/-/g, " ");
 
   // 1. Fetch the program by name
   const { data: programData, error: programError } = await supabase
@@ -13,8 +12,6 @@ export default async function ProgramPage({ params }) {
     .select("*")
     .eq("programname", programname)
     .single(); // Assuming `programname` is unique
-
-    
 
   if (programError) {
     console.error(`Error fetching program: ${programError.message}`);
@@ -36,8 +33,6 @@ export default async function ProgramPage({ params }) {
     return <div>Error loading courses. Please try again later.</div>;
   }
 
-  
-
   return (
     <>
       <NavBar />
@@ -55,8 +50,8 @@ export default async function ProgramPage({ params }) {
               >
                 <h2 className="text-xl font-semibold">{course.coursename}</h2>
                 <div className="flex flex-col gap-6 ">
-                <p className="text-gray-600">{course.description}</p>
-                <p className="text-gray-600">{course.duration}</p>
+                  <p className="text-gray-600">{course.description}</p>
+                  <p className="text-gray-600">{course.duration}</p>
                 </div>
               </li>
             ))}
@@ -69,4 +64,3 @@ export default async function ProgramPage({ params }) {
     </>
   );
 }
-

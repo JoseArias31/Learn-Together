@@ -1,7 +1,7 @@
 // src/hooks/useUserProfile.js
-import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabaseClient';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from "react";
+import { supabase } from "../lib/supabaseClient";
+import { useRouter } from "next/navigation";
 
 const useUserProfile = () => {
   const [user, setUser] = useState(null);
@@ -15,7 +15,7 @@ const useUserProfile = () => {
         const { data, error } = await supabase.auth.getUser();
         if (error) throw error;
         if (!data.user) {
-          router.push('/dashboard');
+          router.push("/dashboard");
         } else {
           setUser(data.user);
         }

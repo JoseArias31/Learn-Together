@@ -7,8 +7,6 @@ export default function SecondaryButton() {
 
   const baseStyle2 = {
     background: isHovered ? "#003161" : "#1e40af", // Change background on hover
-  
-   
 
     borderRadius: "10px",
     padding: "0.5rem 1rem",
