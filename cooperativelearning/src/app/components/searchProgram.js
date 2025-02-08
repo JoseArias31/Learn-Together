@@ -73,7 +73,9 @@ export const SearchProgram = () => {
       {/* Display Filtered Programs */}
       <div className="flex flex-wrap gap-2 mb-6 mt-8">
         <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filterPrograms.map((program) => (
+          {filterPrograms.length === 0 ? (<p>No programs found for &quot;{searchProgram}&quot;.</p>
+          ) : (
+          filterPrograms.map((program) => (
             <li
               key={program.programid}
               className="border rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300 group"
@@ -91,7 +93,7 @@ export const SearchProgram = () => {
                 </div>
               </Link>
             </li>
-          ))}
+          )))}
         </ul>
       </div>
 
