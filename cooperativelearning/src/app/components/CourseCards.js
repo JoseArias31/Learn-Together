@@ -24,7 +24,8 @@ const Courses = () => {
   }, []);
 
   return (
-    <div className="courses-grid grid !grid-cols-1 sm:!grid-cols-2 md:!grid-cols-3 lg:!grid-cols-4 gap-6 p-2">
+    <div className="courses-grid grid !grid-cols-1 sm:!grid-cols-2 md:!grid-cols-3 lg:!grid-cols-4 gap-y-4 md:gap-6 p-2 mx-auto ">
+
       {loading ? (
         <p className="text-center text-white">Loading courses...</p>
       ) : error ? (
@@ -32,7 +33,7 @@ const Courses = () => {
       ) : courses.length > 0 ? (
         courses.slice(0, 8).map((course) => (
           <Link
-            className="course-card w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[500px] mx-auto p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-neon"
+            className="course-card w-full max-w-[250px] xxl:h-[140px] sm:max-w-[300px] md:max-w-[300px] lg:max-w-[280px] mx-auto p-4 transform transition-all duration-300 hover:scale-105 hover:shadow-neon lg:mr"
             style={{
               background:
                 "linear-gradient(145deg,rgb(0, 0, 0),rgb(25, 38, 63))",
@@ -40,6 +41,10 @@ const Courses = () => {
               border: "1px solid rgb(25, 38, 63)", // Neon green border
               borderRadius: "30px 10px 30px 10px", // Asymmetrical rounded corners
               boxShadow: "0 4px 30px rgb(25, 38, 63)", // Soft neon shadow
+              fontFamily: "monospace", // Monospace font
+              padding: "0.7rem",
+              paddingTop: "1.5rem"
+              
             }}
             key={course.courseid}
             href={`/programs/programname/courses/${course.coursename.replace(
