@@ -8,6 +8,7 @@ import { getUser } from "../auth/register/keepLogginIn";
 import { signOutUser } from "../auth/register/signOut";
 import { useEffect, useState } from "react";
 
+
 const NavBar = () => {
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,10 +34,14 @@ const NavBar = () => {
     }
   };
 
+
+
+
+
   return (
     <nav
-      className="relative p-4 flex justify-between items-center"
-      style={{ background: "#000000bf" }}
+      className="relative p-4 flex justify-between items-center !bg-black"
+     
     >
       <div className="flex items-center gap-4">
         <Image className="relative z-10" src={logo} alt="Logo" width={41} />
@@ -98,7 +103,12 @@ const NavBar = () => {
           </button>
         </div>
         <ul className="flex flex-col items-center space-y-6 mt-10 text-white">
-          <li className="content-center">
+        <li className="content-center">
+            <Link href="/" className="relative group">
+              Home
+              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+            </Link>
+          </li> <li className="content-center">
             <Link href="/contact" className="relative group">
               Contact
               <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
@@ -137,6 +147,12 @@ const NavBar = () => {
         className="hidden lg:flex space-x-4 mr-6"
         style={{ justifyContent: "right" }}
       >
+        <li className="content-center">
+          <Link href="/" className="text-white relative group">
+            Home
+            <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </Link>
+        </li>
         <li className="content-center">
           <Link href="/contact" className="text-white relative group">
             Contact

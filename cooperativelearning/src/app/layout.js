@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "./components/navBar"
 // import NavBar from "./components/navBar";
-//   import Footer from "./components/footer";
+  // import Footer from "./components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +14,11 @@ export const metadata = {
 // eslint-disable-next-line react/prop-types
 export default function RootLayout({ children }) {
   return (
+    
     <html lang="en">
 
       <body className={inter.className}>{children}</body>
+     
 
     </html>
   );

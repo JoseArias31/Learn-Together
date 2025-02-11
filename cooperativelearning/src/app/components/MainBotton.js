@@ -1,11 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@nextui-org/react";
-import { useState } from "react";
 import Link from "next/link";
+import { getUser } from "../auth/register/keepLogginIn";
+
 export default function MainButton() {
   const [isHovered, setIsHovered] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const loggedInUser = await getUser();
+        setUser(loggedInUser);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+
+    checkUser();
+  }, []); // <- Se ejecuta solo una vez al montar
+
+  
+
 
   const baseStyle = {
     background: isHovered ? "#003161" : "#1e40af", // Cambia el color en hover
@@ -21,19 +39,32 @@ export default function MainButton() {
   };
 
   return (
-    <div className="mt-5 mb-10 font-bold " style={{ textAlignLast: "center" }}>
-      <Link href="/login" passHref>
-        <Button
-          href="login"
-          color="default"
-          className="text-white "
-          style={baseStyle}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          Get Started
-        </Button>
-      </Link>
+    <div className="mt-5 mb-10 font-bold" style={{ textAlignLast: "center" }}>
+      {user ? (
+        <Link href="/dashboard" passHref>
+          <Button
+            color="default"
+            className="text-white"
+            style={baseStyle}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            Dashboard
+          </Button>
+        </Link>
+      ) : (
+        <Link href="/login" passHref>
+          <Button
+            color="default"
+            className="text-white"
+            style={baseStyle}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            Get Started
+          </Button>
+        </Link>
+      )}
     </div>
   );
 }

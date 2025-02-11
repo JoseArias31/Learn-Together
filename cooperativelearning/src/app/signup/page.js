@@ -43,17 +43,7 @@ const Signup = () => {
       <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Create your Account</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '1rem', width: '350px' }}>
-          {/* <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
-            required
-            className= {inputStyle}
-            placeholder='Type your Username'
-          /> */}
+         
         
         
           <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email:</label>
@@ -80,31 +70,7 @@ const Signup = () => {
             className= {inputStyle}
             placeholder='Type a safe Password'
           />
-{/*       
-        
-          <label htmlFor="displayName" className="block text-sm font-medium leading-6 text-gray-900">Display Name:</label>
-          <input
-            type="text"
-            id="displayName"
-            value={displayName}
-            onChange={(e) => setDisplayName(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
-            required
-            className= {inputStyle}
-            placeholder='Type your First and Last Name'
-          />
-       
-      
-          <label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">Phone Number:</label>
-          <input
-            type="text"
-            id="phone"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
-            className= {inputStyle}
-            placeholder='Type your phone number'
-          /> */}
+
        </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {success && <p style={{ color: 'green' }}>{success}</p>}
