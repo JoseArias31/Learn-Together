@@ -3,6 +3,8 @@ import { supabase } from "src/app/lib/supabaseClient";
 import NavBar from "../../components/navBar";
 import Footer from "../../components/footer";
 
+import { Search, BookOpen, Clock, GraduationCap } from "lucide-react"
+
 export default async function ProgramPage({ params }) {
   const programname = params.programname.replace(/-/g, " ");
 
@@ -36,13 +38,37 @@ export default async function ProgramPage({ params }) {
   return (
     <>
       <NavBar />
-      <div className="container mx-auto px-6 py-8">
+      <div className="container mx-auto px-6 py-8 ">
+        
+        
         <h1 className="text-3xl font-bold mb-6 capitalize">
           {programData.programname} Courses
         </h1>
+        <div className="rounded" style={{ backgroundColor: '#80808045', padding: "15px" }}>
+        <h2 className="mb-2 font-bold">Program Overview</h2>
+        <p className="text-gray-600 mb-4">{programData.fulldescription}</p>
+        
+        <div>       
 
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div className="flex items-center font-bold">
+            <BookOpen className="mr-2" />
+            <span>{coursesData.length} Courses</span>
+          </div>
+          <div className="flex items-center font-bold">
+            <Clock className="mr-2" />
+            <span>{programData.duration} Program</span>
+          </div>
+          <div className="flex items-center font-bold">
+            <GraduationCap className="mr-2" />
+            <span>{programData.titlegranted}</span>
+          </div>
+        </div>
+
+         </div>
+</div>
         {coursesData.length > 0 ? (
-          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-6">
             {coursesData.map((course) => (
               <li
                 key={course.courseid}

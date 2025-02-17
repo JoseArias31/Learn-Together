@@ -20,6 +20,7 @@ export default async function Programs() {
           <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">
             Programs
           </h1>
+          <p>Choose a program that aligns with your goals and start building your future today.</p>
           <SearchProgram />
         </div>
         <Footer />

@@ -71,28 +71,28 @@ export const SearchProgram = () => {
       </select>
 
       {/* Display Filtered Programs */}
-      <div className="flex flex-wrap gap-2 mb-6 mt-8 justify-center">
-  <ul className="grid gap-6">
+      <div className="flex flex-wrap gap-4 mb-8 mt-8 justify-center">
+  <ul className="grid gap-4 grid-cols-1 sm:grid-cols-2">
     {filterPrograms.length === 0 ? (
-      <p>No programs found for &quot;{searchProgram}&quot;.</p>
+      <p className="text-gray-600 text-center">No programs found for &quot;{searchProgram}&quot;.</p>
     ) : (
       filterPrograms.map((program) => (
-        <div key={program.programid} className="flex items-center justify-between gap-4">
-          {/* Card */}
-          <li className="border w-[250px] h-[100px] rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300 group flex-grow">
-            <Link href={`/programs/${program.programname.replace(/ /g, "-")}`}>
-              <h2 className="text-sx font-semibold">{program.programname}</h2>
-              <p>{program.description}</p>
-            </Link>
-          </li>
-          
-          {/* Botón afuera y alineado a la derecha */}
-          <Link href={`/programs/${program.programname.replace(/ /g, "-")}`}>
-          <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-  See More
-</button>
-          </Link>
-        </div>
+        <Link key={program.programid} href={`/programs/${program.programname.replace(/ /g, "-")}`}>
+          <div className="flex items-center justify-between p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white">
+            {/* Card Content */}
+            <div className="flex-grow">
+              <h2 className="text-base font-medium text-gray-800 hover:text-blue-600 transition-colors">
+                {program.programname}
+              </h2>
+              <p className="text-xs text-gray-600 mt-1">{program.description}</p>
+            </div>
+
+            {/* Enroll Button */}
+            <button className="ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+              Enroll
+            </button>
+          </div>
+        </Link>
       ))
     )}
   </ul>
