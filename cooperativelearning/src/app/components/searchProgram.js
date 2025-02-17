@@ -71,16 +71,16 @@ export const SearchProgram = () => {
       </select>
 
       {/* Display Filtered Programs */}
-      <div className="flex flex-wrap gap-4 mb-8 mt-8 justify-center">
-  <ul className="grid gap-4 grid-cols-1 sm:grid-cols-2">
+      <div className="flex flex-wrap gap-4 mb-8 mt-8 justify-center grid gap-4 grid-cols-1 sm:grid-cols-2">
+  <ul >
     {filterPrograms.length === 0 ? (
       <p className="text-gray-600 text-center">No programs found for &quot;{searchProgram}&quot;.</p>
     ) : (
       filterPrograms.map((program) => (
         <Link key={program.programid} href={`/programs/${program.programname.replace(/ /g, "-")}`}>
-          <div className="flex items-center justify-between p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white">
+          <div className="flex items-center justify-between mt-2 p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white">
             {/* Card Content */}
-            <div className="flex-grow">
+            <div className="flex-grow ">
               <h2 className="text-base font-medium text-gray-800 hover:text-blue-600 transition-colors">
                 {program.programname}
               </h2>
