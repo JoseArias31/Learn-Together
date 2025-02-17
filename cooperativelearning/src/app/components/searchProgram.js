@@ -71,31 +71,34 @@ export const SearchProgram = () => {
       </select>
 
       {/* Display Filtered Programs */}
-      <div className="flex flex-wrap gap-2 mb-6 mt-8">
-        <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filterPrograms.length === 0 ? (<p>No programs found for &quot;{searchProgram}&quot;.</p>
-          ) : (
-          filterPrograms.map((program) => (
-            <li
-              key={program.programid}
-              className="border rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300 group"
-            >
-              {/* Wrap the card content with Link */}
-              <Link
-                href={`/programs/${program.programname.replace(/ /g, "-")}`}
-              >
-                <h2 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
-                  {program.programname}
-                </h2>
-                <div className="flex flex-col gap-6">
-                  <p className="text-gray-600">{program.description}</p>
-                  <p className="text-gray-600">{program.duration}</p>
-                </div>
-              </Link>
-            </li>
-          )))}
-        </ul>
-      </div>
+      <div className="flex flex-wrap gap-2 mb-6 mt-8 justify-center">
+  <ul className="grid gap-6">
+    {filterPrograms.length === 0 ? (
+      <p>No programs found for &quot;{searchProgram}&quot;.</p>
+    ) : (
+      filterPrograms.map((program) => (
+        <div key={program.programid} className="flex items-center justify-between gap-4">
+          {/* Card */}
+          <li className="border w-[250px] h-[100px] rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300 group flex-grow">
+            <Link href={`/programs/${program.programname.replace(/ /g, "-")}`}>
+              <h2 className="text-sx font-semibold">{program.programname}</h2>
+              <p>{program.description}</p>
+            </Link>
+          </li>
+          
+          {/* Botón afuera y alineado a la derecha */}
+          <Link href={`/programs/${program.programname.replace(/ /g, "-")}`}>
+          <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+  See More
+</button>
+          </Link>
+        </div>
+      ))
+    )}
+  </ul>
+</div>
+
+      
 
       {/* Display Count of Filtered Programs */}
       <p>
