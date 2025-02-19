@@ -47,7 +47,7 @@ const Courses = () => {
               
             }}
             key={course.courseid}
-            href={`/programs/programname/courses/${course.coursename.replace(
+            href={`/courses/${course.coursename.replace(
               / /g,
               "-"
             )}`}

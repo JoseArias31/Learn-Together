@@ -176,10 +176,7 @@ export const SearchProgram = () => {
                         </button>
                       </Link>
                       <Link
-                        href={`/courses/${course.coursename.replace(
-                          / /g,
-                          "-"
-                        )}`}
+                        href={`/courses/${encodeURIComponent(course.coursename)}`}
                       >
                         {/* See Course Button */}
                         <button className=" sm:ml-1 px-2 sm:px-1 md:px-2 py-1 sm:py-1 md:py-2 text-[8px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">

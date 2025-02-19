@@ -4,7 +4,8 @@ import Footer from "../../components/footer";
 import { supabase } from "src/app/lib/supabaseClient";
 
 export default async function CoursePage({ params }) {
-    const coursename = params.coursename.replace(/-/g, " ");
+        let coursename = decodeURIComponent(params.coursename); // Decodifica caracteres especiales
+    coursename = coursename.replace(/-/g, " ");
 
     console.log("Fetching course:", coursename); // Debug: Check the course name
 
@@ -13,7 +14,7 @@ export default async function CoursePage({ params }) {
         .from("courses")
         .select("*")
         .eq("coursename", coursename)
-        .maybeSingle() // Assuming `coursename` is unique
+        .single() // Assuming `coursename` is unique
 
     console.log("Course Data:", courseData); // Debug: Check the fetched data
     console.log("Course Error:", courseError); // Debug: Check for errors
@@ -31,6 +32,8 @@ export default async function CoursePage({ params }) {
         <div>
           <NavBar />
             <h1>{courseData.coursename}</h1>
+            <h1>{courseData.duration}</h1>
+            <h1>{courseData.description}</h1>
             <Footer />
         </div>
     );

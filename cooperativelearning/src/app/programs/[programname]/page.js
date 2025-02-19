@@ -3,7 +3,7 @@ import { supabase } from "src/app/lib/supabaseClient";
 import NavBar from "../../components/navBar";
 import Footer from "../../components/footer";
 
-import { Search, BookOpen, Clock, GraduationCap } from "lucide-react"
+import { BookOpen, Clock, GraduationCap } from "lucide-react"
 
 export default async function ProgramPage({ params }) {
   const programname = params.programname.replace(/-/g, " ");
