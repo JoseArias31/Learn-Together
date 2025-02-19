@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
 import Link from "next/link";
-import { Search, BookOpen, Clock, GraduationCap } from "lucide-react"
-
+import { Search, BookOpen, Clock, GraduationCap } from "lucide-react";
 
 export const SearchProgram = () => {
   const [programname, setProgramname] = useState([]);
@@ -69,7 +68,7 @@ export const SearchProgram = () => {
     return <p>Loading programs...</p>;
   }
 
-    const handleClick = (program) => {
+  const handleClick = (program) => {
     setSelectedProgram(program);
   };
 
@@ -106,32 +105,29 @@ export const SearchProgram = () => {
             </p>
           ) : (
             filterPrograms.map((program) => (
-             
-                <div
-                  className="flex items-center justify-between mt-2 p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white cursor-pointer"
-                  key={program.programid}
-                  onClick={() => handleClick(program)}
-                >
-                  {/* Card Content */}
-                  <div className="flex-grow ">
-                    <h2 className="text-base font-bold text-gray-800 hover:text-blue-600 transition-colors">
-                      {program.programname}
-                    </h2>
-                    <p className="text-xs text-gray-600 mt-1">
-                      {program.description}
-                    </p>
-                  </div>
-                  <Link
-                
-                href={`/programs/${program.programname.replace(/ /g, "-")}`}
+              <div
+                className="flex items-center justify-between mt-2 p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white cursor-pointer"
+                key={program.programid}
+                onClick={() => handleClick(program)}
               >
+                {/* Card Content */}
+                <div className="flex-grow ">
+                  <h2 className="text-base font-bold text-gray-800 hover:text-blue-600 transition-colors">
+                    {program.programname}
+                  </h2>
+                  <p className="text-xs text-gray-600 mt-1">
+                    {program.description}
+                  </p>
+                </div>
+                <Link
+                  href={`/programs/${program.programname.replace(/ /g, "-")}`}
+                >
                   {/* Enroll Button */}
                   <button className="ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
                     Enroll
                   </button>
-                  </Link>
-                </div>
-            
+                </Link>
+              </div>
             ))
           )}
         </ul>
@@ -141,13 +137,13 @@ export const SearchProgram = () => {
             <div>
               {/* Detalles del programa seleccionado */}
               <h2 className="text-lg w-full text-center  font-semibold text-gray-900 relative inline-block pb-2">
-  {selectedProgram.programname}
-  {/* Línea inferior gris */}
-  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-300"></span>
-  
-</h2>
-<h2 className="text-base text-start font-bold mt-4">Course Contents</h2>
-    
+                {selectedProgram.programname}
+                {/* Línea inferior gris */}
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-300"></span>
+              </h2>
+              <h2 className="text-base text-start font-bold mt-4">
+                Course Contents
+              </h2>
 
               {/* Filtrar y mapear cursos relacionados */}
               {courses
@@ -155,34 +151,42 @@ export const SearchProgram = () => {
                   (course) => course.programid === selectedProgram.programid
                 ) // Filtra los cursos
                 .map((course) => (
-                  <div key={course.courseid} className="bg-gray-100 p-2 mt-2 rounded flex flex-row place-content-between ">
-                    <div>
-                    <h3 className="text-xs font-bold text-gray-800 align-center ">
-                      {course.coursename}
-                    </h3>
-                    <p className="text-xs text-gray-600 ">
-                      {course.duration}
-                    </p>
+                  <div
+                    key={course.courseid}
+                    className="bg-gray-100 p-2 mt-2 rounded flex flex-row place-content-between "
+                  >
+                    <div className="w-2/3">
+                      <h3 className="text-xs font-bold text-gray-800 align-center ">
+                        {course.coursename}
+                      </h3>
+                      <p className="text-xs text-gray-600 ">
+                        {course.duration}
+                      </p>
                     </div>
-                    <div>
-                    <Link
-                
-                href={`/programs/${course.coursename.replace(/ /g, "-")}`}
-              >
-                  {/* Enroll Button */}
-                  <button className="ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
-                    Add +
-                  </button>
-                  </Link>  <Link
-                
-                href={`/courses/${course.coursename.replace(/ /g, "-")}`}
-              >
-                  {/* Enroll Button */}
-                  <button className="ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
-                    See Course
-                  </button>
-                  </Link>
-                  </div>
+                    <div > 
+                      <Link
+                        href={`/programs/${course.coursename.replace(
+                          / /g,
+                          "-"
+                        )}`}
+                      >
+                        {/* Enroll Button */}
+                        <button className="ml-1 sm:ml-1 px-2 sm:px-1 md:px-2 py-1 sm:py-1 md:py-2 text-[8px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                          Add +
+                        </button>
+                      </Link>
+                      <Link
+                        href={`/courses/${course.coursename.replace(
+                          / /g,
+                          "-"
+                        )}`}
+                      >
+                        {/* See Course Button */}
+                        <button className=" sm:ml-1 px-2 sm:px-1 md:px-2 py-1 sm:py-1 md:py-2 text-[8px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                          See
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 ))}
 
