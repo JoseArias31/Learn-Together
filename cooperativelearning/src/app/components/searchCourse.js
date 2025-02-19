@@ -84,7 +84,7 @@ export const SearchCourse = () => {
                 className="border rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300 group"
               >
                 {/* Wrap the card content with Link */}
-                <Link href={`/course/${course.coursename.replace(/ /g, "-")}`}>
+                <Link href={`/courses/${course.coursename.replace(/ /g, "-")}`}>
                   <h2 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
                     {course.coursename}
                   </h2>
