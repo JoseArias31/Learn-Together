@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
 import Link from "next/link";
-import { Search, BookOpen, Clock, GraduationCap } from "lucide-react";
+
 
 export const SearchProgram = () => {
   const [programname, setProgramname] = useState([]);
@@ -105,7 +105,7 @@ export const SearchProgram = () => {
             </p>
           ) : (
             filterPrograms.map((program) => (
-              <div
+              <li
                 className="flex items-center justify-between mt-2 p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white cursor-pointer"
                 key={program.programid}
                 onClick={() => handleClick(program)}
@@ -127,7 +127,7 @@ export const SearchProgram = () => {
                     Enroll
                   </button>
                 </Link>
-              </div>
+              </li>
             ))
           )}
         </ul>

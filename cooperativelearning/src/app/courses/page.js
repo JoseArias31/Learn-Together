@@ -19,7 +19,10 @@ export default async function courses() {
       <NavBar />
       <div className="bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
         <div className=" max-w-6xl mx-auto px-6 py-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">Courses</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            Courses
+          </h1>
+          <p>Choose a Course that aligns with your goals and start building your future today.</p>
           <SearchCourse />
        
         </div>

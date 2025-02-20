@@ -54,7 +54,7 @@ export const SearchCourse = () => {
       {/* Search Input */}
       <input
         type="text"
-        placeholder="Search for a program..."
+        placeholder="Search for a Course..."
         className="search-program-input h-10 p-2 border rounded mr-4"
         onChange={(e) => setSearchCourse(e.target.value)}
       />
@@ -73,27 +73,35 @@ export const SearchCourse = () => {
       </select>
   
       {/* Display Filtered Programs */}
-      <div className="flex flex-wrap gap-2 mb-6 mt-8">
-        <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="flex flex-wrap gap-4 mb-8 mt-8 justify-center grid gap-4 grid-cols-1 sm:grid-cols-1 w-1/3">
+        <ul >
           {filterCourse.length === 0 ? ( 
-            <p> No courses found for &quot;{searchCourse}&quot;.</p>
+            <p className="text-gray-600 text-center"> No courses found for &quot;{searchCourse}&quot;.</p>
           ) : (
             filterCourse.map((course) => (
               <li
-                key={course.courseid}
-                className="border rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300 group"
+              className="flex items-center justify-between mt-2 p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white cursor-pointer"
+              key={course.courseid}
+              // onClick={() => handleClick(program)}
+            >
+              {/* Card Content */}
+              <div className="flex-grow ">
+                <h2 className="text-base font-bold text-gray-800 hover:text-blue-600 transition-colors">
+                  {course.coursename}
+                </h2>
+                <p className="text-xs text-gray-600 mt-1">
+                  {course.description}
+                </p>
+              </div>
+              <Link
+                href={`/courses/${encodeURIComponent(course.coursename.replace(/ /g, "-"))}`}
               >
-                {/* Wrap the card content with Link */}
-                <Link href={`/courses/${course.coursename.replace(/ /g, "-")}`}>
-                  <h2 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
-                    {course.coursename}
-                  </h2>
-                  <div className="flex flex-col gap-6">
-                    <p className="text-gray-600">{course.description}</p>
-                    <p className="text-gray-600">{course.duration}</p>
-                  </div>
-                </Link>
-              </li>
+                {/* Enroll Button */}
+                <button className="ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                  Add
+                </button>
+              </Link>
+            </li>
             ))
           )}
         </ul>
