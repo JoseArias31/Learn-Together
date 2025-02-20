@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export const SearchCourse = () => {
   const [coursename, setCourse] = useState([]);
+  const [modules, setModule] = useState([]);
   const [searchCourse, setSearchCourse] = useState("");
   const [selectCourse, setSelectCourse] = useState("All");
   const [selectedCourse, setSelectedCourse] = useState(null);
@@ -26,8 +27,23 @@ export const SearchCourse = () => {
       } finally {
         setLoading(false);
       }
-    };
+   
 
+    try {
+const { data, error } = await supabase
+  .from("modules")
+  .select(
+    "moduleid, modulename, courseid, description, duration")
+    
+
+    if (error) throw error;
+    setModule(data || []);
+  } catch (error) { 
+    console.error("Error fetching modules:", error);
+  } finally { 
+    setLoading(false);
+  }
+    };
     fetchCourses();
   }, []); // Empty dependency array ensures this runs only once on mount
 
@@ -41,6 +57,16 @@ export const SearchCourse = () => {
       course.coursename.toLowerCase().includes(searchCourse.toLowerCase()) &&
       (selectCourse === "All" || course.coursename === selectCourse)
   );
+
+  const filteredModules = selectedCourse
+  ? modules.filter((module) => module.courseid === selectedCourse.courseid)
+  : [];
+
+  const totalDuration = filteredModules.reduce((acc, module) => {
+    // Extrae el número de horas de la duración (por ejemplo, "2 hours" -> 2)
+    const durationInHours = parseFloat(module.duration);
+    return acc + durationInHours;
+  }, 0);
 
   if (loading) {
     return <p>Loading Courses...</p>;
@@ -122,16 +148,45 @@ export const SearchCourse = () => {
         {selectedCourse ? (
           <div className="w-full lg:w-2/3">
             <div className="p-4 border rounded-lg shadow-sm bg-white">
-              <h2 className="text-xl font-bold text-gray-800">
+           
+              <h2 className="text-lg w-full text-center  font-semibold text-gray-900 relative inline-block pb-2">
                 {selectedCourse.coursename}
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-300"></span>
               </h2>
+              
+             
+                    
               <p className="text-sm text-gray-600 mt-2">
-                {selectedCourse.description}
+                Duration: {totalDuration} hours
               </p>
-              <p className="text-sm text-gray-600 mt-2">
-                Duration: {selectedCourse.duration}
-              </p>
+              <h2 className="text-base text-start font-bold mt-4">
+                Course Details
+              </h2>
             </div>
+            {/* Módulos del curso */}
+            {modules.filter(module => module.courseid === selectedCourse.courseid).map((module) => (
+              <div
+                key={module.moduleid}
+                className="bg-gray-100 p-2 mt-2 rounded flex flex-row place-content-between"
+              >
+                <div>
+                <h2 className="text-xs font-bold text-gray-800 align-center">
+                  {module.modulename}
+                </h2>
+                <p className="text-xs text-gray-600">
+                  Duration: {module.duration}
+                </p>
+                <p className="text-xs text-gray-600">
+                  {module.description}
+                </p>
+</div>
+              
+               
+            
+              </div>
+              
+            ))}
+            
           </div>
         ) : (
           <div className="w-full lg:w-2/3">
