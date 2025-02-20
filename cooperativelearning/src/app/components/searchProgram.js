@@ -72,6 +72,7 @@ export const SearchProgram = () => {
     setSelectedProgram(program);
   };
 
+
   return (
     <div className="search-program">
       {/* Search Input */}
