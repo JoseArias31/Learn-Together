@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { supabase } from "../lib/supabaseClient";
 import Link from "next/link";
 
@@ -12,6 +12,7 @@ export const SearchProgram = () => {
   const [loading, setLoading] = useState(true);
   const [selectedProgram, setSelectedProgram] = useState(null);
   const [courses, setCourses] = useState([]);
+  const programCardRef = useRef(null);
   useEffect(() => {
     const fetchData = async () => {
       //Programs fetch from Supabase
@@ -70,7 +71,13 @@ export const SearchProgram = () => {
 
   const handleClick = (program) => {
     setSelectedProgram(program);
-  };
+
+    if (programCardRef.current) {
+      programCardRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+  }};
 
 
   return (
@@ -98,7 +105,7 @@ export const SearchProgram = () => {
       </select>
 
       {/* Display Filtered Programs */}
-      <div className="flex flex-wrap gap-4 mb-8 mt-8 justify-center grid gap-4 grid-cols-1 sm:grid-cols-2">
+      <div ref={programCardRef} className="flex flex-wrap gap-4 mb-8 mt-8 justify-center grid gap-4 grid-cols-1 sm:grid-cols-2">
         <ul>
           {filterPrograms.length === 0 ? (
             <p className="text-gray-600 text-center">

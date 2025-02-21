@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { supabase } from "../lib/supabaseClient";
 import Link from "next/link";
 // import { s } from "framer-motion/dist/types.d-CdW9auKD";
@@ -12,6 +12,7 @@ export const SearchCourse = () => {
   const [selectCourse, setSelectCourse] = useState("All");
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [loading, setLoading] = useState(true);
+  const courseCardRef = useRef(null);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -78,6 +79,10 @@ const { data, error } = await supabase
 
   const handleClick = (course) => {
     setSelectedCourse(course);
+
+    if (courseCardRef.current) {
+      courseCardRef.current.scrollIntoView({ behavior: 'smooth', block: "start" });
+    }
   };
 
   return (
@@ -104,7 +109,7 @@ const { data, error } = await supabase
       </select>
 
       {/* Display Filtered Programs */}
-      <div className="flex flex-col lg:flex-row gap-8 mb-8 mt-8 w-full">
+      <div  ref={courseCardRef} className="flex flex-col lg:flex-row gap-8 mb-8 mt-8 w-full">
         {/* Contenedor de las cards (w-1/3 en pantallas grandes) */}
         <div className="max-h-[400px] sm:max-h-[500px] md:max-h-[600px] lg:max-h-[700px] overflow-y-auto w-full lg:w-1/3">
           <div className="grid gap-4 grid-cols-1">
@@ -114,6 +119,7 @@ const { data, error } = await supabase
               </p>
             ) : (
               filterCourse.slice(0, 10).map((course) => (
+           
                 <li
                   className="flex flex-col sm:flex-row items-center justify-between p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white cursor-pointer"
                   key={course.courseid}
@@ -139,6 +145,7 @@ const { data, error } = await supabase
                     </button>
                   </Link>
                 </li>
+            
               ))
             )}
           </div>
@@ -146,8 +153,8 @@ const { data, error } = await supabase
 
         {/* Contenedor del contenido del curso (w-2/3 en pantallas grandes) */}
         {selectedCourse ? (
-          <div className="w-full lg:w-2/3">
-            <div className="p-4 border rounded-lg shadow-sm bg-white">
+          <div className="w-full lg:w-2/3 max-h-[400px] sm:max-h-[500px] md:max-h-[600px] lg:max-h-[700px] overflow-y-auto">
+            <div className="p-4 border rounded-lg shadow-sm bg-white ">
            
               <h2 className="text-lg w-full text-center  font-semibold text-gray-900 relative inline-block pb-2">
                 {selectedCourse.coursename}
@@ -162,12 +169,10 @@ const { data, error } = await supabase
               <h2 className="text-base text-start font-bold mt-4">
                 Course Details
               </h2>
-            </div>
-            {/* Módulos del curso */}
-            {modules.filter(module => module.courseid === selectedCourse.courseid).map((module) => (
+              {modules.filter(module => module.courseid === selectedCourse.courseid).map((module) => (
               <div
                 key={module.moduleid}
-                className="bg-gray-100 p-2 mt-2 rounded flex flex-row place-content-between"
+                className="bg-gray-100 p-2 mt-2 rounded flex flex-row place-content-between "
               >
                 <div>
                 <h2 className="text-xs font-bold text-gray-800 align-center">
@@ -176,7 +181,7 @@ const { data, error } = await supabase
                 <p className="text-xs text-gray-600">
                   Duration: {module.duration}
                 </p>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-gray-600 mt-2">
                   {module.description}
                 </p>
 </div>
@@ -186,6 +191,9 @@ const { data, error } = await supabase
               </div>
               
             ))}
+            </div>
+            {/* Módulos del curso */}
+           
             
           </div>
         ) : (
