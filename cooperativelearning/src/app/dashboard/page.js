@@ -41,7 +41,7 @@ const Dashboard = () => {
           <div className="flex items-center gap-2 text-teal-400 cursor-pointer">
             <i className="bx bx-infinite text-3xl"></i>
             {/* remove background logo */}
-            <Image className="relative z-10" src={logo} alt="Logo" width={50} />
+            <a href="/"><Image className="relative z-10" src={logo} alt="Logo" width={50} /></a>
           </div>
         </div>
         <div className=" flex items-center justify-center">

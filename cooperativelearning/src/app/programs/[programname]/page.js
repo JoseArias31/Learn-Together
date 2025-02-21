@@ -36,7 +36,7 @@ export default async function ProgramPage({ params }) {
   }
 
   return (
-    <>
+    <div>
       <NavBar />
       <div className="container mx-auto px-6 py-8 ">
         
@@ -68,7 +68,7 @@ export default async function ProgramPage({ params }) {
          </div>
          
 </div>
-<button className="border-black text-black hover:bg-gray-700 hover:text-white text-white font-semibold mt-4 py-2 px-2 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+<button className="border-black text-black hover:bg-gray-700 hover:text-white font-semibold mt-4 py-2 px-2 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
   Enroll Now
 </button>
         {coursesData.length > 0 ? (
@@ -98,6 +98,6 @@ export default async function ProgramPage({ params }) {
         )}
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
