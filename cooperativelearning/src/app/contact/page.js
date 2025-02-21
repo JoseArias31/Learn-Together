@@ -17,7 +17,7 @@ const Contact = () => {
                 Why was the Contact Page so shy?
               </p>
               <p className="text-gray-600">
-                Because it didn’t want to be <strong>submitted</strong> to judgment! 😄
+                Because it didn&apos;t want to be <strong>submitted</strong> to judgment! 😄
               </p>
             </div>
   
@@ -27,11 +27,11 @@ const Contact = () => {
                 Fun Fact:
               </p>
               <p className="text-gray-600">
-                The first-ever "Contact Us" form was likely created in the early days of the web, and it probably looked something like this: <br />
+                The first-ever &quot;Contact Us&quot; form was likely created in the early days of the web, and it probably looked something like this: <br />
                 📧 <strong>Email:</strong> [your.email@example.com] <br />
                 📞 <strong>Phone:</strong> [123-456-7890] <br />
                 💬 <strong>Message:</strong> [Type here...] <br />
-                Thankfully, we’ve come a long way since then! Now we have fancy gradients, animations, and even chatbots. 😎
+                Thankfully, we&apos;ve come a long way since then! Now we have fancy gradients, animations, and even chatbots. 😎
               </p>
             </div>
   
