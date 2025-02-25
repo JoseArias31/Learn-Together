@@ -73,26 +73,31 @@ export default async function ProgramPage({ params }) {
 </button>
         {coursesData.length > 0 ? (
           
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 mt-6">
+          <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-1 mt-6 w-1/3 rounded shadow-sm hover:shadow-md transition-shadow duration-100" style={{ backgroundColor: "rgb(213 213 213 / 21%)", padding: "15px" }}>
+
+            <h2 className="font-bold">Available Courses</h2>
           <ul>
             {coursesData.map((course) => (
               <li
                 key={course.courseid}
-                className="border rounded-lg shadow-md p-2 hover:shadow-lg transition-shadow duration-300"
+                className=" p-2 hover:shadow-lg transition-shadow duration-300"
               >
-                <h2 className="text-xl font-semibold">{course.coursename}</h2>
-                <div className="flex flex-col gap-6 ">
-                  <p className="text-gray-600">{course.description}</p>
-                  <p className="text-gray-600">{course.duration}</p>
-                </div>
+                <h2 className="text-sm font-semibold">{course.coursename}</h2>
+               
                 
               </li>
               
             ))}
             
           </ul>
-      
+          
+
+          <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-1 mt-6  rounded shadow-sm hover:shadow-md transition-shadow duration-100" style={{ backgroundColor: "rgb(213 213 213 / 21%)", padding: "15px" }}></div>
+
+          {/* Try to fix the grid w-2/3 */}
+
           </div>
+          
         ) : (
           <p>No courses available for this program.</p>
         )}

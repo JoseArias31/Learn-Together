@@ -114,7 +114,7 @@ export const SearchProgram = () => {
           ) : (
             filterPrograms.map((program) => (
               <li
-                className="flex items-center justify-between mt-2 p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white cursor-pointer"
+                className="flex items-center justify-between mt-2 p-4 border rounded-lg -sm shadowhover:shadow-md transition-shadow duration-200 bg-white cursor-pointer"
                 key={program.programid}
                 onClick={() => handleClick(program)}
               >
