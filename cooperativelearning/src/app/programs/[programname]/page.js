@@ -241,7 +241,7 @@ export default function ProgramPage({ params }) {
             </div>
           ) : (
             <p className="text-gray-600">
-              Click on a Couese to see Modules Available.
+              Click on a Course to see Modules Available.
             </p>
           )}
   
