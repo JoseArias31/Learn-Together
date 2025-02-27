@@ -185,7 +185,7 @@ export default function ProgramPage({ params }) {
               {/* Contenido del segundo div */}
 
               {selectedCourse ? ( // Verifica si hay un programa seleccionado
-            <div>
+            <div >
               {/* Detalles del programa seleccionado */}
               <h2 className="text-lg w-full text-center  font-semibold text-gray-900 relative inline-block pb-2">
                 {selectedCourse.coursename}
@@ -203,39 +203,31 @@ export default function ProgramPage({ params }) {
                 ) // Filtra los cursos
                 .map((module) => (
                   <div
-                    key={module.moduleid}
-                    className="bg-gray-100 p-2 mt-2 rounded flex flex-row place-content-between "
-                  >
-                    <div className="w-2/3">
-                      <h3 className="text-xs font-bold text-gray-800 align-center ">
-                        {module.modulename}
-                      </h3>
-                      <p className="text-xs text-gray-600 ">
-                        {module.duration}
-                      </p>
-                    </div>
-                    <div > 
-                      <Link
-                        href={`/programs/${module.modulename.replace(
-                          / /g,
-                          "-"
-                        )}`}
-                      >
-                        {/* Enroll Button */}
-                        <button className="ml-1 sm:ml-1 px-2 sm:px-1 md:px-2 py-1 sm:py-1 md:py-2 text-[8px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
-                          Add +
-                        </button>
-                      </Link>
-                      <Link
-                        href={`/courses/${encodeURIComponent(module.modulename)}`}
-                      >
-                        {/* See Course Button */}
-                        <button className=" sm:ml-1 px-2 sm:px-1 md:px-2 py-1 sm:py-1 md:py-2 text-[8px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
-                          See
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
+      key={module.moduleid}
+      className="bg-gray-100 p-2 mt-2 rounded flex flex-col sm:flex-row sm:items-center sm:justify-between"
+    >
+      {/* Module Name and Duration */}
+      <div className="text-center sm:text-left sm:w-[25%]">
+        <h3 className="text-xs font-bold text-gray-800">{module.modulename}</h3>
+        <p className="text-xs text-gray-600">{module.duration}</p>
+      </div>
+
+      {/* Description */}
+      <div className="text-center sm:text-left mt-2 sm:mt-0 sm:w-[50%]">
+        <p className="text-xs text-gray-600">{module.description}</p>
+      </div>
+
+      {/* Start Button */}
+      <div className="text-center sm:text-right mt-2 sm:mt-0 sm:w-[25%]">
+        <Link
+          href={`/courses/module/${module.modulename.replace(/ /g, "-")}`}
+        >
+          <button className="px-2 py-1 text-[10px] sm:text-[10px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+            Start
+          </button>
+        </Link>
+      </div>
+    </div>
                 ))}
 
               {/* Mensaje si no hay cursos relacionados */}

@@ -184,9 +184,19 @@ const { data, error } = await supabase
                 <p className="text-xs text-gray-600 mt-2">
                   {module.description}
                 </p>
+                
 </div>
               
-               
+{/* Start Button */}
+<div className="text-center content-center sm:text-right mt-2 sm:mt-0 sm:w-[15%]">
+        <Link
+          href={`/courses/module/${module.modulename.replace(/ /g, "-")}`}
+        >
+          <button className="px-2 py-1 text-[10px] sm:text-[10px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+            Start
+          </button>
+        </Link>
+      </div>
             
               </div>
               

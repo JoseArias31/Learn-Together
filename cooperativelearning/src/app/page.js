@@ -31,11 +31,11 @@ function Home() {
       </div>
 
       <MainButton />
-      <h1 className="text-start mt-10 text-4xl sm:text-5xl md:text-6xl font-kodchasan ml-5 sm:ml-10 md:ml-20">
-        Explore
+      <h1 className="text-center mt-10 text-4xl sm:text-5xl md:text-6xl font-kodchasan ">
+        Explore Programs
       </h1>
 
-      <h2 className="text-start font-kodchasan mt-3 md:mt-4 px-4 sm:px-8 mb-6">
+      <h2 className="text-center font-kodchasan mt-3 md:mt-4 px-4 sm:px-8 mb-6">
         <strong>Learn Together</strong> offers a wide range of educational
         programs to help you achieve your goals.
       </h2>
