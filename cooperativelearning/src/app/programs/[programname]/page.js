@@ -160,7 +160,7 @@ export default function ProgramPage({ params }) {
                       <div className="flex flex-row gap-2 justify-between items-center">
                         {" "}
                         <div className="w-2/3 flex gap-2"><BookOpenText />{" "}
-                        <h2 className="text-sm cursor-pointer hover:text-blue-600">
+                        <h2 className="text-sm font-bold cursor-pointer hover:text-blue-600">
                           {course.coursename}
                         </h2>
                         </div>

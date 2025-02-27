@@ -121,12 +121,12 @@ const { data, error } = await supabase
               filterCourse.slice(0, 10).map((course) => (
            
                 <li
-                  className="flex flex-col sm:flex-row items-center justify-between p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white cursor-pointer"
+                  className="flex flex-col sm:flex-row items-start justify-between p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white cursor-pointer "
                   key={course.courseid}
                   onClick={() => handleClick(course)}
                 >
                   {/* Card Content */}
-                  <div className="flex-grow">
+                  <div className="flex-grow ">
                     <h2 className="text-base font-bold text-gray-800 hover:text-blue-600 transition-colors">
                       {course.coursename}
                     </h2>
@@ -167,7 +167,7 @@ const { data, error } = await supabase
                 Duration: {totalDuration} hours
               </p>
               <h2 className="text-base text-start font-bold mt-4">
-                Course Details
+                Course details
               </h2>
               {modules.filter(module => module.courseid === selectedCourse.courseid).map((module) => (
               <div
