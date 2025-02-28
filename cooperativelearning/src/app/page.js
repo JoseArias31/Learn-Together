@@ -45,7 +45,7 @@ function Home() {
       <h1 className="text-center mt-10 text-4xl sm:text-5xl md:text-6xl font-kodchasan">
         Feature Courses
       </h1>
-      <h2 className="text-center font-kodchasan mt-3 md:mt-4 px-4 sm:px-8">
+      <h2 className="text-center font-kodchasan mt-3 md:mt-4 px-4 sm:px-8 mb-6">
         Explore our wide range of courses and find the perfect one for you.
       </h2>
 
