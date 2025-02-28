@@ -144,20 +144,20 @@ export default function ProgramPage({ params }) {
             <div
               className="col-span-1 lg:col-span-1 rounded shadow-sm hover:shadow-md transition-shadow duration-100"
               style={{
-                backgroundColor: "rgb(213 213 213 / 21%)",
+                backgroundColor: "rgb(213 213 213 / 10%)",
                 padding: "15px",
               }}
             >
-              <div>
+              <div className="rounded" >
                 <h2 className="font-bold">Available Courses</h2>
                 <ul>
                   {coursesData.map((course) => (
                     <li
                       key={course.courseid}
-                      className="p-2 hover:shadow-lg transition-shadow duration-300"
+                      className="p-2 hover:shadow-lg transition-shadow duration-300 rounded "
                       onClick={() => handleClick(course)}
                     >
-                      <div className="flex flex-row gap-2 justify-between items-center">
+                      <div className="flex flex-row gap-2 justify-between items-center bg-gray-100 rounded p-2">
                         {" "}
                         <div className="w-2/3 flex gap-2"><BookOpenText />{" "}
                         <h2 className="text-sm font-bold cursor-pointer hover:text-blue-600">
@@ -178,14 +178,14 @@ export default function ProgramPage({ params }) {
             <div
               className="col-span-1 lg:col-span-2 rounded shadow-sm hover:shadow-md transition-shadow duration-100"
               style={{
-                backgroundColor: "rgb(213 213 213 / 21%)",
+                backgroundColor: "rgb(213 213 213 / 10%)",
                 padding: "15px",
               }}
             >
               {/* Contenido del segundo div */}
 
               {selectedCourse ? ( // Verifica si hay un programa seleccionado
-            <div >
+            <div className="rounded">
               {/* Detalles del programa seleccionado */}
               <h2 className="text-lg w-full text-center  font-semibold text-gray-900 relative inline-block pb-2">
                 {selectedCourse.coursename}
@@ -207,18 +207,18 @@ export default function ProgramPage({ params }) {
       className="bg-gray-100 p-2 mt-2 rounded flex flex-col sm:flex-row sm:items-center sm:justify-between"
     >
       {/* Module Name and Duration */}
-      <div className="text-center sm:text-left sm:w-[25%]">
+      <div className="text-start sm:text-left sm:w-[25%]">
         <h3 className="text-xs font-bold text-gray-800">{module.modulename}</h3>
         <p className="text-xs text-gray-600">{module.duration}</p>
       </div>
 
       {/* Description */}
-      <div className="text-center sm:text-left mt-2 sm:mt-0 sm:w-[50%]">
+      <div className="text-start sm:text-left mt-2 sm:mt-0 sm:w-[65%]">
         <p className="text-xs text-gray-600">{module.description}</p>
       </div>
 
       {/* Start Button */}
-      <div className="text-center sm:text-right mt-2 sm:mt-0 sm:w-[25%]">
+      <div className="text-start sm:text-right mt-2 sm:mt-0 sm:w-[10%]">
         <Link
           href={`/courses/module/${module.modulename.replace(/ /g, "-")}`}
         >

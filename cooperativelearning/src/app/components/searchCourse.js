@@ -172,7 +172,7 @@ const { data, error } = await supabase
               {modules.filter(module => module.courseid === selectedCourse.courseid).map((module) => (
               <div
                 key={module.moduleid}
-                className="bg-gray-100 p-2 mt-2 rounded flex flex-row place-content-between "
+                className="bg-gray-100 p-2 mt-2 rounded flex flex-col sm:flex-row place-content-between "
               >
                 <div>
                 <h2 className="text-xs font-bold text-gray-800 align-center">
@@ -188,7 +188,7 @@ const { data, error } = await supabase
 </div>
               
 {/* Start Button */}
-<div className="text-center content-center sm:text-right mt-2 sm:mt-0 sm:w-[15%]">
+<div className="text-start content-center sm:text-right mt-2 sm:mt-0 sm:w-[15%]">
         <Link
           href={`/courses/module/${module.modulename.replace(/ /g, "-")}`}
         >
