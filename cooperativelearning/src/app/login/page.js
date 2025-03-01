@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { useRouter } from "next/navigation";
+import NavBar from "../components/navBar";
+import Footer from "../components/footer";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -30,7 +33,9 @@ export default function Login() {
   };
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 items-center h-screen">
+   <>
+    <NavBar />
+   <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 items-center h-screen">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign in to your account
@@ -94,5 +99,7 @@ export default function Login() {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   );
 }

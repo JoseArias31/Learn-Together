@@ -5,6 +5,10 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { useRouter } from 'next/navigation';
+import NavBar from '../components/navBar';
+import Footer from '../components/footer';
+
+
 const Signup = () => {
   // const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -32,14 +36,17 @@ const Signup = () => {
       setIsSubmitting(false);
     } else {
       setSuccess(true);
-      router.push('/login');
+      router.push('/dashboard');
       
     }
  
   };
 
   return (
+    <>
+     <NavBar />  
     <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 items-center h-screen '>
+     
       <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Create your Account</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '1rem', width: '350px' }}>
@@ -84,7 +91,10 @@ const Signup = () => {
                   </a>
                 </div>
       </form>
+     
     </div>
+    <Footer />
+    </>
   );
 };
 
