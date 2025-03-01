@@ -119,8 +119,8 @@ export default function ProgramPage({ params }) {
           <p className="text-gray-600 mb-4">{programData.fulldescription}</p>
 
           <div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-              <div className="flex items-center font-bold">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm sm:items-start md:items-start lg:items-start lg:place-items-center">
+              <div className="flex items-center font-bold ">
                 <BookOpen className="mr-2" />
                 <span>{coursesData.length} Courses</span>
               </div>
@@ -204,25 +204,25 @@ export default function ProgramPage({ params }) {
                 .map((module) => (
                   <div
       key={module.moduleid}
-      className="bg-gray-100 p-2 mt-2 rounded flex flex-col sm:flex-row sm:items-center sm:justify-between"
+      className="bg-gray-100 p-2 mt-2 rounded flex flex-col md:flex-col lg:flex-row sm:flex-row sm:items-center md:items-start md:gap-2 sm:justify-between"
     >
       {/* Module Name and Duration */}
-      <div className="text-start sm:text-left sm:w-[25%]">
-        <h3 className="text-xs font-bold text-gray-800">{module.modulename}</h3>
+      <div className="text-start sm:text-left sm:w-[25%] md:w-full lg:w-[25%]">
+        <h3 className="text-sm font-bold text-gray-800">{module.modulename}</h3>
         <p className="text-xs text-gray-600">{module.duration}</p>
       </div>
 
       {/* Description */}
-      <div className="text-start sm:text-left mt-2 sm:mt-0 sm:w-[65%]">
+      <div className="text-start sm:text-left mt-2 sm:mt-0 sm:w-[65%] md:w-full lg:w-[65%]">
         <p className="text-xs text-gray-600">{module.description}</p>
       </div>
 
       {/* Start Button */}
-      <div className="text-start sm:text-right mt-2 sm:mt-0 sm:w-[10%]">
+      <div className="text-start sm:text-right mt-2 sm:mt-0 sm:w-[10%] ">
         <Link
           href={`/courses/module/${module.modulename.replace(/ /g, "-")}`}
         >
-          <button className="px-2 py-1 text-[10px] sm:text-[10px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+          <button className="px-2 py-1 text-[10px] sm:text-[10px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-800 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
             Start
           </button>
         </Link>

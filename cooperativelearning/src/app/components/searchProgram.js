@@ -160,39 +160,34 @@ export const SearchProgram = () => {
                 ) // Filtra los cursos
                 .map((course) => (
                   <div
-                    key={course.courseid}
-                    className="bg-gray-100 p-2 mt-2 rounded flex flex-row place-content-between "
-                  >
-                    <div className="w-2/3">
-                      <h3 className="text-xs font-bold text-gray-800 align-center ">
-                        {course.coursename}
-                      </h3>
-                      <p className="text-xs text-gray-600 ">
-                        {course.duration}
-                      </p>
-                    </div>
-                    <div > 
-                      <Link
-                        href={`/programs/${course.coursename.replace(
-                          / /g,
-                          "-"
-                        )}`}
-                      >
-                        {/* Enroll Button */}
-                        <button className="ml-1 sm:ml-1 px-2 sm:px-1 md:px-2 py-1 sm:py-1 md:py-2 text-[8px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
-                          Add +
-                        </button>
-                      </Link>
-                      <Link
-                        href={`/courses/${encodeURIComponent(course.coursename)}`}
-                      >
-                        {/* See Course Button */}
-                        <button className=" sm:ml-1 px-2 sm:px-1 md:px-2 py-1 sm:py-1 md:py-2 text-[8px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
-                          See
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
+  key={course.courseid}
+  className="bg-gray-100 p-2 mt-2 rounded flex flex-row place-content-between"
+>
+  <div className="w-2/3">
+    <h3 className="text-xs font-bold text-gray-800 align-center">
+      {course.coursename}
+    </h3>
+    <p className="text-xs text-gray-600">
+      {course.duration}
+    </p>
+  </div>
+  <div className="flex place-self-center gap-2 sm:gap-1">
+    <Link
+      href={`/programs/${course.coursename.replace(/ /g, "-")}`}
+    >
+      <button className="px-2 py-1 text-[9px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+        Add
+      </button>
+    </Link>
+    <Link
+      href={`/courses/${encodeURIComponent(course.coursename)}`}
+    >
+      <button className="px-2 py-1 text-[9px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+        Start
+      </button>
+    </Link>
+  </div>
+</div>
                 ))}
 
               {/* Mensaje si no hay cursos relacionados */}

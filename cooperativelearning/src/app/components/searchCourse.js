@@ -164,7 +164,7 @@ const { data, error } = await supabase
              
                     
               <p className="text-sm text-gray-600 mt-2">
-                Duration: {totalDuration} hours
+                <strong>Duration:</strong> {totalDuration} hours
               </p>
               <h2 className="text-base text-start font-bold mt-4">
                 Course details
@@ -175,11 +175,11 @@ const { data, error } = await supabase
                 className="bg-gray-100 p-2 mt-2 rounded flex flex-col sm:flex-row place-content-between "
               >
                 <div>
-                <h2 className="text-xs font-bold text-gray-800 align-center">
+                <h2 className="text-sm font-bold text-gray-800 align-center">
                   {module.modulename}
                 </h2>
                 <p className="text-xs text-gray-600">
-                  Duration: {module.duration}
+                  <strong>Duration:</strong> {module.duration}
                 </p>
                 <p className="text-xs text-gray-600 mt-2">
                   {module.description}
@@ -192,7 +192,7 @@ const { data, error } = await supabase
         <Link
           href={`/courses/module/${module.modulename.replace(/ /g, "-")}`}
         >
-          <button className="px-2 py-1 text-[10px] sm:text-[10px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+          <button className="px-2 py-1 text-[11px] sm:text-[10px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-700 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
             Start
           </button>
         </Link>
