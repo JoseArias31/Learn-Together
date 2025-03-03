@@ -55,7 +55,7 @@ Follow these steps to set up the project on your local machine:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/learntogether.git
+   git clone https://github.com/JoseArias31/Learn-Together.git
    cd learntogether
 
 
