@@ -58,4 +58,4 @@ Follow these steps to set up the project on your local machine:
    git clone https://github.com/yourusername/learntogether.git
    cd learntogether
 
-Pilot
+
