@@ -19,7 +19,7 @@ const Signup = () => {
   const [success, setSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
-  const inputStyle = 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 w-[800px]';
+  const inputStyle = 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text-xs pl-3';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,15 +45,15 @@ const Signup = () => {
   return (
     <>
      <NavBar />  
-    <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 items-center h-screen '>
+    <div className='flex min-h-full flex-1 flex-col  px-6 py-12 lg:px-8 items-center '>
      
-      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Create your Account</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '1rem', width: '350px' }}>
+      <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">Create your Account</h2>
+      <form onSubmit={handleSubmit} >
+        <div style={{ marginBottom: '1rem', width: '350px', marginLeft:'0px' }} className="mt-10 w-full  sm:mx-auto sm:w-full sm:max-w-sm">
          
         
         
-          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email:</label>
+          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900 font-semibold">Email:</label>
           <input
             type="email"
             id="email"
@@ -85,7 +85,7 @@ const Signup = () => {
         {isSubmitting ? 'Creating...' : 'Create'}
         </button>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-      <div className="text-sm text-center">
+      <div className="text-sx text-center mt-2">
                   <a href="/login" className="font-semibold text-indigo-600 hover:text-indigo-500">
                     Do you have an account? Log in here
                   </a>
