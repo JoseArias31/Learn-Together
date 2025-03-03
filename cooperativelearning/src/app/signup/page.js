@@ -62,7 +62,7 @@ const Signup = () => {
             style={{ width: '100%', padding: '0.5rem' }}
             required
             className= {inputStyle}
-            placeholder='Type your Email Address'
+            placeholder='Type your Email'
           />
      
         

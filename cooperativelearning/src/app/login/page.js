@@ -46,7 +46,7 @@ export default function Login() {
           htmlFor="email"
           className="block text-sm font-medium leading-6 text-gray-900 font-semibold  "
         >
-          Email address
+          Email:
         </label>
         <input
           type="email"
@@ -61,7 +61,7 @@ export default function Login() {
             htmlFor="password"
             className="block text-sm font-medium leading-6 text-gray-900 font-semibold"
           >
-            Password
+            Password:
           </label>
         </div>
         <input
