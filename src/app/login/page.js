@@ -17,20 +17,34 @@ export default function Login() {
   const handleLogin = async () => {
     setLoading(true);
     setError(null);
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      setError(error.message);
-    } else {
-      router.push("/dashboard");
+  
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+  
+      if (error) {
+        setError(error.message);
+        return;
+      }
+  
+      console.log('Login response:', data); // Debugging
+  
+      if (data.session) {
+        console.log('Session found:', data.session); // Debugging
+        router.push('/dashboard');
+      } else {
+        setError('Login failed. No session found.');
+      }
+    } catch (err) {
+      console.error('Login error:', err); // Debugging
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
+   
 
   return (
    <>

@@ -19,13 +19,21 @@ import settings from "../../../public/settings.png";
 // import micopen from '../../../public/micopen.png'
 import VoiceInteraction from "../components/VoiceInteraction";
 import { AutoChangingText } from "../components/autoChangingText";
+import useProtectedRoute from "../auth/register/Hooks/useProtectedRoutes";
 
 const Dashboard = () => {
   const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
+ 
+ 
+  useCharts();
+  const session = useProtectedRoute();
 
+  if (!session) {
+    return <p>Redirecting to login...</p>;
+  }
+  
   // Auto Changing Text loop
 
-  useCharts();
   return (
     <div className="bg-custom-gradient text-gray-100 overflow-x-clip">
       {/* Header Section */}
@@ -54,7 +62,7 @@ const Dashboard = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-gray-300 font-medium">Hello John Doe!</span>
+          <span className="text-gray-300 font-medium">Hello {session.user.email}</span>
         </div>
       </header>
       <div className="justify-items-center mb-14">
