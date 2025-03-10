@@ -23,21 +23,20 @@ import useProtectedRoute from "../auth/register/Hooks/useProtectedRoutes";
 
 const Dashboard = () => {
   const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
- 
- 
+
   useCharts();
   const session = useProtectedRoute();
 
   if (!session) {
     return <p>Redirecting to login...</p>;
   }
-  
+
   // Auto Changing Text loop
 
   return (
     <div className="bg-custom-gradient text-gray-100 overflow-x-clip">
       {/* Header Section */}
-      <header className="p-4 flex justify-between items-center">
+      <header className="p-4 flex justify-between items-center flex-col sm:flex-row bg-gray-900 sm:bg-transparent">
         <div className="flex items-center gap-2">
           <button
             id="menuButton"
@@ -46,25 +45,45 @@ const Dashboard = () => {
           >
             <i className="bx bx-menu"></i>
           </button>
-          <div className="flex items-center gap-2 text-teal-400 cursor-pointer">
+          <div className="flex items-center gap-2 text-teal-400 cursor-pointer items-center flex-col sm:flex-row">
             <i className="bx bx-infinite text-3xl"></i>
             {/* remove background logo */}
-            <a href="/"><Image className="relative z-10" src={logo} alt="Logo" width={50} /></a>
-          </div>
-        </div>
-        <div className=" flex items-center justify-center">
-          <div className="text-center">
-            <AutoChangingText />
-            <h1 className="mt-2">
-              Type your preferable interests to build a route map
+
+            <a href="/">
+              <Image
+                className="relative z-10"
+                src={logo}
+                alt="Logo"
+                width={50}
+              />
+            </a>
+            <h1
+              className="text-white font-bold text-2xl sm:text-3xl md:text-4xl font-sans tracking-wide"
+              style={{
+                background: "linear-gradient(to right, #4CAF50, #1E90FF)",
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              Learn Together
             </h1>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-gray-300 font-medium">Hello {session.user.email}</span>
+          <span className="text-gray-300 font-medium">
+            Hello {session.user.email}
+          </span>
         </div>
       </header>
+      <div className=" flex items-center justify-center">
+        <div className="text-center">
+          <AutoChangingText />
+          <h1 className="mt-2">
+            Type your preferable interests to build a route map
+          </h1>
+        </div>
+      </div>
       <div className="justify-items-center mb-14">
         <h1 className="text-center font-sans mt-8 text-7xl">
           Unlock the Future

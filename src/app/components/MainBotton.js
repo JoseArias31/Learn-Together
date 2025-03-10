@@ -3,24 +3,14 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
-import { getUser } from "../auth/register/keepLogginIn";
+
+import useProtectedRoute from "../auth/register/Hooks/useProtectedRoutes";
 
 export default function MainButton() {
   const [isHovered, setIsHovered] = useState(false);
-  const [user, setUser] = useState(null);
+  
 
-  useEffect(() => {
-    const checkUser = async () => {
-      try {
-        const loggedInUser = await getUser();
-        setUser(loggedInUser);
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
-    };
-
-    checkUser();
-  }, []); // <- Se ejecuta solo una vez al montar
+  const session = useProtectedRoute();
 
   
 
@@ -40,7 +30,7 @@ export default function MainButton() {
 
   return (
     <div className="mt-5 mb-10 font-bold" style={{ textAlignLast: "center" }}>
-      {user ? (
+      {session ? (
         <Link href="/dashboard" passHref>
           <Button
             color="default"

@@ -38,8 +38,10 @@ const NavBar = () => {
   return (
     <nav className="relative p-4 flex justify-between items-center !bg-black">
       <div className="flex items-center gap-4">
+      <a href="/" 
+      className="flex gap-4 items-center">
         <Image className="relative z-10" src={logo} alt="Logo" width={41} />
-        <a href="/">
+        
           <h1
             className="text-white font-bold text-2xl sm:text-3xl md:text-4xl font-sans tracking-wide"
             style={{

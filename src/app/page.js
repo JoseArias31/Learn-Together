@@ -9,11 +9,29 @@ import CourseCards from "./components/CourseCards";
 import ThirdButton from "./components/ThirdBotton";
 import dynamic from "next/dynamic";
 import { AutoChangingText } from "./components/autoChangingText";
+import { getUser } from "./auth/register/keepLogginIn";
+import { useEffect, useState } from "react";
+import useProtectedRoute from "./auth/register/Hooks/useProtectedRoutes";
 
 function Home() {
+
+
+const session = useProtectedRoute();
+
+
   return (
     <div className="absolute text-white m-0 p-0 top-0 z-[-2] w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
       <NavBar />
+      {session ? (
+        <div className="flex justify-center sm:justify-end mt-2  sm:mt-5 sm:mr-10">
+          <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
+            Welcome back, {session.user.email}!
+          </h1>
+        </div> ): ( <div className="flex justify-center sm:justify-end mt-2  sm:mt-5 sm:mr-10">
+          <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
+            Welcome to Learn Together!
+          </h1> 
+        </div> )}
       <h1 className="text-center mt-10 sm:mt-16 md:mt-20 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl px-4 sm:px-6">
         Choose literally any program and unlock your potential
       </h1>

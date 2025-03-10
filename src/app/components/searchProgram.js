@@ -127,12 +127,13 @@ export const SearchProgram = () => {
                     {program.description}
                   </p>
                 </div>
+                
                 <Link
                   href={`/programs/${program.programname.replace(/ /g, "-")}`}
                 >
                   {/* Enroll Button */}
                   <button className="ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
-                    Enroll
+                    Enroll 
                   </button>
                 </Link>
               </li>
@@ -162,15 +163,20 @@ export const SearchProgram = () => {
                   <div
   key={course.courseid}
   className="bg-gray-100 p-2 mt-2 rounded flex flex-row place-content-between"
->
-  <div className="w-2/3">
-    <h3 className="text-xs font-bold text-gray-800 align-center">
+><Link
+      href={`/courses/${encodeURIComponent(course.coursename)}`
+    }
+    className="w-2/3"
+    >
+  <div >
+    <h3 className="text-xs font-bold text-gray-800 align-center hover:text-blue-600 transition-colors cursor-pointer">
       {course.coursename}
     </h3>
     <p className="text-xs text-gray-600">
       {course.duration}
     </p>
   </div>
+  </Link>
   <div className="flex place-self-center gap-2 sm:gap-1">
     <Link
       href={`/programs/${course.coursename.replace(/ /g, "-")}`}

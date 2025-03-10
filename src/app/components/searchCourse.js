@@ -139,6 +139,7 @@ const { data, error } = await supabase
                     href={`/courses/${encodeURIComponent(
                       course.coursename.replace(/ /g, "-")
                     )}`}
+                    className="self-center sm:self-start md:self-center"
                   >
                     <button className="mt-2 sm:mt-0 sm:ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
                       Add
@@ -188,9 +189,10 @@ const { data, error } = await supabase
 </div>
               
 {/* Start Button */}
-<div className="text-start content-center sm:text-right mt-2 sm:mt-0 sm:w-[15%]">
+<div className="text-start content-center sm:text-right mt-2 sm:mt-0 sm:w-[15%] self-center sm:self-start md:self-center">
         <Link
           href={`/courses/module/${module.modulename.replace(/ /g, "-")}`}
+          
         >
           <button className="px-2 py-1 text-[11px] sm:text-[10px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-700 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
             Start

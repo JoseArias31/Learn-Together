@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        'custom-gradient': 'linear-gradient(to right, #243B55, #141E30)',
+        'custom-gradient': 'linear-gradient(to right, #141E30, #243B55)',  
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
