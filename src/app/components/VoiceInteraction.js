@@ -90,14 +90,14 @@ const VoiceInteraction = () => {
       style={{ textAlign: "center", marginTop: "20px" }}
       className="flex flex-col "
     >
-      <h2>Click the mic and start talking!</h2>
+      
       <button
         className="hover:scale-110 transition-all duration-300 flex items-center justify-center space-x-2 flex-col"
         onClick={startListening}
         disabled={isListening}
       >
         <Image src={mic} alt="microphone" width={40} height={40} />
-        <span>{isListening ? "Listening..." : "Start Talking"}</span>
+        <span>{isListening ? "Listening..." : "Call AI for Assistance"}</span>
       </button>
 
       <div style={{ marginTop: "20px" }}>

@@ -1,9 +1,6 @@
 "use client";
 
 import Link from "next/link";
-// import useUserProfile from './useUserProfile';
-// import ButtonGoHome from './ButtonGoHome';
-
 import useCharts from "../../scripts/dashboard/useCharts";
 import useSidebarToggle from "../../scripts/dashboard/useSidebarToggle";
 import Image from "next/image";
@@ -15,7 +12,6 @@ import home from "../../../public/home.png";
 import ai from "../../../public/ai.png";
 import programs from "../../../public/programs.png";
 import settings from "../../../public/settings.png";
-
 import VoiceInteraction from "../components/VoiceInteraction";
 import { AutoChangingText } from "../components/autoChangingText";
 import useProtectedRoute from "../auth/register/Hooks/useProtectedRoutes";
@@ -25,6 +21,11 @@ const Dashboard = () => {
   const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleToggle = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   useCharts();
   const session = useProtectedRoute();
@@ -77,6 +78,7 @@ const Dashboard = () => {
                 Learn Together
               </h1>
             </div>
+            
           </div>
           <nav className="space-y-4">
             <Link
@@ -130,83 +132,214 @@ const Dashboard = () => {
         {/* Top Content */}
 
         <div className="w-full">
-  <section className="flex flex-row p-4 justify-end gap-4 rounded-lg">
-  <div className="relative flex items-center gap-3">
-  {/* Foto de perfil redonda */}
-  <Image
-  src="/profilePicture.png"
-  alt="Profile Picture"
-  width={40}
-  height={40}
-  className="rounded-full border-2 border-gray-300"
-/>
+          <section className="flex flex-row p-4 justify-end gap-4 rounded-lg">
+            <div className="relative flex items-center gap-3">
+              {/* Foto de perfil redonda */}
+              <Image
+                src="/profilePicture.png"
+                alt="Profile Picture"
+                width={40}
+                height={40}
+                className="rounded-full border-2 border-gray-300"
+              />
 
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="flex items-center px-4 py-2 text-white bg-gray-800 rounded-md gap-2 shadow-md hover:bg-gray-700 transition"
+              >
+                Hello, {session.user.email.replace(/@[^@]+$/, "")}
+                <Image
+                  src="/arrowDown.png"
+                  alt="Dropdown Icon"
+                  width={20}
+                  height={20}
+                />
+              </button>
 
-
-  <button
-    onClick={() => setIsOpen(!isOpen)}
-    className="flex items-center px-4 py-2 text-white bg-gray-800 rounded-md gap-2 shadow-md hover:bg-gray-700 transition"
-  >
-    Hello, {session.user.email.replace(/@[^@]+$/, "")}
-    <Image src="/arrowDown.png" alt="Dropdown Icon" width={20} height={20} />
-  </button>
-
-  {/* Menú desplegable corregido */}
-  {isOpen && (
-    <div className="absolute top-full right-0 bg-gray-100 p-4 rounded-lg shadow-md w-64 z-10 border border-gray-300 mt-2">
-      <div className="flex flex-col gap-2">
-        <div className="flex flex-col gap-1">
-          <h2 className="text-sm font-medium text-gray-800">📌 Account Status</h2>
-          <h3 className="text-sm text-green-600 font-semibold">Active</h3>
-        </div>
-        <div className="flex flex-col gap-1">
-          <h2 className="text-sm font-medium text-gray-800">🎓 Membership</h2>
-          <h3 className="text-sm text-blue-600 font-semibold">Student</h3>
-        </div>
-        <div className="flex flex-col gap-1">
-          <h2 className="text-sm font-medium text-gray-800">💳 Subscription</h2>
-          <h3 className="text-sm text-purple-600 font-semibold">Monthly</h3>
-        </div>
-        <div className="flex flex-col gap-1">
-          <h2 className="text-sm font-medium text-gray-800">✅ Programs Completed</h2>
-          <h3 className="text-sm text-yellow-600 font-semibold">2</h3>
-        </div>
-        <div className="flex flex-col gap-1">
-          <h2 className="text-sm font-medium text-gray-800">➕ Add a new Program</h2>
-          <Link href="/programs">
-            <div className="hover:scale-110 transition duration-300 flex justify-center">
-              <Image src="/add sign.png" alt="add simbol" width={30} height={30} />
+              {/* Menú desplegable corregido */}
+              {isOpen && (
+                <div className="absolute top-full right-0 bg-gray-100 p-4 rounded-lg shadow-md w-64 z-10 border border-gray-300 mt-2">
+                  <div className="flex flex-col gap-2">
+                    <div className="flex flex-row justify-between">
+                      <h2 className="text-sm font-medium text-gray-800">
+                        Account Status
+                      </h2>
+                      <h3 className="text-sm text-green-600 font-semibold">
+                        Active
+                      </h3>
+                    </div>
+                    <div className="flex flex-row justify-between">
+                      <h2 className="text-sm font-medium text-gray-800">
+                        Membership
+                      </h2>
+                      <h3 className="text-sm text-blue-600 font-semibold">
+                        Student
+                      </h3>
+                    </div>
+                    <div className="flex  flex-row justify-between">
+                      <h2 className="text-sm font-medium text-gray-800">
+                        Subscription
+                      </h2>
+                      <h3 className="text-sm text-purple-600 font-semibold">
+                        Monthly
+                      </h3>
+                    </div>
+                    <div className="flex  flex-row justify-between">
+                      <h2 className="text-sm font-medium text-gray-800">
+                        Programs Completed
+                      </h2>
+                      <h3 className="text-sm text-yellow-600 font-semibold">
+                        2
+                      </h3>
+                    </div>
+                    <div className="flex flex-row justify-between">
+                      <h2 className="text-sm font-medium text-gray-800">
+                        Add a new Program
+                      </h2>
+                      <Link href="/programs">
+                        <div className="hover:scale-110 transition duration-300 flex justify-center  ">
+                          <Image
+                            src="/add sign.png"
+                            alt="add simbol"
+                            width={20}
+                            height={30}
+                            className="filter invert brightness-1"
+                          />
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-          </Link>
-        </div>
-      </div>
-    </div>
-  )}
-</div>
-
-  </section>
-
-
+        
+          </section>
 
           <div className=" flex items-center justify-center">
             <div className="text-center">
               <AutoChangingText />
-              <h1 className="mt-2">
+              <h1 className="mt-2 ml-4 mr-4 text-sm">
                 Type your preferable interests to build a route map
               </h1>
             </div>
           </div>
+           {/* Icono de toggle en dispositivos móviles */}
+      <div className="absolute top-0 m-4 md:hidden flex items-center ">
+  {/* Botón para abrir el menú */}
+  <button onClick={handleToggle} className="text-white">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M4 6h16M4 12h16M4 18h16"
+      />
+    </svg>
+  </button>
+</div>
+{/* Menú desplegable - se superpone en móviles */}
+<div
+  className={`fixed top-0 right-0 rounded w-full h-full bg-black bg-opacity-95 transition-all duration-300 ease-in-out ${
+    menuOpen ? "translate-x-0" : "translate-x-full"
+  }`}
+  style={{ zIndex: 1000 }}
+>
+  {/* Botón para cerrar el menú */}
+  <div className="flex justify-end p-6">
+    <button onClick={handleToggle} className="text-white text-3xl hover:text-gray-300 transition-colors duration-200">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        className="w-8 h-8"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+  </div>
+
+  {/* Lista de enlaces */}
+  <ul className="flex flex-col items-center space-y-8 mt-16 text-white">
+    <li className="content-center">
+    <Link
+              href="/"
+              className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
+            >
+              <i className="bx bx-home-alt text-teal-400"></i>
+              <Image src={home} alt="home" width={20} />
+              <span className="text-base">
+                Home
+              </span>
+            </Link>
+    </li>
+    <li className="content-center">
+    <Link
+              href="/programs"
+              className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
+            >
+              <i className="bx bx-line-chart text-teal-400"></i>
+
+              <Image src={programs} alt="programs" width={20} />
+              <span className="text-base">
+                My Programs
+              </span>
+            </Link>
+    </li>
+    <li className="content-center">
+    <Link
+              href="/ai-assistance"
+              className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
+            >
+              <i className="bx bx-wallet text-teal-400"></i>
+
+              <Image src={ai} alt="aiAssistance" width={20} />
+              <span className="text-base">
+                AI Assistance
+              </span>
+            </Link>
+    </li>
+    <li className="content-center">
+    <Link
+              href="/settings"
+              className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
+            >
+              <i className="bx bx-cog text-teal-400"></i>
+
+              <Image src={settings} alt="settings" width={20} />
+              <span className="text-base ">
+                Settings
+              </span>
+            </Link>
+    </li>
+    
+    <li className="mt-8">
+     
+    </li>
+  </ul>
+</div>
           <div className="justify-items-center mb-14">
-            <h1 className="text-center font-sans mt-8 text-7xl">
+            <h1 className="text-center font-sans mt-8 text-4xl md:text-5xl xl:text-6xl">
               Unlock the Future
             </h1>
-            <h1 className="text-center mb-8 text-4xl text-green-400">
+            <h1 className="text-center mb-8 text-4xl md:text-5xl xl:text-7xl text-green-400">
               Your AI Learning Hub
             </h1>
             <div>
               <VoiceInteraction />
             </div>
-            <h3>Click the mic to ask your AI tutor!</h3>
+            
           </div>
 
           <div className="flex p-3 gap-4 bg-custom-gradient ">
