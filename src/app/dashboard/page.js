@@ -73,7 +73,7 @@ const Dashboard = () => {
 
                 {/* Menú desplegable corregido */}
 
-                <div className=" top-full right-0  p-4  shadow-md w-64 z-10  mt-2">
+                <div className=" top-full right-0 border-b p-4  shadow-md w-64 z-10  mt-2">
                   
                   <div className="flex flex-col gap-2">
                     
@@ -176,7 +176,31 @@ const Dashboard = () => {
               </span>
             </Link>
           </nav>
-          <h2 className="w-full text-center text-xs">Empowered by AI</h2>
+        
+          <div className="flex space-x-4 justify-center">
+            
+            <Link
+              href="#"
+              className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+              prefetch={false}
+            >
+              <TwitterIcon className="h-6 w-6" />
+            </Link>
+            <Link
+              href="#"
+              className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+              prefetch={false}
+            >
+              <FacebookIcon className="h-6 w-6" />
+            </Link>
+            <Link
+              href="#"
+              className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+              prefetch={false}
+            >
+              <LinkedinIcon className="h-6 w-6" />
+            </Link>
+          </div>
         </aside>
 
         {/* Top Content */}
@@ -195,25 +219,28 @@ const Dashboard = () => {
           <section className="md:hidden absolute top-0 left-0 flex flex-row p-2 justify-end gap-4 rounded-lg">
  <div className="relative flex flex-col   ">
   {/* Foto de perfil redonda */}
-  <Image
-    src="/profilePicture.png"
-    alt="Profile Picture"
-    width={40}
-    height={40}
-    className="rounded-full border-2 border-gray-300"
-  />
+
 
 <button
   onClick={() => setIsOpen(!isOpen)}
   className="flex justify-between text-xs items-center px-4 py-2 text-white bg-gray-800 rounded-md gap-2 shadow-md hover:bg-gray-700 transition min-w-[150px]"
 >
+
   Hello, {session.user.email.replace(/@[^@]+$/, "")}
+  <Image
+    src="/profilePicture.png"
+    alt="Profile Picture"
+    width={20}
+    height={40}
+    className=" rounded-full border-2 border-gray-300"
+  />
   <Image
     src="/arrowDown.png"
     alt="Dropdown Icon"
     width={20}
     height={20}
   />
+  
 </button>
 
   {/* Menú desplegable corregido */}
@@ -398,21 +425,25 @@ const Dashboard = () => {
             </main>
           </div>
 
-          <div className="flex items-center flex-col mt-14 mb-20 ">
-            <div className="flex flex-col text-center relative gap-4 hidden lg:flex w-[600px] items-center">
-              <h1 className="text-4xl">
-                It is time for AI to give you a hand{" "}
-              </h1>
-              <h1>Ask it anything to figure it out best program for you!</h1>
-              <textarea
-                placeholder="What should I study?"
-                className="border-green-400 w-[400px] content-center py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none min-h-[100px]"
-              />
-            </div>
-          </div>
+          <div className="flex items-center flex-col mt-14 mb-20">
+  <div className="flex flex-col text-center relative gap-4  w-[300px] md:w-[550px] lg:w-[800px] items-center">
+    <h1 className="text-3xl md:text-4xl">
+      It is time for AI to give you a hand
+    </h1>
+    <h1 className="text-lg md:text-xl">
+      Ask it anything to figure out the best program for you!
+    </h1>
+    <textarea
+      placeholder="What should I study?"
+      className="border-green-400 w-full md:w-[400px] content-center py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none min-h-[100px]"
+    />
+  </div>
+</div>
         </div>
       </div>
-      {/* <Footer /> */}
+      <div className="md:hidden flex">
+      <Footer />
+    </div>
     </div>
   );
 };
@@ -421,6 +452,83 @@ export default Dashboard;
 
 
 
+function FacebookIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  );
+}
+
+function LinkedinIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+
+function MountainIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+    </svg>
+  );
+}
+
+function TwitterIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+    </svg>
+  );
+}
 
 
 
