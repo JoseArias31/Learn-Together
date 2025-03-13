@@ -60,6 +60,20 @@ const session = useProtectedRoute();
 
       <WebDevelopmentPrograms />
       <SecondaryButton />
+      <div className="flex items-center flex-col mt-14 mb-20">
+  <div className="flex flex-col text-center relative gap-4  w-[300px] md:w-[550px] lg:w-[800px] items-center">
+    <h1 className="text-3xl md:text-4xl">
+      It is time for AI to give you a hand
+    </h1>
+    <h1 className="text-lg md:text-xl">
+      Ask it anything to figure out the best program for you!
+    </h1>
+    <textarea
+      placeholder="What should I study?"
+      className="border-green-400 w-full md:w-[400px] content-center py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none min-h-[100px]"
+    />
+  </div>
+</div>
       <h1 className="text-center mt-10 text-4xl sm:text-5xl md:text-6xl font-kodchasan">
         Feature Courses
       </h1>

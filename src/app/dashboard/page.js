@@ -186,6 +186,17 @@ const Dashboard = () => {
                 Settings
               </span>
             </Link>
+            <button
+       onClick={handlgeSignOut}
+       className="flex cursor-pointer flex items-center text-gray-800 bg-green-500 hover:bg-blue-700  self-center p-2  rounded-md justify-self-center">
+     <Link
+       href="/"
+       className="flex items-center space-x-3 text-gray-300  rounded-md justify-center"
+     >
+      
+       <span className="h-full  text-xs sm:text-xs md:text-xs  text-black font-semibold">Sign Out</span>
+     </Link>
+     </button>
           </nav>
         
           <div className="flex space-x-4 justify-center">
@@ -265,7 +276,7 @@ const Dashboard = () => {
      >
        <i className="bx bx-home-alt text-teal-400 "></i>
        <Image src={home} alt="home" width={15} />
-       <span className="text-sm text-black">Home</span>
+       <span className="text-sm text-black font-bold">Home</span>
      </Link>
    </li>
    <li className="content-center">
@@ -276,7 +287,7 @@ const Dashboard = () => {
        <i className="bx bx-line-chart text-teal-400"></i>
 
        <Image src={programs} alt="programs" width={15} />
-       <span className="text-sm text-black">My Programs</span>
+       <span className="text-sm text-black font-bold">My Programs</span>
      </Link>
    </li>
    <li className="content-center">
@@ -287,7 +298,7 @@ const Dashboard = () => {
        <i className="bx bx-wallet text-teal-400"></i>
 
        <Image src={ai} alt="aiAssistance" width={15} />
-       <span className="text-sm text-black">AI Assistance</span>
+       <span className="text-sm text-black font-bold">AI Assistance</span>
      </Link>
    </li>
    <li className="content-center">
@@ -298,7 +309,7 @@ const Dashboard = () => {
        <i className="bx bx-cog text-teal-400"></i>
 
        <Image src={settings} alt="settings" width={15} />
-       <span className="text-sm text-black">Settings</span>
+       <span className="text-sm text-black font-bold">Settings</span>
      </Link>
    </li>
    
@@ -307,7 +318,7 @@ const Dashboard = () => {
  </ul>
       <div className="flex flex-col gap-3 m-2 border-t border-black mt-2">
         <div className="flex flex-row justify-between mt-4">
-          <h2 className=" text-xs font-medium text-gray-800">
+          <h2 className=" text-xs font-bold text-gray-800">
             Account Status
           </h2>
           <h3 className=" text-xs text-green-600 font-semibold">
@@ -315,7 +326,7 @@ const Dashboard = () => {
           </h3>
         </div>
         <div className="flex flex-row justify-between">
-          <h2 className=" text-xs font-medium text-gray-800">
+          <h2 className=" text-xs font-bold text-gray-800">
             Membership
           </h2>
           <h3 className="text-xs text-blue-600 font-semibold">
@@ -323,7 +334,7 @@ const Dashboard = () => {
           </h3>
         </div>
         <div className="flex  flex-row justify-between">
-          <h2 className=" text-xs font-medium text-gray-800">
+          <h2 className=" text-xs font-bold text-gray-800">
             Subscription
           </h2>
           <h3 className="text-xs text-purple-600 font-semibold">
@@ -331,7 +342,7 @@ const Dashboard = () => {
           </h3>
         </div>
         <div className="flex  flex-row justify-between">
-          <h2 className=" text-xs font-medium text-gray-800">
+          <h2 className=" text-xs font-bold text-gray-800">
             Programs Completed
           </h2>
           <h3 className="text-xs text-yellow-600 font-semibold">
@@ -339,7 +350,7 @@ const Dashboard = () => {
           </h3>
         </div>
         <div className="flex flex-row justify-between">
-          <h2 className=" text-xs font-medium text-gray-800">
+          <h2 className=" text-xs  font-bold text-gray-800">
             Add a new Program
           </h2>
           <Link href="/programs">
@@ -357,13 +368,13 @@ const Dashboard = () => {
         </div>
        <button
        onClick={handlgeSignOut}
-       className="pointer">
+       className="flex cursor-pointer flex items-center text-gray-800 bg-green-500 hover:bg-gray-700  self-center p-2  rounded-md justify-center">
      <Link
        href="/"
-       className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 mt-2 rounded-md justify-center"
+       className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 rounded-md justify-center"
      >
       
-       <span className="text-sm text-black font-semibold">Sign Out</span>
+       <span className="h-full text-xs text-black font-semibold">Sign Out</span>
      </Link>
      </button>
       </div>
