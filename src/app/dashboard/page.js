@@ -16,12 +16,14 @@ import VoiceInteraction from "../components/VoiceInteraction";
 import { AutoChangingText } from "../components/autoChangingText";
 import useProtectedRoute from "../auth/register/Hooks/useProtectedRoutes";
 import { useState } from "react";
+import {signOutUser} from "../auth/register/signOut";
 
 const Dashboard = () => {
   const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
 
   const [isOpen, setIsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
   const handleToggle = () => {
     setMenuOpen(!menuOpen);
@@ -34,6 +36,15 @@ const Dashboard = () => {
     return <p>Redirecting to login...</p>;
   }
 
+
+  const handlgeSignOut = async () => {
+    const { success, error } = await signOutUser();
+    if (success) {
+      setUser(null); // Actualiza el estado para reflejar que el usuario no está loggeado
+    } else {
+      console.log("Error signing out:", error);
+    }
+  };
   // Auto Changing Text loop
 
   return (
@@ -245,7 +256,7 @@ const Dashboard = () => {
 
   {/* Menú desplegable corregido */}
   {isOpen && (
-    <div className=" flex flex-col justify-evenly  top-full right-0  p-2 rounded-lg shadow-md  z-10 w-64 h-80  bg-gray-300 ">
+    <div className=" flex flex-col justify-evenly  top-full right-0  p-2 rounded-lg shadow-md  z-10 w-64 h-100  bg-gray-300 ">
       <ul className=" items-center space-y-2 text-white " style={{placeItems: "start"}}>
    <li className="content-center">
      <Link
@@ -290,6 +301,7 @@ const Dashboard = () => {
        <span className="text-sm text-black">Settings</span>
      </Link>
    </li>
+   
 
    <li className="mt-8"></li>
  </ul>
@@ -341,8 +353,21 @@ const Dashboard = () => {
               />
             </div>
           </Link>
+          
         </div>
+       <button
+       onClick={handlgeSignOut}
+       className="pointer">
+     <Link
+       href="/"
+       className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 mt-2 rounded-md justify-center"
+     >
+      
+       <span className="text-sm text-black font-semibold">Sign Out</span>
+     </Link>
+     </button>
       </div>
+      
     </div>
   )}
 </div>
