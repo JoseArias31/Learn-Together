@@ -6,10 +6,9 @@ import NavBar from "../../components/navBar";
 import Footer from "../../components/footer";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { use } from 'react';
+import { use } from "react";
 
 import { BookOpen, Clock, GraduationCap, BookOpenText } from "lucide-react";
-
 
 export default function ProgramPage({ params }) {
   const [programData, setProgramData] = useState(null);
@@ -64,7 +63,9 @@ export default function ProgramPage({ params }) {
             .eq("courseid", course.courseid); // Fetch modules for each course
 
           if (modulesError) {
-            console.error(`Error fetching modules for course ${course.courseid}: ${modulesError.message}`);
+            console.error(
+              `Error fetching modules for course ${course.courseid}: ${modulesError.message}`
+            );
             return []; // Return an empty array if there's an error
           }
 
@@ -111,6 +112,7 @@ export default function ProgramPage({ params }) {
         <h1 className="text-3xl font-bold mb-6 capitalize">
           {programData.programname} Program
         </h1>
+        
         <div
           className="rounded"
           style={{ backgroundColor: "#80808045", padding: "15px" }}
@@ -148,7 +150,7 @@ export default function ProgramPage({ params }) {
                 padding: "15px",
               }}
             >
-              <div className="rounded" >
+              <div className="rounded">
                 <h2 className="font-bold">Available Courses</h2>
                 <ul>
                   {coursesData.map((course) => (
@@ -159,10 +161,11 @@ export default function ProgramPage({ params }) {
                     >
                       <div className="flex flex-row gap-2 justify-between items-center bg-gray-100 rounded p-2">
                         {" "}
-                        <div className="w-2/3 flex gap-2"><BookOpenText />{" "}
-                        <h2 className="text-sm font-bold cursor-pointer hover:text-blue-600">
-                          {course.coursename}
-                        </h2>
+                        <div className="w-2/3 flex gap-2">
+                          <BookOpenText />{" "}
+                          <h2 className="text-sm font-bold cursor-pointer hover:text-blue-600">
+                            {course.coursename}
+                          </h2>
                         </div>
                         <h2 className="text-sm cursor-pointer hover:text-blue-600">
                           {course.duration}
@@ -185,68 +188,76 @@ export default function ProgramPage({ params }) {
               {/* Contenido del segundo div */}
 
               {selectedCourse ? ( // Verifica si hay un programa seleccionado
-            <div className="rounded">
-              {/* Detalles del programa seleccionado */}
-              <h2 className="text-lg w-full text-center  font-semibold text-gray-900 relative inline-block pb-2">
-                {selectedCourse.coursename}
-                {/* Línea inferior gris */}
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-300"></span>
-              </h2>
-              <h2 className="text-base text-start font-bold mt-4">
-                Course Contents
-              </h2>
+                <div className="rounded">
+                  {/* Detalles del programa seleccionado */}
+                  <h2 className="text-lg w-full text-center  font-semibold text-gray-900 relative inline-block pb-2">
+                    {selectedCourse.coursename}
+                    {/* Línea inferior gris */}
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-300"></span>
+                  </h2>
+                  <h2 className="text-base text-start font-bold mt-4">
+                    Course Contents
+                  </h2>
 
-              {/* Filtrar y mapear cursos relacionados */}
-              {modulesData
-                .filter(
-                  (module) => module.courseid === selectedCourse.courseid
-                ) // Filtra los cursos
-                .map((module) => (
-                  <div
-      key={module.moduleid}
-      className="bg-gray-100 p-2 mt-2 rounded flex flex-col md:flex-col lg:flex-row sm:flex-row sm:items-center md:items-start md:gap-2 sm:justify-between"
-    >
-      {/* Module Name and Duration */}
-      <div className="text-start sm:text-left sm:w-[25%] md:w-full lg:w-[25%]">
-        <h3 className="text-sm font-bold text-gray-800">{module.modulename}</h3>
-        <p className="text-xs text-gray-600">{module.duration}</p>
-      </div>
+                  {/* Filtrar y mapear cursos relacionados */}
+                  {modulesData
+                    .filter(
+                      (module) => module.courseid === selectedCourse.courseid
+                    ) // Filtra los cursos
+                    .map((module) => (
+                     
+                      <div
+                        key={module.moduleid}
+                        className="bg-gray-100 p-2 mt-2 rounded flex flex-col md:flex-col lg:flex-row sm:flex-row sm:items-center md:items-start md:gap-2 sm:justify-between"
+                      >
+                        {/* Module Name and Duration */}
+                        <div className="text-start sm:text-left sm:w-[25%] md:w-full lg:w-[25%]">
+                          <h3 className="text-sm font-bold text-gray-800">
+                            {module.modulename}
+                          </h3>
+                          <p className="text-xs text-gray-600">
+                            {module.duration}
+                          </p>
+                        </div>
 
-      {/* Description */}
-      <div className="text-start sm:text-left mt-2 sm:mt-0 sm:w-[65%] md:w-full lg:w-[65%]">
-        <p className="text-xs text-gray-600">{module.description}</p>
-      </div>
+                        {/* Description */}
+                        <div className="text-start sm:text-left mt-2 sm:mt-0 sm:w-[65%] md:w-full lg:w-[65%]">
+                          <p className="text-xs text-gray-600">
+                            {module.description}
+                          </p>
+                        </div>
 
-      {/* Start Button */}
-      <div className="text-start sm:text-right mt-2 sm:mt-0 sm:w-[10%] ">
-        <Link
-          href={`/courses/module/${module.modulename.replace(/ /g, "-")}`}
-        >
-          <button className="px-2 py-1 text-[10px] sm:text-[10px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-800 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
-            Start
-          </button>
-        </Link>
-      </div>
-    </div>
-                ))}
+                        {/* Start Button */}
+                        <div className="text-start sm:text-right mt-2 sm:mt-0 sm:w-[10%] ">
+                          <Link
+                            href={`/courses/module/${module.modulename.replace(
+                              / /g,
+                              "-"
+                            )}`}
+                          >
+                            <button className="px-2 py-1 text-[10px] sm:text-[10px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-800 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                              Start
+                            </button>
+                          </Link>
+                        </div>
+                        
+                      </div>
+                    ))}
 
-              {/* Mensaje si no hay cursos relacionados */}
-              {modulesData.filter(
-                (module) => module.courseid === selectedCourse.courseid
-              ).length === 0 && (
-                <p className="text-gray-600 mt-4">
-                  No modules available for this Course.
+                  {/* Mensaje si no hay cursos relacionados */}
+                  {modulesData.filter(
+                    (module) => module.courseid === selectedCourse.courseid
+                  ).length === 0 && (
+                    <p className="text-gray-600 mt-4">
+                      No modules available for this Course.
+                    </p>
+                  )}
+                </div>
+              ) : (
+                <p className="text-gray-600">
+                  Click on a Course to see Modules Available.
                 </p>
               )}
-            </div>
-          ) : (
-            <p className="text-gray-600">
-              Click on a Course to see Modules Available.
-            </p>
-          )}
-  
-
-
             </div>
           </div>
         ) : (

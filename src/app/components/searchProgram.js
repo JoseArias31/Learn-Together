@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "../lib/supabaseClient";
 import Link from "next/link";
+import Image from "next/image";
 
 
 export const SearchProgram = () => {
@@ -12,7 +13,13 @@ export const SearchProgram = () => {
   const [loading, setLoading] = useState(true);
   const [selectedProgram, setSelectedProgram] = useState(null);
   const [courses, setCourses] = useState([]);
+  const [modulesData, setModulesData] = useState([]);
   const programCardRef = useRef(null);
+ 
+  const [arrowUpState, setArrowUpState] = useState({});
+
+ 
+  
   useEffect(() => {
     const fetchData = async () => {
       //Programs fetch from Supabase
@@ -47,10 +54,33 @@ export const SearchProgram = () => {
       } finally {
         setLoading(false); // Set loading to false after fetch
       }
+
+// Modules fetch from Supabase
+
+try {
+  const { data, error } = await supabase
+    .from("modules")
+    .select(
+      "moduleid, modulename, description, duration, courseid"
+    )
+    .order("moduleid", { ascending: true });
+     if (error) throw error;
+    setModulesData(data || []); // Update state with fetched data
+  } catch (error) {
+    console.error("Error fetching modules:", error);  
+  } finally {
+    setLoading(false); // Set loading to false after fetch
+  }
+
+
+
+      
     };
 
     fetchData();
   }, []); // Empty dependency array ensures this runs only once on mount
+
+  
 
   // Create a list of unique program names for the dropdown
   const ChoosingPrograms = [
@@ -79,6 +109,13 @@ export const SearchProgram = () => {
       });
   }};
 
+ // Función para alternar la flecha de un curso específico
+ const handleClickArrowUp = (courseid) => {
+  setArrowUpState((prevState) => ({
+    ...prevState,
+    [courseid]: !prevState[courseid], // Cambia solo el estado de este curso
+  }));
+};
 
   return (
     <div className="search-program">
@@ -127,15 +164,26 @@ export const SearchProgram = () => {
                     {program.description}
                   </p>
                 </div>
-                
+                <div className="flex flex-col gap-2">
+               
+               
                 <Link
                   href={`/programs/${program.programname.replace(/ /g, "-")}`}
                 >
                   {/* Enroll Button */}
                   <button className="ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
-                    Enroll 
+                    Start 
                   </button>
                 </Link>
+                <Link
+                  href={`/programs/${program.programname.replace(/ /g, "-")}`}
+                >
+                  {/* Enroll Button */}
+                  <button className="ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                    Details 
+                  </button>
+                </Link>
+                </div>
               </li>
             ))
           )}
@@ -156,45 +204,57 @@ export const SearchProgram = () => {
 
               {/* Filtrar y mapear cursos relacionados */}
               {courses
-                .filter(
-                  (course) => course.programid === selectedProgram.programid
-                ) // Filtra los cursos
-                .map((course) => (
-                  <div
-  key={course.courseid}
-  className="bg-gray-100 p-2 mt-2 rounded flex flex-row place-content-between"
-><Link
-      href={`/courses/${encodeURIComponent(course.coursename)}`
-    }
-    className="w-2/3"
-    >
-  <div >
-    <h3 className="text-xs font-bold text-gray-800 align-center hover:text-blue-600 transition-colors cursor-pointer">
-      {course.coursename}
-    </h3>
-    <p className="text-xs text-gray-600">
-      {course.duration}
-    </p>
-  </div>
-  </Link>
-  <div className="flex place-self-center gap-2 sm:gap-1">
-    <Link
-      href={`/programs/${course.coursename.replace(/ /g, "-")}`}
-    >
-      <button className="px-2 py-1 text-[9px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
-        Add
-      </button>
-    </Link>
-    <Link
-      href={`/courses/${encodeURIComponent(course.coursename)}`}
-    >
-      <button className="px-2 py-1 text-[9px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
-        Start
-      </button>
-    </Link>
-  </div>
-</div>
-                ))}
+  .filter((course) => course.programid === selectedProgram.programid)
+  .map((course) => (
+    <details key={course.courseid} className="bg-gray-100 p-2 mt-2 rounded">
+      <summary className="flex flex-row justify-between cursor-pointer p-2 hover:bg-gray-200 rounded" onClick={() => handleClickArrowUp(course.courseid)}>
+        
+          <div>
+          <Link href={`/courses/${encodeURIComponent(course.coursename)}`} className="w-2/3">
+            <h3 className="text-xs font-bold text-gray-800 hover:text-blue-600 transition-colors">
+              {course.coursename}
+              
+            </h3>
+          </Link>
+            <p className="text-xs text-gray-600">{course.duration}</p>
+            <Image src={arrowUpState[course.courseid] ? '/ad.png' : '/ar.png'} alt="toggle-arrow" width={15} height={5} />
+          </div>
+        
+        <div className="flex gap-2 sm:gap-1  items-center">
+         
+          <Link href={`/courses/${encodeURIComponent(course.coursename)}`}>
+            <button className="px-2 py-1 text-[9px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+              Start
+            </button>
+          </Link>
+          
+        </div>
+      
+      </summary>
+
+      {/* Módulos relacionados */}
+      <div className="p-2 mt-2 bg-gray-50 rounded">
+        <h2 className="text-xs font-bold text-gray-800 text-center">Modules</h2>
+        {modulesData
+          .filter((module) => module.courseid === course.courseid)
+          .map((module) => (
+            <div
+              key={module.moduleid}
+              className="bg-white p-2 mt-2 rounded shadow-sm flex flex-col md:flex-row md:items-center md:justify-between"
+            >
+              <div className="text-start sm:w-full md:w-[25%]">
+                <h3 className="text-sm font-bold text-gray-800">{module.modulename}</h3>
+                <p className="text-xs text-gray-600">{module.duration}</p>
+              </div>
+              <div className="text-start sm:w-full md:w-[65%]">
+                <p className="text-xs text-gray-700">{module.description}</p>
+              </div>
+            </div>
+          ))}
+      </div>
+    </details>
+  ))}
+
 
               {/* Mensaje si no hay cursos relacionados */}
               {courses.filter(

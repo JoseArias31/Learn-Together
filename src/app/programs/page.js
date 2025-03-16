@@ -23,6 +23,8 @@ export default async function Programs() {
       <p className="text-center">
         Choose a program that aligns with your goals and start building your future today.
       </p>
+      
+
       <SearchProgram />
     </div>
   </div>
