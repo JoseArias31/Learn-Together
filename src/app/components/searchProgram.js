@@ -162,14 +162,14 @@ try {
                     {program.description}
                   </p>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col  items-center gap-2">
                
                
                 <Link
                   href={`/programs/${program.programname.replace(/ /g, "-")}`}
                 >
                   {/* Enroll Button */}
-                  <button className="ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                  <button className="ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors" onClick={(e) => e.stopPropagation()}>
                     Start 
                   </button>
                 </Link>
@@ -177,7 +177,7 @@ try {
                   href={`/programs/${program.programname.replace(/ /g, "-")}`}
                 >
                   {/* Enroll Button */}
-                  <button className="ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                  <button className="ml-4 px-3 py-1 text-xs font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors" onClick={(e) => e.stopPropagation()}>
                     Details 
                   </button>
                 </Link>

@@ -171,6 +171,7 @@ export default function ProgramPage({ params }) {
                           {course.duration}
                         </h2>
                       </div>
+                      <p className="text-xs text-gray-600 mt-2"> {course.fulldescription}</p>
                     </li>
                   ))}
                 </ul>

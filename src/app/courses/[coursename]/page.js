@@ -39,14 +39,14 @@ export default async function CoursePage({ params }) {
           className="rounded mx-28"
           style={{ backgroundColor: "#80808045", padding: "15px" }}
         >
-          <h2 className="mb-2 font-bold">Program Overview</h2>
+          <h2 className="mb-2 font-bold">Course Overview</h2>
           <p className="text-gray-600 mb-4">{courseData.fulldescription}</p>
 
           <div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm sm:items-start md:items-start lg:items-start lg:place-items-center">
               <div className="flex items-center font-bold ">
                 <BookOpen className="mr-2" />
-                <span>{courseData.length} Courses</span>
+                <span>{courseData.length} Moduls</span>
               </div>
               <div className="flex items-center font-bold">
                 <Clock className="mr-2" />
