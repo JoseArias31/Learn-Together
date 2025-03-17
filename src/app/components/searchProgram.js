@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "../lib/supabaseClient";
 import Link from "next/link";
-import Image from "next/image";
+
 
 
 export const SearchProgram = () => {
@@ -16,7 +16,11 @@ export const SearchProgram = () => {
   const [modulesData, setModulesData] = useState([]);
   const programCardRef = useRef(null);
  
-  const [arrowUpState, setArrowUpState] = useState({});
+  const [expandedCourseId, setExpandedCourseId] = useState(null);
+
+  const toggleModuleVisibility = (courseId) => {
+    setExpandedCourseId(expandedCourseId === courseId ? null : courseId);
+  };
 
  
   
@@ -109,13 +113,7 @@ try {
       });
   }};
 
- // Función para alternar la flecha de un curso específico
- const handleClickArrowUp = (courseid) => {
-  setArrowUpState((prevState) => ({
-    ...prevState,
-    [courseid]: !prevState[courseid], // Cambia solo el estado de este curso
-  }));
-};
+
 
   return (
     <div className="search-program">
@@ -202,58 +200,61 @@ try {
                 Course Contents
               </h2>
 
-              {/* Filtrar y mapear cursos relacionados */}
-              {courses
-  .filter((course) => course.programid === selectedProgram.programid)
-  .map((course) => (
-    <details key={course.courseid} className="bg-gray-100 p-2 mt-2 rounded">
-      <summary className="flex flex-row justify-between cursor-pointer p-2 hover:bg-gray-200 rounded" onClick={() => handleClickArrowUp(course.courseid)}>
-        
-          <div>
-          <Link href={`/courses/${encodeURIComponent(course.coursename)}`} className="w-2/3">
-            <h3 className="text-xs font-bold text-gray-800 hover:text-blue-600 transition-colors">
-              {course.coursename}
-              
-            </h3>
-          </Link>
-            <p className="text-xs text-gray-600">{course.duration}</p>
-            <Image src={arrowUpState[course.courseid] ? '/ad.png' : '/ar.png'} alt="toggle-arrow" width={15} height={5} />
-          </div>
-        
-        <div className="flex gap-2 sm:gap-1  items-center">
-         
-          <Link href={`/courses/${encodeURIComponent(course.coursename)}`}>
-            <button className="px-2 py-1 text-[9px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
-              Start
-            </button>
-          </Link>
-          
-        </div>
-      
-      </summary>
-
-      {/* Módulos relacionados */}
-      <div className="p-2 mt-2 bg-gray-50 rounded">
-        <h2 className="text-xs font-bold text-gray-800 text-center">Modules</h2>
-        {modulesData
-          .filter((module) => module.courseid === course.courseid)
-          .map((module) => (
-            <div
-              key={module.moduleid}
-              className="bg-white p-2 mt-2 rounded shadow-sm flex flex-col md:flex-row md:items-center md:justify-between"
-            >
-              <div className="text-start sm:w-full md:w-[25%]">
-                <h3 className="text-sm font-bold text-gray-800">{module.modulename}</h3>
-                <p className="text-xs text-gray-600">{module.duration}</p>
+              <div>
+      {courses
+        .filter((course) => course.programid === selectedProgram.programid)
+        .map((course) => (
+          <div key={course.courseid} className="bg-gray-100 p-2 mt-2 rounded">
+            <div className="flex justify-between items-center">
+              <div>
+                <Link href={`/courses/${encodeURIComponent(course.coursename)}`} className="w-2/3">
+                  <h3 className="text-xs font-bold text-gray-800 hover:text-blue-600 transition-colors">
+                    {course.coursename}
+                  </h3>
+                </Link>
+                <p className="text-xs text-gray-600">{course.duration}</p>
+                <button
+                  onClick={() => toggleModuleVisibility(course.courseid)}
+                  className="text-gray-700 hover:text-blue-600 transition-colors"
+                >
+                  {expandedCourseId === course.courseid ? '▲' : '▶'}
+                </button>
               </div>
-              <div className="text-start sm:w-full md:w-[65%]">
-                <p className="text-xs text-gray-700">{module.description}</p>
+              <div className="flex gap-2 sm:gap-1 items-center">
+                <Link href={`/courses/${encodeURIComponent(course.coursename)}`}>
+                  <button className="px-2 py-1 text-[9px] sm:text-[9px] md:text-[11px] lg:text-[12px] font-semibold text-gray-700 bg-transparent border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                    Start
+                  </button>
+                </Link>
+                
               </div>
             </div>
-          ))}
-      </div>
-    </details>
-  ))}
+
+            {/* Módulos relacionados */}
+            {expandedCourseId === course.courseid && (
+              <div className="p-2 mt-2 bg-gray-50 rounded">
+                <h2 className="text-xs font-bold text-gray-800 text-center">Modules</h2>
+                {modulesData
+                  .filter((module) => module.courseid === course.courseid)
+                  .map((module) => (
+                    <div
+                      key={module.moduleid}
+                      className="bg-white p-2 mt-2 rounded shadow-sm flex flex-col md:flex-row md:items-center md:justify-between"
+                    >
+                      <div className="text-start sm:w-full md:w-[25%]">
+                        <h3 className="text-sm font-bold text-gray-800">{module.modulename}</h3>
+                        <p className="text-xs text-gray-600">{module.duration}</p>
+                      </div>
+                      <div className="text-start sm:w-full md:w-[65%]">
+                        <p className="text-xs text-gray-700">{module.description}</p>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            )}
+          </div>
+        ))}
+    </div>
 
 
               {/* Mensaje si no hay cursos relacionados */}
