@@ -217,7 +217,7 @@ try {
                   onClick={() => toggleModuleVisibility(course.courseid)}
                   className="text-gray-700 hover:text-blue-600 transition-colors"
                 >
-                  {expandedCourseId === course.courseid ? '▲' : '▶'}
+                  {expandedCourseId === course.courseid ? <img src="/ad.png" className="w-4 h-4"/> : <img src="/ar.png" className="w-4 h-4"/>}
                 </button>
               </div>
               <div className="flex gap-2 sm:gap-1 items-center">
