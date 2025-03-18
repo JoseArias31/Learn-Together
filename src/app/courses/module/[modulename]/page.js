@@ -210,7 +210,7 @@ export default function ModulePage({ params }) {
     </div>
 
       {/* Para pantallas pequeñas: Usamos un botón que abre el modal */}
-      <div className="block md:hidden">
+      <div className="block md:hidden mx-2">
         <button
           className="text-sm font-bold text-gray-800 cursor-pointer"
           onClick={openModal}

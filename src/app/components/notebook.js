@@ -102,23 +102,24 @@ export default function Notebook() {
                       }`}
                     >
                       {editingNote === note.id ? (
-                        <div>
+                        <div className="w-full">
                           <textarea
                             value={editContent}
                             onChange={(e) => setEditContent(e.target.value)}
-                            className="w-full p-2 border border-gray-300 rounded-lg mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full p-2 border border-gray-300 rounded-lg mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 overflow-hidden resize-none "
                             autoFocus
+                            rows={8}
                           />
                           <div className="flex justify-end gap-2 ">
                             <button
                               onClick={cancelEdit}
-                              className="bg-gray-300 text-gray-700 py-1 px-3 rounded-lg hover:bg-gray-400 transition-colors"
+                              className="bg-gray-300 text-xs font-bold text-gray-700 py-1 px-2 rounded-lg hover:bg-gray-400 transition-colors"
                             >
                               Cancel
                             </button>
                             <button
                               onClick={() => saveEditedNote(note.id)}
-                              className="bg-blue-600 text-white py-1 px-3 rounded-lg hover:bg-blue-700 transition-colors"
+                              className="bg-blue-600 text-xs font-bold text-white py-1 px-3 rounded-lg hover:bg-blue-700 transition-colors"
                             >
                               Save
                             </button>
