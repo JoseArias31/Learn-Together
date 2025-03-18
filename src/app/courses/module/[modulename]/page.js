@@ -7,6 +7,7 @@ import Footer from "../../../components/footer";
 import { supabase } from "src/app/lib/supabaseClient";
 import { BookOpen, Clock, GraduationCap } from "lucide-react";
 import Notebook from "../../../components/notebook";
+import PropTypes from 'prop-types';
 
 export default function ModulePage({ params }) {
     const { modulename } = use(params) || { modulename: "" };
@@ -214,3 +215,8 @@ export default function ModulePage({ params }) {
         </div>
     );
 }
+ModulePage.propTypes = {
+    params: PropTypes.shape({
+        modulename: PropTypes.string.isRequired,
+    }).isRequired,
+};
