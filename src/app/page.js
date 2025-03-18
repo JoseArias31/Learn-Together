@@ -25,7 +25,7 @@ const session = useProtectedRoute();
       {session ? (
         <div className="flex justify-center sm:justify-end mt-2  sm:mt-5 sm:mr-10">
           <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
-            Welcome back, {session.user.email}!
+            Welcome back, {session.user.email.replace(/@[^@]+$/, "")}!
           </h1>
         </div> ): ( <div className="flex justify-center sm:justify-end mt-2  sm:mt-5 sm:mr-10">
           <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
