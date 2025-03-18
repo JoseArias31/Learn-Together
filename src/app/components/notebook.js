@@ -97,7 +97,7 @@ export default function Notebook() {
                   {notes.map((note) => (
                     <div
                       key={note.id}
-                      className={`p-4 bg-white border border-gray-200 rounded-lg relative transition-all ${
+                      className={`p-2 bg-white border border-gray-200 rounded-lg relative transition-all  ${
                         editingNote === note.id ? "ring-2 ring-blue-500" : ""
                       }`}
                     >
@@ -109,7 +109,7 @@ export default function Notebook() {
                             className="w-full p-2 border border-gray-300 rounded-lg mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             autoFocus
                           />
-                          <div className="flex justify-end gap-2">
+                          <div className="flex justify-end gap-2 ">
                             <button
                               onClick={cancelEdit}
                               className="bg-gray-300 text-gray-700 py-1 px-3 rounded-lg hover:bg-gray-400 transition-colors"
@@ -126,18 +126,18 @@ export default function Notebook() {
                         </div>
                       ) : (
                         <>
-                          <div className="whitespace-pre-wrap mb-2 pr-16">{note.content}</div>
+                          <div className="whitespace-pre-wrap mb-1 pr-16">{note.content}</div>
                           <div className="text-xs text-gray-500">{note.timestamp}</div>
-                          <div className="absolute top-3 right-3 flex gap-1">
+                          <div className="absolute top-1 right-3 flex gap-1 flex-col">
                             <button
                               onClick={() => startEditNote(note)}
-                              className="p-1 text-gray-600 hover:text-blue-600 transition-colors"
+                              className="p-1 text-xs font-bold text-gray-600 hover:text-blue-600 transition-colors"
                             >
                               Edit
                             </button>
                             <button
                               onClick={() => removeNote(note.id)}
-                              className="p-1 text-gray-600 hover:text-red-600 transition-colors"
+                              className="p-1 text-xs font-bold text-gray-600 hover:text-red-600 transition-colors"
                             >
                               Delete
                             </button>

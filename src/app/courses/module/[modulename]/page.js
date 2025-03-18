@@ -17,7 +17,26 @@ export default function ModulePage({ params }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const router = useRouter();
-    const [currentIndex, setCurrentIndex] = useState(-1);
+    const [currentIndex, setCurrentIndex] = useState(-1);  
+   
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
+
+    const handleToggle = (event) => {
+      setIsOpen(event.target.open);
+    };
+
+  // Función para abrir el modal
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Función para cerrar el modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  
 
     useEffect(() => {
         const fetchData = async () => {
@@ -118,7 +137,7 @@ export default function ModulePage({ params }) {
             <NavBar />
             <h1 className="mx-20 mt-6 text-3xl font-bold mb-6 capitalize">{courseData.coursename}</h1>
 
-            <div className="rounded mx-28" style={{ backgroundColor: "#80808045", padding: "15px" }}>
+            <div className="rounded lg:mx-28 mx-4 " style={{ backgroundColor: "#80808045", padding: "15px" }}>
                 <h2 className="mb-2 font-bold">Course Overview</h2>
                
                 <p className="text-gray-600 mb-4">{courseData.fulldescription}</p>
@@ -141,7 +160,7 @@ export default function ModulePage({ params }) {
                 </div>
             </div>
             <h1 className="mx-20 mt-6 text-3xl font-bold mb-6 capitalize">{moduleData.modulename}</h1>
-            <div className="rounded mx-28" style={{ backgroundColor: "#80808045", padding: "15px" }}>
+            <div className="rounded  lg:mx-28 mx-4" style={{ backgroundColor: "#80808045", padding: "15px" }}>
                 {/* Mostrar la introducción del curso solo en el primer módulo */}
                 {isFirstModule && (
                     <>
@@ -166,22 +185,59 @@ export default function ModulePage({ params }) {
 
                 {/* Mostrar el contenido del módulo */}
                 <h2 className="mb-2 font-bold">Module Content</h2>
+                <p className="text-gray-600 mb-4">{moduleData.description}</p>
                 <div className="flex flex-row justify-between mt-10">
                 <div className="w-full">
-                    <h1 className="bg-blue">Course Content</h1>
+                  
                   
                             <div  className="bg-gray-100 p-2 mt-2 rounded flex flex-col md:flex-col lg:flex-row sm:flex-row sm:items-center md:items-start md:gap-2 sm:justify-between">
-                                <div className="text-start sm:text-left sm:w-[25%] md:w-full lg:w-[25%]">
-                                    <h3 className="text-sm font-bold text-gray-800">{module.modulename}</h3>
+                                <div className="text-start sm:text-left sm:w-[25%] md:w-full lg:w-[25%] h-[100%]">
+                                    <h3 className="text-sm font-bold text-gray-800">{moduleData.modulename}</h3>
                                 </div>
                             </div>
                      
                 </div>
                 
-                <div className="w-1/4 hidden md:flex">
-                  
-                    <Notebook />
-                </div>
+                <div className="content-center">
+      {/* Para pantallas grandes: Usamos <details> y <summary> */}
+      <div className=" hidden md:flex">
+      <details className="w-full" open={isOpen} onToggle={handleToggle}>
+        <summary className="text-sm font-bold text-gray-800 cursor-pointer flex hover:text-blue-500 justify-center mx-2">
+          Notebook
+        </summary>
+        <Notebook />
+      </details>
+    </div>
+
+      {/* Para pantallas pequeñas: Usamos un botón que abre el modal */}
+      <div className="block md:hidden">
+        <button
+          className="text-sm font-bold text-gray-800 cursor-pointer"
+          onClick={openModal}
+        >
+          Notebook
+        </button>
+      </div>
+
+      {/* Modal para pantallas pequeñas */}
+      <dialog
+        open={isModalOpen}
+        onClose={closeModal}
+        className="w-full md:w-1/2 bg-white rounded-lg shadow-lg p-4 z-10"
+        
+      >
+        <div className="flex justify-end items-center mb-4">
+          
+          <button
+            onClick={closeModal}
+            className="hover:text-gray-700 text-2xl font-bold"
+          >
+           x
+          </button>
+        </div>
+        <Notebook />
+      </dialog>
+    </div>
             </div>
 
                 
@@ -191,14 +247,14 @@ export default function ModulePage({ params }) {
                 {currentIndex > 0 ? (
                         <button
                             onClick={handlePreviousModule}
-                            className="bg-blue-500 text-white px-4 py-2 rounded"
+                            className="bg-blue-500 text-white px-2 py-2 rounded"
                         >
                             Previous Module
                         </button>
                     ) : (
                         <button 
                             disabled 
-                            className="bg-blue-500 text-white px-4 py-2 rounded opacity-50 cursor-not-allowed"
+                            className="bg-blue-500 text-white px-2 py-2 rounded opacity-50 cursor-not-allowed"
                         >
                             No Previous Module
                         </button>
