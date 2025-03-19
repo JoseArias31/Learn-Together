@@ -17,6 +17,9 @@ export default function RootLayout({ children }) {
     
     <html lang="en">
 
+    {/* chat assistance app, only 7 free days trial */}
+      <script src="//code.tidio.co/wjsrt43bjl5bx0uogxmfhf47qkeszu6z.js" async></script>
+
       <body className={inter.className}>{children}</body>
      
 
