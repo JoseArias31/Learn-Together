@@ -135,7 +135,7 @@ export default function ModulePage({ params }) {
     return (
         <div>
             <NavBar />
-            <h1 className="mx-20 mt-6 text-3xl font-bold mb-6 capitalize">{courseData.coursename}</h1>
+            <h1 className="mx-20 mt-6 text-2xl font-bold mb-6 capitalize">{courseData.coursename}</h1>
 
             <div className="rounded lg:mx-28 mx-4 " style={{ backgroundColor: "#80808045", padding: "15px" }}>
                 <h2 className="mb-2 font-bold">Course Overview</h2>
@@ -200,19 +200,21 @@ export default function ModulePage({ params }) {
                 
                 <div className="content-center">
       {/* Para pantallas grandes: Usamos <details> y <summary> */}
-      <div className=" hidden md:flex">
-      <details className="w-full" open={isOpen} onToggle={handleToggle}>
-        <summary className="text-sm font-bold text-gray-800 cursor-pointer flex hover:text-blue-500 justify-center mx-2">
-          Notebook
-        </summary>
-        <Notebook />
-      </details>
-    </div>
+      <div className="hidden md:flex">
+        <details className="w-full group" open={isOpen} onToggle={handleToggle}>
+          <summary className="text-sm font-bold text-gray-800 cursor-pointer flex hover:text-blue-500 justify-center mx-2 transition-all duration-300 ease-in-out hover:scale-105">
+            Notebook
+          </summary>
+          <div className="transition-all duration-500 ease-in-out transform origin-top">
+            <Notebook />
+          </div>
+        </details>
+      </div>
 
       {/* Para pantallas pequeñas: Usamos un botón que abre el modal */}
       <div className="block md:hidden mx-2">
         <button
-          className="text-sm font-bold text-gray-800 cursor-pointer"
+          className="text-sm font-bold text-gray-800 cursor-pointer transition-all duration-300 ease-in-out hover:text-blue-500 hover:scale-105"
           onClick={openModal}
         >
           Notebook
@@ -223,20 +225,38 @@ export default function ModulePage({ params }) {
       <dialog
         open={isModalOpen}
         onClose={closeModal}
-        className="w-full md:w-1/2 bg-white rounded-lg shadow-lg p-4 z-10"
-        
+        className={`fixed inset-0 w-full h-full md:w-1/2 bg-white rounded-lg shadow-lg p-4 z-50 transform transition-all duration-300 ease-in-out ${
+          isModalOpen 
+            ? "opacity-100 scale-100" 
+            : "opacity-0 scale-95 pointer-events-none"
+        }`}
+        style={{
+          margin: 'auto',
+          backgroundColor: 'white',
+          maxHeight: '90vh',
+          overflowY: 'auto'
+        }}
       >
         <div className="flex justify-end items-center mb-4">
-          
           <button
             onClick={closeModal}
-            className="hover:text-gray-700 text-2xl font-bold"
+            className="hover:text-gray-700 text-2xl font-bold transition-all duration-300 ease-in-out hover:scale-110 hover:text-red-500"
           >
-           x
+            ×
           </button>
         </div>
-        <Notebook />
+        <div className="transform transition-all duration-500 ease-in-out">
+          <Notebook />
+        </div>
       </dialog>
+      
+      {/* Overlay for modal backdrop */}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ease-in-out z-40"
+          onClick={closeModal}
+        ></div>
+      )}
     </div>
             </div>
 
