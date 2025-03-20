@@ -68,9 +68,6 @@ export default function Notebook() {
   return (
     <div className="w-full max-w-3xl mx-auto p-2">
       <div className="bg-white shadow-lg rounded-lg">
-        <div className="bg-blue-600 text-white p-4 rounded-t-lg">
-          <h1 className="text-2xl font-bold">Notebook</h1>
-        </div>
         <div className="p-2">
           <div className="mb-6">
             <textarea

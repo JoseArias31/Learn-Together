@@ -12,11 +12,11 @@ export default function Component() {
       <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <div className="space-y-4">
           <Link
-            href="#"
+            href="/"
             className="flex items-center space-x-2"
             prefetch={false}
           >
-            <Image className="relative z-10" src={logo} alt="Logo" width={41} />
+            <Image className="" src={logo} alt="Logo" width={41} />
             <span className="text-lg font-bold text-white">Learn Together</span>
           </Link>
           <p className="text-gray-500 dark:text-gray-400 text-white">
