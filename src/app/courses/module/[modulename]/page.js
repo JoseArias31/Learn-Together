@@ -13,6 +13,7 @@ export default function ModulePage({ params }) {
     const { modulename } = use(params) || { modulename: "" };
     const [moduleData, setModuleData] = useState(null);
     const [courseData, setCourseData] = useState(null);
+    const [program, setProgram] = useState(null);
     const [modulesList, setModulesList] = useState([]); // Añade esto para almacenar la lista de módulos
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -76,6 +77,17 @@ export default function ModulePage({ params }) {
 
                 setModulesList(modules); // Guarda la lista de módulos en el estado
 
+                // Fetch program name for the course
+                const { data: program, error: programError } = await supabase
+                    .from("programs")
+                    .select("programname")
+                    .eq("programid", course.programid)
+                    .single();
+
+                if (programError) throw programError;
+
+                setProgram(program);
+
                 // Encuentra el índice del módulo actual
                 const currentIndex = modules.findIndex((m) => m.modulename === module.modulename);
                 setCurrentIndex(currentIndex); // Actualiza el estado de currentIndex
@@ -135,7 +147,7 @@ export default function ModulePage({ params }) {
     return (
         <div>
             <NavBar />
-            <h1 className="mx-20 mt-6 text-2xl font-bold mb-6 capitalize">{courseData.coursename}</h1>
+            <h1 className="mx-20 mt-6 text-xl md:text-2xl text-center font-bold mb-6 capitalize">{courseData.coursename}</h1>
 
             <div className="rounded lg:mx-28 mx-4 " style={{ backgroundColor: "#80808045", padding: "15px" }}>
                 <h2 className="mb-2 font-bold">Course Overview</h2>
@@ -146,7 +158,7 @@ export default function ModulePage({ params }) {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm sm:items-start md:items-start lg:items-start lg:place-items-center">
                         <div className="flex items-center font-bold">
                             <BookOpen className="mr-2" />
-                            <span>{moduleData.length} Modules</span>
+                            <span>{modulesList?.length || 0} Modules</span>
                         </div>
                         <div className="flex items-center font-bold">
                             <Clock className="mr-2" />
@@ -154,12 +166,12 @@ export default function ModulePage({ params }) {
                         </div>
                         <div className="flex items-center font-bold">
                             <GraduationCap className="mr-2" />
-                            <span>{courseData.description}</span>
+                            <span>{program.programname}</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <h1 className="mx-20 mt-6 text-3xl font-bold mb-6 capitalize">{moduleData.modulename}</h1>
+            <h1 className="mx-20 mt-6 text-base md:text-xl text-start  font-bold mb-6 capitalize">{moduleData.modulename}</h1>
             <div className="rounded  lg:mx-28 mx-4" style={{ backgroundColor: "#80808045", padding: "15px" }}>
                 {/* Mostrar la introducción del curso solo en el primer módulo */}
                 {isFirstModule && (
@@ -169,7 +181,7 @@ export default function ModulePage({ params }) {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm sm:items-start md:items-start lg:items-start lg:place-items-center">
                             <div className="flex items-center font-bold">
                                 <BookOpen className="mr-2" />
-                                <span>{moduleData.modules?.length || 0} Modules</span>
+                                <span>{modulesList?.length || 0} Modules</span>
                             </div>
                             <div className="flex items-center font-bold">
                                 <Clock className="mr-2" />
@@ -262,25 +274,25 @@ export default function ModulePage({ params }) {
 
                 
                 {/* Botón "Siguiente" */}
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row justify-between mt-6">
                
                 {currentIndex > 0 ? (
                         <button
                             onClick={handlePreviousModule}
-                            className="bg-blue-500 text-white px-2 py-2 rounded"
+                            className="bg-blue-500 text-white px-2 py-2 rounded text-xs"
                         >
                             Previous Module
                         </button>
                     ) : (
                         <button 
                             disabled 
-                            className="bg-blue-500 text-white px-2 py-2 rounded opacity-50 cursor-not-allowed"
+                            className="bg-blue-500 text-white px-2 py-2 rounded opacity-50 cursor-not-allowed text-xs"
                         >
                             No Previous Module
                         </button>
                     )}           <button
                     onClick={handleNextModule}
-                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                    className="bg-blue-500 text-white text-xs px-4 py-2 rounded"
                 >
                     Next Module
                 </button>
