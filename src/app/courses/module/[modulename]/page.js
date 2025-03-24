@@ -8,8 +8,11 @@ import { supabase } from "src/app/lib/supabaseClient";
 import { BookOpen, Clock, GraduationCap } from "lucide-react";
 import Notebook from "../../../components/notebook";
 import PropTypes from 'prop-types';
+import useProtectedRoute from "src/app/auth/register/Hooks/useProtectedRoutes";
 
 export default function ModulePage({ params }) {
+
+    const session = useProtectedRoute();
     const { modulename } = use(params) || { modulename: "" };
     const [moduleData, setModuleData] = useState(null);
     const [courseData, setCourseData] = useState(null);
@@ -147,6 +150,19 @@ export default function ModulePage({ params }) {
     return (
         <div>
             <NavBar />
+            {session ? (
+      <div className="flex justify-center sm:justify-end mt-2  sm:mt-5 sm:mr-10">
+        <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
+          Hi, {session.user.email.replace(/@[^@]+$/, "")}!
+        </h1>
+      </div>
+    ) : (
+      <div className="flex justify-center sm:justify-end mt-2  sm:mt-5 sm:mr-10">
+        <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
+          Welcome to Learn Together! Please log in to complete this module.
+        </h1>
+      </div>
+    )}
             <h1 className="mx-20 mt-6 text-xl md:text-2xl text-center font-bold mb-6 capitalize">{courseData.coursename}</h1>
 
             <div className="rounded lg:mx-28 mx-4 " style={{ backgroundColor: "#80808045", padding: "15px" }}>

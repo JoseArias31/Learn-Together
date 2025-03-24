@@ -7,10 +7,11 @@ import Footer from "../../components/footer";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { use } from "react";
-
+import useProtectedRoute from "src/app/auth/register/Hooks/useProtectedRoutes";
 import { BookOpen, Clock, GraduationCap, BookOpenText } from "lucide-react";
 
 export default function ProgramPage({ params }) {
+  const session = useProtectedRoute();
   const [programData, setProgramData] = useState(null);
   const [coursesData, setCoursesData] = useState([]);
   const [modulesData, setModulesData] = useState([]); // Consolidated modules state
@@ -109,6 +110,20 @@ export default function ProgramPage({ params }) {
     <div>
       <NavBar />
       <div className="container mx-auto px-6 py-8 ">
+      {session ? (
+      <div className="flex justify-center sm:justify-end mt-2  sm:mt-1 sm:mr-10">
+        <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
+          Hi, {session.user.email.replace(/@[^@]+$/, "")}!
+        </h1>
+      </div>
+    ) : (
+      <div className="flex justify-center sm:justify-end mt-2  sm:mt-5 sm:mr-10">
+        <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
+          Welcome to Learn Together!
+        </h1>
+      </div>
+    )}
+
         <h1 className="text-3xl font-bold mb-6 capitalize">
           {programData.programname} Program
         </h1>

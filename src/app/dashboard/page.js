@@ -114,6 +114,14 @@ const Dashboard = () => {
                     </div>
                     <div className="flex  flex-row justify-between">
                       <h2 className="text-white text-sm font-medium text-gray-800">
+                        Current Programs
+                      </h2>
+                      <h3 className="text-sm text-yellow-600 font-semibold">
+                       1
+                      </h3>
+                    </div>
+                    <div className="flex  flex-row justify-between">
+                      <h2 className="text-white text-sm font-medium text-gray-800">
                         Programs Completed
                       </h2>
                       <h3 className="text-sm text-yellow-600 font-semibold">
@@ -339,6 +347,14 @@ const Dashboard = () => {
           </h2>
           <h3 className="text-xs text-purple-600 font-semibold">
             Monthly
+          </h3>
+        </div>
+        <div className="flex  flex-row justify-between">
+          <h2 className=" text-xs font-bold text-gray-800">
+            Current Programs
+          </h2>
+          <h3 className="text-xs text-yellow-600 font-semibold">
+            2
           </h3>
         </div>
         <div className="flex  flex-row justify-between">
