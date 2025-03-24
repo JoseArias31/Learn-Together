@@ -52,7 +52,6 @@ const Dashboard = () => {
       {/* Header Section */}
 
       {/* Main Content*/}
-
       <div className="bg-custom-gradient text-gray-100 overflow-x-clip min-h-screen flex">
         <aside
           id="sidebar"
@@ -85,9 +84,7 @@ const Dashboard = () => {
                 {/* Menú desplegable corregido */}
 
                 <div className=" top-full right-0 border-b p-4  shadow-md w-64 z-10  mt-2">
-                  
                   <div className="flex flex-col gap-2">
-                    
                     <div className="flex flex-row justify-between">
                       <h2 className="text-white text-sm font-medium text-gray-800">
                         Account Status
@@ -114,17 +111,47 @@ const Dashboard = () => {
                     </div>
                     <div className="flex  flex-row justify-between">
                       <h2 className="text-white text-sm font-medium text-gray-800">
+                        Current Courses
+                      </h2>
+                      <h3 className="text-sm  font-semibold">
+                        1
+                      </h3>
+                    </div>
+                    <div className="flex  flex-row justify-between">
+                      <h2 className="text-white text-sm font-medium text-gray-800">
+                        Courses Completed
+                      </h2>
+                      <h3 className="text-sm  font-semibold">2</h3>
+                    </div>
+                    <div className="flex flex-row justify-between">
+                      <h2 className="text-white text-sm font-medium text-gray-800">
+                        Add a new Course
+                      </h2>
+                      <Link href="/courses">
+                        <div className="hover:scale-110 transition duration-300 flex justify-center  ">
+                          <Image
+                            src="/add sign.png"
+                            alt="add simbol"
+                            width={20}
+                            height={30}
+                            className="filter invert brightness-0"
+                          />
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="flex  flex-row justify-between">
+                      <h2 className="text-white text-sm font-medium text-gray-800">
                         Current Programs
                       </h2>
-                      <h3 className="text-sm text-yellow-600 font-semibold">
-                       1
+                      <h3 className="text-sm font-semibold">
+                        1
                       </h3>
                     </div>
                     <div className="flex  flex-row justify-between">
                       <h2 className="text-white text-sm font-medium text-gray-800">
                         Programs Completed
                       </h2>
-                      <h3 className="text-sm text-yellow-600 font-semibold">
+                      <h3 className="text-sm  font-semibold">
                         2
                       </h3>
                     </div>
@@ -195,20 +222,21 @@ const Dashboard = () => {
               </span>
             </Link>
             <button
-       onClick={handlgeSignOut}
-       className="flex cursor-pointer flex items-center text-gray-800 bg-green-500 hover:bg-blue-700  self-center p-2  rounded-md justify-self-center">
-     <Link
-       href="/"
-       className="flex items-center space-x-3 text-gray-300  rounded-md justify-center"
-     >
-      
-       <span className="h-full  text-xs sm:text-xs md:text-xs  text-black font-semibold">Sign Out</span>
-     </Link>
-     </button>
+              onClick={handlgeSignOut}
+              className="flex cursor-pointer flex items-center text-gray-800 bg-green-500 hover:bg-blue-700  self-center p-2  rounded-md justify-self-center"
+            >
+              <Link
+                href="/"
+                className="flex items-center space-x-3 text-gray-300  rounded-md justify-center"
+              >
+                <span className="h-full  text-xs sm:text-xs md:text-xs  text-black font-semibold">
+                  Sign Out
+                </span>
+              </Link>
+            </button>
           </nav>
-        
+
           <div className="flex space-x-4 justify-center">
-            
             <Link
               href="#"
               className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -244,162 +272,202 @@ const Dashboard = () => {
               </h1>
             </div>
           </div>
-         {/* Agregar Toggle*/}
+          {/* Agregar Toggle*/}
 
           <section className="md:hidden absolute top-0 left-0 flex flex-row p-2 justify-end gap-4 rounded-lg">
- <div className="relative flex flex-col   ">
-  {/* Foto de perfil redonda */}
+            <div className="relative flex flex-col   ">
+              {/* Foto de perfil redonda */}
 
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="flex justify-between text-xs items-center px-4 py-2 text-white bg-gray-800 rounded-md gap-2 shadow-md hover:bg-gray-700 transition min-w-[150px]"
+              >
+                Hello, {session.user.email.replace(/@[^@]+$/, "")}
+                <Image
+                  src="/profilePicture.png"
+                  alt="Profile Picture"
+                  width={20}
+                  height={40}
+                  className=" rounded-full border-2 border-gray-300"
+                />
+                <Image
+                  src="/arrowDown.png"
+                  alt="Dropdown Icon"
+                  width={20}
+                  height={20}
+                />
+              </button>
 
-<button
-  onClick={() => setIsOpen(!isOpen)}
-  className="flex justify-between text-xs items-center px-4 py-2 text-white bg-gray-800 rounded-md gap-2 shadow-md hover:bg-gray-700 transition min-w-[150px]"
->
+              {/* Menú desplegable corregido */}
+              {isOpen && (
+                <div className=" flex flex-col justify-evenly  top-full right-0  p-2 rounded-lg shadow-md  z-10 w-64 h-100  bg-gray-300 ">
+                  <ul
+                    className=" items-center space-y-2 text-white "
+                    style={{ placeItems: "start" }}
+                  >
+                    <li className="content-center">
+                      <Link
+                        href="/"
+                        className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 mt-2 rounded-md"
+                      >
+                        <i className="bx bx-home-alt text-teal-400 "></i>
+                        <Image src={home} alt="home" width={15} />
+                        <span className="text-sm text-black font-bold">
+                          Home
+                        </span>
+                      </Link>
+                    </li>
+                    <li className="content-center">
+                      <Link
+                        href="/programs"
+                        className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 mt-2 rounded-md"
+                      >
+                        <i className="bx bx-line-chart text-teal-400"></i>
 
-  Hello, {session.user.email.replace(/@[^@]+$/, "")}
-  <Image
-    src="/profilePicture.png"
-    alt="Profile Picture"
-    width={20}
-    height={40}
-    className=" rounded-full border-2 border-gray-300"
-  />
-  <Image
-    src="/arrowDown.png"
-    alt="Dropdown Icon"
-    width={20}
-    height={20}
-  />
-  
-</button>
+                        <Image src={programs} alt="programs" width={15} />
+                        <span className="text-sm text-black font-bold">
+                          My Programs
+                        </span>
+                      </Link>
+                    </li>
+                    <li className="content-center">
+                      <Link
+                        href="/ai-assistance"
+                        className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 mt-2 rounded-md"
+                      >
+                        <i className="bx bx-wallet text-teal-400"></i>
 
-  {/* Menú desplegable corregido */}
-  {isOpen && (
-    <div className=" flex flex-col justify-evenly  top-full right-0  p-2 rounded-lg shadow-md  z-10 w-64 h-100  bg-gray-300 ">
-      <ul className=" items-center space-y-2 text-white " style={{placeItems: "start"}}>
-   <li className="content-center">
-     <Link
-       href="/"
-       className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 mt-2 rounded-md"
-     >
-       <i className="bx bx-home-alt text-teal-400 "></i>
-       <Image src={home} alt="home" width={15} />
-       <span className="text-sm text-black font-bold">Home</span>
-     </Link>
-   </li>
-   <li className="content-center">
-     <Link
-       href="/programs"
-       className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 mt-2 rounded-md"
-     >
-       <i className="bx bx-line-chart text-teal-400"></i>
+                        <Image src={ai} alt="aiAssistance" width={15} />
+                        <span className="text-sm text-black font-bold">
+                          AI Assistance
+                        </span>
+                      </Link>
+                    </li>
+                    <li className="content-center">
+                      <Link
+                        href="/settings"
+                        className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 mt-2 rounded-md"
+                      >
+                        <i className="bx bx-cog text-teal-400"></i>
 
-       <Image src={programs} alt="programs" width={15} />
-       <span className="text-sm text-black font-bold">My Programs</span>
-     </Link>
-   </li>
-   <li className="content-center">
-     <Link
-       href="/ai-assistance"
-       className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 mt-2 rounded-md"
-     >
-       <i className="bx bx-wallet text-teal-400"></i>
+                        <Image src={settings} alt="settings" width={15} />
+                        <span className="text-sm text-black font-bold">
+                          Settings
+                        </span>
+                      </Link>
+                    </li>
 
-       <Image src={ai} alt="aiAssistance" width={15} />
-       <span className="text-sm text-black font-bold">AI Assistance</span>
-     </Link>
-   </li>
-   <li className="content-center">
-     <Link
-       href="/settings"
-       className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 mt-2 rounded-md"
-     >
-       <i className="bx bx-cog text-teal-400"></i>
+                    <li className="mt-8"></li>
+                  </ul>
+                  <div className="flex flex-col gap-3 m-2 border-t border-black mt-2">
+                    <div className="flex flex-row justify-between mt-4">
+                      <h2 className=" text-xs font-bold text-gray-800">
+                        Account Status
+                      </h2>
+                      <h3 className=" text-xs text-green-600 font-semibold">
+                        Active
+                      </h3>
+                    </div>
+                    <div className="flex flex-row justify-between">
+                      <h2 className=" text-xs font-bold text-gray-800">
+                        Membership
+                      </h2>
+                      <h3 className="text-xs text-blue-600 font-semibold">
+                        Student
+                      </h3>
+                    </div>
+                    <div className="flex  flex-row justify-between">
+                      <h2 className=" text-xs font-bold text-gray-800">
+                        Subscription
+                      </h2>
+                      <h3 className="text-xs text-purple-600 font-semibold">
+                        Monthly
+                      </h3>
+                    </div>
+                    <div className="flex  flex-row justify-between">
+                      <h2 className=" text-xs font-bold text-gray-800">
+                        Current Courses
+                      </h2>
+                      <h3 className="text-xs text-yellow-600 font-semibold">
+                        2
+                      </h3>
+                    </div>
+                    <div className="flex  flex-row justify-between">
+                      <h2 className=" text-xs font-bold text-gray-800">
+                        Courses Completed
+                      </h2>
+                      <h3 className="text-xs text-yellow-600 font-semibold">
+                        2
+                      </h3>
+                    </div>
+                    <div className="flex flex-row justify-between">
+                      <h2 className=" text-xs  font-bold text-gray-800">
+                        Add a new Course
+                      </h2>
+                      <Link href="/courses">
+                        <div className="hover:scale-110 transition duration-300 flex justify-center  ">
+                          <Image
+                            src="/add sign.png"
+                            alt="add simbol"
+                            width={20}
+                            height={30}
+                            className="filter invert brightness-1"
+                          />
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="flex  flex-row justify-between">
+                      <h2 className=" text-xs font-bold text-gray-800">
+                        Current Programs
+                      </h2>
+                      <h3 className="text-xs text-yellow-600 font-semibold">
+                        2
+                      </h3>
+                    </div>
+                 
+                    <div className="flex  flex-row justify-between">
+                      <h2 className=" text-xs font-bold text-gray-800">
+                        Programs Completed
+                      </h2>
+                      <h3 className="text-xs text-yellow-600 font-semibold">
+                        2
+                      </h3>
+                    </div>
+                    <div className="flex flex-row justify-between">
+                      <h2 className=" text-xs  font-bold text-gray-800">
+                        Add a new Program
+                      </h2>
+                      <Link href="/programs">
+                        <div className="hover:scale-110 transition duration-300 flex justify-center  ">
+                          <Image
+                            src="/add sign.png"
+                            alt="add simbol"
+                            width={20}
+                            height={30}
+                            className="filter invert brightness-1"
+                          />
+                        </div>
+                      </Link>
+                    </div>
 
-       <Image src={settings} alt="settings" width={15} />
-       <span className="text-sm text-black font-bold">Settings</span>
-     </Link>
-   </li>
-   
-
-   <li className="mt-8"></li>
- </ul>
-      <div className="flex flex-col gap-3 m-2 border-t border-black mt-2">
-        <div className="flex flex-row justify-between mt-4">
-          <h2 className=" text-xs font-bold text-gray-800">
-            Account Status
-          </h2>
-          <h3 className=" text-xs text-green-600 font-semibold">
-            Active
-          </h3>
-        </div>
-        <div className="flex flex-row justify-between">
-          <h2 className=" text-xs font-bold text-gray-800">
-            Membership
-          </h2>
-          <h3 className="text-xs text-blue-600 font-semibold">
-            Student
-          </h3>
-        </div>
-        <div className="flex  flex-row justify-between">
-          <h2 className=" text-xs font-bold text-gray-800">
-            Subscription
-          </h2>
-          <h3 className="text-xs text-purple-600 font-semibold">
-            Monthly
-          </h3>
-        </div>
-        <div className="flex  flex-row justify-between">
-          <h2 className=" text-xs font-bold text-gray-800">
-            Current Programs
-          </h2>
-          <h3 className="text-xs text-yellow-600 font-semibold">
-            2
-          </h3>
-        </div>
-        <div className="flex  flex-row justify-between">
-          <h2 className=" text-xs font-bold text-gray-800">
-            Programs Completed
-          </h2>
-          <h3 className="text-xs text-yellow-600 font-semibold">
-            2
-          </h3>
-        </div>
-        <div className="flex flex-row justify-between">
-          <h2 className=" text-xs  font-bold text-gray-800">
-            Add a new Program
-          </h2>
-          <Link href="/programs">
-            <div className="hover:scale-110 transition duration-300 flex justify-center  ">
-              <Image
-                src="/add sign.png"
-                alt="add simbol"
-                width={20}
-                height={30}
-                className="filter invert brightness-1"
-              />
+                    <button
+                      onClick={handlgeSignOut}
+                      className="flex cursor-pointer flex items-center text-gray-800 bg-green-500 hover:bg-gray-700  self-center p-2  rounded-md justify-center"
+                    >
+                      <Link
+                        href="/"
+                        className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 rounded-md justify-center"
+                      >
+                        <span className="h-full text-xs text-black font-semibold">
+                          Sign Out
+                        </span>
+                      </Link>
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
-          </Link>
-          
-        </div>
-       <button
-       onClick={handlgeSignOut}
-       className="flex cursor-pointer flex items-center text-gray-800 bg-green-500 hover:bg-gray-700  self-center p-2  rounded-md justify-center">
-     <Link
-       href="/"
-       className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 rounded-md justify-center"
-     >
-      
-       <span className="h-full text-xs text-black font-semibold">Sign Out</span>
-     </Link>
-     </button>
-      </div>
-      
-    </div>
-  )}
-</div>
-
-</section>
+          </section>
           <div
             className="flex  absolute top-0 right-0 items-center  text-teal-400 cursor-pointer items-center flex-col mr-4 "
             style={{ textAlignLast: "center" }}
@@ -441,8 +509,86 @@ const Dashboard = () => {
             {/* Main Section */}
             <main className="flex-1 bg-custom-gradient flex gap-4 flex-col lg:flex-row ml-0 lg:ml-42">
               <section className="w-full lg:flex-1 p-4 space-y-6 bg-gray-800 flex flex-col rounded-lg justify-evenly">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Current Courses Section */}
+                  <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div className="flex justify-between items-center mb-4">
+                      <h2 className="text-xl font-semibold">Current Courses</h2>
+                      <Link href="/courses">
+                        <div className="hover:scale-110 transition duration-300 bg-gray-700 rounded-full p-2">
+                          <Image
+                            src="/add sign.png"
+                            alt="Add Course"
+                            width={20}
+                            height={20}
+                            className="filter invert brightness-0"
+                          />
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="space-y-4">
+                      {/* Example Course Items - Replace with actual data */}
+                      <div className="bg-gray-700 rounded-lg p-4">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <h3 className="font-medium">Introduction to AI</h3>
+                            <p className="text-sm text-gray-400">Progress: 60%</p>
+                          </div>
+                          <div className="w-20 h-2 bg-gray-600 rounded-full">
+                            <div className="w-3/5 h-full bg-teal-400 rounded-full"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-gray-700 rounded-lg p-4">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <h3 className="font-medium">Web Development</h3>
+                            <p className="text-sm text-gray-400">Progress: 45%</p>
+                          </div>
+                          <div className="w-20 h-2 bg-gray-600 rounded-full">
+                            <div className="w-2/5 h-full bg-teal-400 rounded-full"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Current Programs Section */}
+                  <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div className="flex justify-between items-center mb-4">
+                      <h2 className="text-xl font-semibold">Current Programs</h2>
+                      <Link href="/programs">
+                        <div className="hover:scale-110 transition duration-300 bg-gray-700 rounded-full p-2">
+                          <Image
+                            src="/add sign.png"
+                            alt="Add Program"
+                            width={20}
+                            height={20}
+                            className="filter invert brightness-0"
+                          />
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="space-y-4">
+                      {/* Example Program Items - Replace with actual data */}
+                      <div className="bg-gray-700 rounded-lg p-4">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <h3 className="font-medium">Full Stack Development</h3>
+                            <p className="text-sm text-gray-400">Progress: 30%</p>
+                          </div>
+                          <div className="w-20 h-2 bg-gray-600 rounded-full">
+                            <div className="w-1/3 h-full bg-teal-400 rounded-full"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <ImageCarousel />
                 <CategoryCarousel />
+
+             
 
                 <div className="flex gap-4 flex-col md:flex-row">
                   {/* Income Card */}
@@ -478,24 +624,24 @@ const Dashboard = () => {
           </div>
 
           <div className="flex items-center flex-col mt-14 mb-20">
-  <div className="flex flex-col text-center relative gap-4  w-[300px] md:w-[550px] lg:w-[800px] items-center">
-    <h1 className="text-3xl md:text-4xl">
-      It is time for AI to give you a hand
-    </h1>
-    <h1 className="text-lg md:text-xl">
-      Ask it anything to figure out the best program for you!
-    </h1>
-    <textarea
-      placeholder="What should I study?"
-      className="border-green-400 w-full md:w-[400px] content-center py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none min-h-[100px]"
-    />
-  </div>
-</div>
+            <div className="flex flex-col text-center relative gap-4  w-[300px] md:w-[550px] lg:w-[800px] items-center">
+              <h1 className="text-3xl md:text-4xl">
+                It is time for AI to give you a hand
+              </h1>
+              <h1 className="text-lg md:text-xl">
+                Ask it anything to figure out the best program for you!
+              </h1>
+              <textarea
+                placeholder="What should I study?"
+                className="border-green-400 w-full md:w-[400px] content-center py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none min-h-[100px]"
+              />
+            </div>
+          </div>
         </div>
       </div>
       <div className="md:hidden flex">
-      <Footer />
-    </div>
+        <Footer />
+      </div>
     </div>
   );
 };
@@ -581,105 +727,3 @@ function TwitterIcon(props) {
     </svg>
   );
 }
-
-
-
-//  {/* Icono de toggle en dispositivos móviles */}
-//  <div className="absolute top-0 m-4 md:hidden flex items-center ">
-//  {/* Botón para abrir el menú */}
-//  <button onClick={handleToggle} className="text-white">
-//    <svg
-//      xmlns="http://www.w3.org/2000/svg"
-//      fill="none"
-//      viewBox="0 0 24 24"
-//      stroke="currentColor"
-//      className="w-6 h-6"
-//    >
-//      <path
-//        strokeLinecap="round"
-//        strokeLinejoin="round"
-//        strokeWidth="2"
-//        d="M4 6h16M4 12h16M4 18h16"
-//      />
-//    </svg>
-//  </button>
-// </div>
-// {/* Menú desplegable - se superpone en móviles */}
-// <div
-//  className={`fixed top-0 right-0 rounded w-full h-full bg-black bg-opacity-95 transition-all duration-300 ease-in-out ${
-//    menuOpen ? "translate-x-0" : "translate-x-full"
-//  }`}
-//  style={{ zIndex: 1000 }}
-// >
-//  {/* Botón para cerrar el menú */}
-//  <div className="flex justify-end p-6">
-//    <button
-//      onClick={handleToggle}
-//      className="text-white text-3xl hover:text-gray-300 transition-colors duration-200"
-//    >
-//      <svg
-//        xmlns="http://www.w3.org/2000/svg"
-//        fill="none"
-//        viewBox="0 0 24 24"
-//        stroke="currentColor"
-//        className="w-8 h-8"
-//      >
-//        <path
-//          strokeLinecap="round"
-//          strokeLinejoin="round"
-//          strokeWidth="2"
-//          d="M6 18L18 6M6 6l12 12"
-//        />
-//      </svg>
-//    </button>
-//  </div>
-
-//  {/* Lista de enlaces */}
-//  <ul className="flex flex-col items-center space-y-8 mt-16 text-white">
-//    <li className="content-center">
-//      <Link
-//        href="/"
-//        className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
-//      >
-//        <i className="bx bx-home-alt text-teal-400"></i>
-//        <Image src={home} alt="home" width={20} />
-//        <span className="text-base">Home</span>
-//      </Link>
-//    </li>
-//    <li className="content-center">
-//      <Link
-//        href="/programs"
-//        className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
-//      >
-//        <i className="bx bx-line-chart text-teal-400"></i>
-
-//        <Image src={programs} alt="programs" width={20} />
-//        <span className="text-base">My Programs</span>
-//      </Link>
-//    </li>
-//    <li className="content-center">
-//      <Link
-//        href="/ai-assistance"
-//        className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
-//      >
-//        <i className="bx bx-wallet text-teal-400"></i>
-
-//        <Image src={ai} alt="aiAssistance" width={20} />
-//        <span className="text-base">AI Assistance</span>
-//      </Link>
-//    </li>
-//    <li className="content-center">
-//      <Link
-//        href="/settings"
-//        className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 p-3 rounded-md"
-//      >
-//        <i className="bx bx-cog text-teal-400"></i>
-
-//        <Image src={settings} alt="settings" width={20} />
-//        <span className="text-base ">Settings</span>
-//      </Link>
-//    </li>
-
-//    <li className="mt-8"></li>
-//  </ul>
-// </div>

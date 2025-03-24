@@ -148,175 +148,186 @@ export default function ModulePage({ params }) {
     const isFirstModule = moduleData.modulename === "Introduction"; // Ajusta esto según el nombre de tu primer módulo
 
     return (
-        <div>
-            <NavBar />
-            {session ? (
-      <div className="flex justify-center sm:justify-end mt-2  sm:mt-5 sm:mr-10">
-        <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
-          Hi, {session.user.email.replace(/@[^@]+$/, "")}!
-        </h1>
-      </div>
-    ) : (
-      <div className="flex justify-center sm:justify-end mt-2  sm:mt-5 sm:mr-10">
-        <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
-          Welcome to Learn Together! Please log in to complete this module.
-        </h1>
-      </div>
-    )}
-            <h1 className="mx-20 mt-6 text-xl md:text-2xl text-center font-bold mb-6 capitalize">{courseData.coursename}</h1>
-
-            <div className="rounded lg:mx-28 mx-4 " style={{ backgroundColor: "#80808045", padding: "15px" }}>
-                <h2 className="mb-2 font-bold">Course Overview</h2>
-               
-                <p className="text-gray-600 mb-4">{courseData.fulldescription}</p>
-
-                <div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm sm:items-start md:items-start lg:items-start lg:place-items-center">
-                        <div className="flex items-center font-bold">
-                            <BookOpen className="mr-2" />
-                            <span>{modulesList?.length || 0} Modules</span>
-                        </div>
-                        <div className="flex items-center font-bold">
-                            <Clock className="mr-2" />
-                            <span>{courseData.duration} Program</span>
-                        </div>
-                        <div className="flex items-center font-bold">
-                            <GraduationCap className="mr-2" />
-                            <span>{program.programname}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h1 className="mx-20 mt-6 text-base md:text-xl text-start  font-bold mb-6 capitalize">{moduleData.modulename}</h1>
-            <div className="rounded  lg:mx-28 mx-4" style={{ backgroundColor: "#80808045", padding: "15px" }}>
-                {/* Mostrar la introducción del curso solo en el primer módulo */}
-                {isFirstModule && (
-                    <>
-                        <h2 className="mb-2 font-bold">Course Overview</h2>
-                        <p className="text-gray-600 mb-4">{courseData.fulldescription}</p>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm sm:items-start md:items-start lg:items-start lg:place-items-center">
-                            <div className="flex items-center font-bold">
-                                <BookOpen className="mr-2" />
-                                <span>{modulesList?.length || 0} Modules</span>
-                            </div>
-                            <div className="flex items-center font-bold">
-                                <Clock className="mr-2" />
-                                <span>{courseData.duration} Program</span>
-                            </div>
-                            <div className="flex items-center font-bold">
-                                <GraduationCap className="mr-2" />
-                                <span>{courseData.description}</span>
-                            </div>
-                        </div>
-                    </>
-                )}
-
-                {/* Mostrar el contenido del módulo */}
-                <h2 className="mb-2 font-bold">Module Content</h2>
-                <p className="text-gray-600 mb-4">{moduleData.description}</p>
-                <div className="flex flex-row justify-between mt-10">
-                <div className="w-full">
-                  
-                  
-                            <div  className="bg-gray-100 p-2 mt-2 rounded flex flex-col md:flex-col lg:flex-row sm:flex-row sm:items-center md:items-start md:gap-2 sm:justify-between">
-                                <div className="text-start sm:text-left sm:w-[25%] md:w-full lg:w-[25%] h-[100%]">
-                                    <h3 className="text-sm font-bold text-gray-800">{moduleData.modulename}</h3>
-                                </div>
-                            </div>
-                     
-                </div>
-                
-                <div className="content-center">
-      {/* Para pantallas grandes: Usamos <details> y <summary> */}
-      <div className="hidden md:flex">
-        <details className="w-full group" open={isOpen} onToggle={handleToggle}>
-          <summary className="text-sm font-bold text-gray-800 cursor-pointer flex hover:text-blue-500 justify-center mx-2 transition-all duration-300 ease-in-out hover:scale-105">
-            Notebook
-          </summary>
-          <div className="transition-all duration-500 ease-in-out transform origin-top">
-            <Notebook />
+      <div>
+        <NavBar />
+        {session ? (
+          <div className="flex justify-center sm:justify-end mt-2  sm:mt-5 sm:mr-10">
+            <h1 className="text-center font-kodchasan text-[13px] sm:text-base font-semibold">
+              Hi, {session.user.email.replace(/@[^@]+$/, "")}!
+            </h1>
           </div>
-        </details>
-      </div>
+        ) : (
+          <div className="flex justify-center sm:justify-end mt-2  sm:mt-5 sm:mr-10">
+            <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
+              Welcome to Learn Together! Please log in to complete this module.
+            </h1>
+          </div>
+        )}
+        <h1 className="mx-20 mt-6 text-xl md:text-2xl text-center font-bold mb-6 capitalize">
+          {courseData.coursename}
+        </h1>
 
-      {/* Para pantallas pequeñas: Usamos un botón que abre el modal */}
-      <div className="block md:hidden mx-2">
-        <button
-          className="text-sm font-bold text-gray-800 cursor-pointer transition-all duration-300 ease-in-out hover:text-blue-500 hover:scale-105"
-          onClick={openModal}
+        <div
+          className="rounded lg:mx-28 mx-4 "
+          style={{ backgroundColor: "#80808045", padding: "15px" }}
         >
-          Notebook
-        </button>
-      </div>
+          <h2 className="mb-2 font-bold">Course Overview</h2>
 
-      {/* Modal para pantallas pequeñas */}
-      <dialog
-        open={isModalOpen}
-        onClose={closeModal}
-        className={`fixed inset-0 w-full h-full md:w-1/2 bg-white rounded-lg shadow-lg p-4 z-50 transform transition-all duration-300 ease-in-out ${
-          isModalOpen 
-            ? "opacity-100 scale-100" 
-            : "opacity-0 scale-95 pointer-events-none"
-        }`}
-        style={{
-          margin: 'auto',
-          backgroundColor: 'white',
-          maxHeight: '90vh',
-          overflowY: 'auto'
-        }}
-      >
-        <div className="flex justify-end items-center mb-4">
-          <button
-            onClick={closeModal}
-            className="hover:text-gray-700 text-2xl font-bold transition-all duration-300 ease-in-out hover:scale-110 hover:text-red-500"
-          >
-            ×
-          </button>
-        </div>
-        <div className="transform transition-all duration-500 ease-in-out">
-          <Notebook />
-        </div>
-      </dialog>
-      
-      {/* Overlay for modal backdrop */}
-      {isModalOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ease-in-out z-40"
-          onClick={closeModal}
-        ></div>
-      )}
-    </div>
+          <p className="text-gray-600 mb-4">{courseData.fulldescription}</p>
+
+          <div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm sm:items-start md:items-start lg:items-start lg:place-items-center">
+              <div className="flex items-center font-bold">
+                <BookOpen className="mr-2" />
+                <span>{modulesList?.length || 0} Modules</span>
+              </div>
+              <div className="flex items-center font-bold">
+                <Clock className="mr-2" />
+                <span>{courseData.duration} Program</span>
+              </div>
+              <div className="flex items-center font-bold">
+                <GraduationCap className="mr-2" />
+                <span>{program.programname}</span>
+              </div>
             </div>
-
-                
-                {/* Botón "Siguiente" */}
-                <div className="flex flex-row justify-between mt-6">
-               
-                {currentIndex > 0 ? (
-                        <button
-                            onClick={handlePreviousModule}
-                            className="bg-blue-500 text-white px-2 py-2 rounded text-xs"
-                        >
-                            Previous Module
-                        </button>
-                    ) : (
-                        <button 
-                            disabled 
-                            className="bg-blue-500 text-white px-2 py-2 rounded opacity-50 cursor-not-allowed text-xs"
-                        >
-                            No Previous Module
-                        </button>
-                    )}           <button
-                    onClick={handleNextModule}
-                    className="bg-blue-500 text-white text-xs px-4 py-2 rounded"
-                >
-                    Next Module
-                </button>
-               
+          </div>
+        </div>
+        <h1 className="mx-20 mt-6 text-base md:text-xl text-start  font-bold mb-6 capitalize">
+          {moduleData.modulename}
+        </h1>
+        <div
+          className="rounded  lg:mx-28 mx-4"
+          style={{ backgroundColor: "#80808045", padding: "15px" }}
+        >
+          {/* Mostrar la introducción del curso solo en el primer módulo */}
+          {isFirstModule && (
+            <>
+              <h2 className="mb-2 font-bold">Course Overview</h2>
+              <p className="text-gray-600 mb-4">{courseData.fulldescription}</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm sm:items-start md:items-start lg:items-start lg:place-items-center">
+                <div className="flex items-center font-bold">
+                  <BookOpen className="mr-2" />
+                  <span>{modulesList?.length || 0} Modules</span>
                 </div>
+                <div className="flex items-center font-bold">
+                  <Clock className="mr-2" />
+                  <span>{courseData.duration} Program</span>
+                </div>
+                <div className="flex items-center font-bold">
+                  <GraduationCap className="mr-2" />
+                  <span>{courseData.description}</span>
+                </div>
+              </div>
+            </>
+          )}
+
+          {/* Mostrar el contenido del módulo */}
+          <h2 className="mb-2 font-bold">Module Content</h2>
+          <p className="text-gray-600 mb-4">{moduleData.description}</p>
+          <div className="flex flex-row justify-between mt-10">
+            <div className="w-full">
+              <div className="bg-gray-100 p-2 mt-2 rounded flex flex-col md:flex-col lg:flex-row sm:flex-row sm:items-center md:items-start md:gap-2 sm:justify-between">
+                <div className="text-start sm:text-left sm:w-[25%] md:w-full lg:w-[25%] h-[100%]">
+                  <h3 className="text-sm font-bold text-gray-800">
+                    {moduleData.modulename}
+                  </h3>
+                </div>
+              </div>
             </div>
-            <Footer />
+
+            <div className="content-center">
+              {/* Para pantallas grandes: Usamos <details> y <summary> */}
+              <div className="hidden md:flex">
+                <details
+                  className="w-full group"
+                  open={isOpen}
+                  onToggle={handleToggle}
+                >
+                  <summary className="text-sm font-bold text-gray-800 cursor-pointer flex hover:text-blue-500 justify-center mx-2 transition-all duration-300 ease-in-out hover:scale-105">
+                    Notebook
+                  </summary>
+                  <div className="transition-all duration-500 ease-in-out transform origin-top">
+                    <Notebook />
+                  </div>
+                </details>
+              </div>
+
+              {/* Para pantallas pequeñas: Usamos un botón que abre el modal */}
+              <div className="block md:hidden mx-2">
+                <button
+                  className="text-sm font-bold text-gray-800 cursor-pointer transition-all duration-300 ease-in-out hover:text-blue-500 hover:scale-105"
+                  onClick={openModal}
+                >
+                  Notebook
+                </button>
+              </div>
+
+              {/* Modal para pantallas pequeñas */}
+              <dialog
+                open={isModalOpen}
+                onClose={closeModal}
+                className={`fixed inset-0 w-full h-full md:w-1/2 bg-white rounded-lg shadow-lg p-4 z-50 transform transition-all duration-300 ease-in-out ${
+                  isModalOpen
+                    ? "opacity-100 scale-100"
+                    : "opacity-0 scale-95 pointer-events-none"
+                }`}
+                style={{
+                  margin: "auto",
+                  backgroundColor: "white",
+                  maxHeight: "90vh",
+                  overflowY: "auto",
+                }}
+              >
+                <div className="flex justify-end items-center mb-4">
+                  <button
+                    onClick={closeModal}
+                    className="hover:text-gray-700 text-2xl font-bold transition-all duration-300 ease-in-out hover:scale-110 hover:text-red-500"
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="transform transition-all duration-500 ease-in-out">
+                  <Notebook />
+                </div>
+              </dialog>
+
+              {/* Overlay for modal backdrop */}
+              {isModalOpen && (
+                <div
+                  className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ease-in-out z-40"
+                  onClick={closeModal}
+                ></div>
+              )}
+            </div>
+          </div>
+
+          {/* Botón "Siguiente" */}
+          <div className="flex flex-row justify-between mt-6">
+            {currentIndex > 0 ? (
+              <button
+                onClick={handlePreviousModule}
+                className="bg-blue-500 text-white px-2 py-2 rounded text-xs hover:bg-blue-600 transition-all duration-300 ease-in-out"
+              >
+                Previous Module
+              </button>
+            ) : (
+              <button
+                disabled
+                className="bg-blue-500 text-white px-2 py-2 rounded opacity-50 cursor-not-allowed text-xs"
+              >
+                No Previous Module
+              </button>
+            )}{" "}
+            <button
+              onClick={handleNextModule}
+              className="bg-blue-500 text-white text-xs px-4 py-2 rounded hover:bg-blue-600 transition-all duration-300 ease-in-out"
+            >
+              Next Module
+            </button>
+          </div>
         </div>
+        <Footer />
+      </div>
     );
 }
 ModulePage.propTypes = {

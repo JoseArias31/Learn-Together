@@ -112,7 +112,7 @@ export default function ProgramPage({ params }) {
       <div className="container mx-auto px-6 py-8 ">
       {session ? (
       <div className="flex justify-center sm:justify-end mt-2  sm:mt-1 sm:mr-10">
-        <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
+        <h1 className="text-center font-kodchasan text-[13px] sm:text-base font-semibold">
           Hi, {session.user.email.replace(/@[^@]+$/, "")}!
         </h1>
       </div>

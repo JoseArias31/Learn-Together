@@ -30,7 +30,7 @@ if (!courses) {
   <div className="bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] flex-grow">
   {session ? (
       <div className="flex justify-center sm:justify-end mt-2  sm:mt-5 sm:mr-10">
-        <h1 className="text-center font-kodchasan text-[13px] sm:text-base">
+        <h1 className="text-center font-kodchasan text-[13px] sm:text-base font-semibold">
           Hi, {session.user.email.replace(/@[^@]+$/, "")}!
         </h1>
       </div>
