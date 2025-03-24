@@ -19,7 +19,7 @@ const CategoryCarousel = () => {
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
   return (
@@ -66,10 +66,7 @@ const CategoryCarousel = () => {
         <button
           type="button"
           onClick={prevSlide}
-          disabled={currentSlide === 0}
-          className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-400 p-2 rounded-full hover:bg-gray-700 ${
-            currentSlide === 0 ? "opacity-50 cursor-not-allowed" : ""
-          } `}
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-400 p-2 rounded-full hover:bg-gray-700"
         >
           <span aria-hidden="true">
             <svg
@@ -91,12 +88,7 @@ const CategoryCarousel = () => {
         <button
           type="button"
           onClick={nextSlide}
-          disabled={currentSlide === slides.length - 2}
-          className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-400 p-2 rounded-full hover:bg-gray-700 ${
-            currentSlide === slides.length - 1
-              ? "opacity-50 cursor-not-allowed"
-              : ""
-          }`}
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-400 p-2 rounded-full hover:bg-gray-700"
         >
           <span aria-hidden="true">
             <svg
