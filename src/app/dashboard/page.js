@@ -15,8 +15,10 @@ import settings from "../../../public/settings.png";
 import VoiceInteraction from "../components/VoiceInteraction";
 import { AutoChangingText } from "../components/autoChangingText";
 import useProtectedRoute from "../auth/register/Hooks/useProtectedRoutes";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {signOutUser} from "../auth/register/signOut";
+import { supabase } from "../lib/supabaseClient";
+
 
 const Dashboard = () => {
   const { isSidebarVisible, toggleSidebar } = useSidebarToggle();
@@ -24,6 +26,9 @@ const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [enrolledPrograms, setEnrolledPrograms] = useState([]);
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleToggle = () => {
     setMenuOpen(!menuOpen);
@@ -31,6 +36,75 @@ const Dashboard = () => {
 
   useCharts();
   const session = useProtectedRoute();
+
+  useEffect(() => {
+    const fetchEnrollments = async () => {
+      if (!session?.user?.id) return;
+
+      try {
+        // Fetch enrolled programs with their details
+        const { data: programsData, error: programsError } = await supabase
+          .from('enrollments')
+          .select(`
+            enrollment_id:id,
+            enrolled_at,
+            program:programs!program_id(
+              programid,
+              programname,
+              description
+            )
+          `)
+          .eq('user_id', session.user.id)
+          .not('program_id', 'is', null);
+
+        if (programsError) throw programsError;
+
+        // Fetch enrolled courses with their details
+        const { data: coursesData, error: coursesError } = await supabase
+          .from('enrollments')
+          .select(`
+            enrollment_id:id,
+            enrolled_at,
+            course:courses!course_id(
+              courseid,
+              coursename,
+              description
+            )
+          `)
+          .eq('user_id', session.user.id)
+          .not('course_id', 'is', null);
+
+        if (coursesError) throw coursesError;
+
+        // Extract program and course data with enrollment IDs
+        const uniquePrograms = programsData
+          .map(item => ({
+            ...item.program,
+            enrolled_at: item.enrolled_at,
+            enrollment_id: item.enrollment_id
+          }))
+          .filter(program => program !== null);
+        
+        const uniqueCourses = coursesData
+          .map(item => ({
+            ...item.course,
+            enrolled_at: item.enrolled_at,
+            enrollment_id: item.enrollment_id
+          }))
+          .filter(course => course !== null);
+
+        setEnrolledPrograms(uniquePrograms);
+        setEnrolledCourses(uniqueCourses);
+      } catch (error) {
+        console.error('Error fetching enrollments:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEnrollments();
+  }, [session]);
+
 
   if (!session) {
     return <p>Redirecting to login...</p>;
@@ -147,6 +221,7 @@ const Dashboard = () => {
                         1
                       </h3>
                     </div>
+                 
                     <div className="flex  flex-row justify-between">
                       <h2 className="text-white text-sm font-medium text-gray-800">
                         Programs Completed
@@ -492,7 +567,7 @@ const Dashboard = () => {
             </h1>
           </div>
           <div className="justify-items-center mb-14">
-            <h1 className="text-center font-sans mt-8 text-4xl md:text-5xl xl:text-6xl">
+            <h1 className="text-center font-sans mt-8 text-4xl md:text-5xl">
               Unlock the Future
             </h1>
             <h1 className="text-center mb-8 text-4xl md:text-5xl xl:text-7xl text-green-400">
@@ -510,6 +585,55 @@ const Dashboard = () => {
             <main className="flex-1 bg-custom-gradient flex gap-4 flex-col lg:flex-row ml-0 lg:ml-42">
               <section className="w-full lg:flex-1 p-4 space-y-6 bg-gray-800 flex flex-col rounded-lg justify-evenly">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 
+                    {/* Current Programs Section */}
+                    <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div className="flex justify-between items-center mb-4">
+                      <h2 className="text-xl font-semibold">Current Programs</h2>
+                      <Link href="/programs">
+                        <div className="hover:scale-110 transition duration-300 bg-gray-700 rounded-full p-2">
+                          <Image
+                            src="/add sign.png"
+                            alt="Add Program"
+                            width={20}
+                            height={20}
+                            className="filter invert brightness-0"
+                          />
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="space-y-4">
+                      {loading ? (
+                        <p>Loading your programs...</p>
+                      ) : enrolledPrograms.length > 0 ? (
+                        [...new Map(enrolledPrograms.map(program => [program.program_id, program])).values()]
+    .map((program) => (
+                          
+                          <div key={program.enrollment_id} className="bg-gray-700 rounded-lg p-4">
+                            <div className="flex justify-between items-center">
+                              
+                              <div>
+                                <h3 className="font-medium">{program.programname}</h3>
+                                <p className="text-sm text-gray-400">
+                                  Enrolled: {new Date(program.enrolled_at).toLocaleDateString()}
+                                </p>
+                              </div>
+                              <div className="w-20 h-2 bg-gray-600 rounded-full">
+                                <div className="w-1/3 h-full bg-teal-400 rounded-full"></div>
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-gray-400">
+                          No programs enrolled yet.{" "}
+                          <Link href="/programs" className="text-blue-400 hover:text-blue-300">
+                            Browse programs
+                          </Link>
+                        </p>
+                      )}
+                    </div>
+                  </div>
                   {/* Current Courses Section */}
                   <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
                     <div className="flex justify-between items-center mb-4">
@@ -527,63 +651,36 @@ const Dashboard = () => {
                       </Link>
                     </div>
                     <div className="space-y-4">
-                      {/* Example Course Items - Replace with actual data */}
-                      <div className="bg-gray-700 rounded-lg p-4">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <h3 className="font-medium">Introduction to AI</h3>
-                            <p className="text-sm text-gray-400">Progress: 60%</p>
+                      {loading ? (
+                        <p>Loading your courses...</p>
+                      ) : enrolledCourses.length > 0 ? (
+                        enrolledCourses.map((course) => (
+                          <div key={course.enrollment_id} className="bg-gray-700 rounded-lg p-4">
+                            <div className="flex justify-between items-center">
+                              <div>
+                                <h3 className="font-medium">{course.coursename}</h3>
+                                <p className="text-sm text-gray-400">
+                                  Enrolled: {new Date(course.enrolled_at).toLocaleDateString()}
+                                </p>
+                              </div>
+                              <div className="w-20 h-2 bg-gray-600 rounded-full">
+                                <div className="w-1/2 h-full bg-teal-400 rounded-full"></div>
+                              </div>
+                            </div>
                           </div>
-                          <div className="w-20 h-2 bg-gray-600 rounded-full">
-                            <div className="w-3/5 h-full bg-teal-400 rounded-full"></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="bg-gray-700 rounded-lg p-4">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <h3 className="font-medium">Web Development</h3>
-                            <p className="text-sm text-gray-400">Progress: 45%</p>
-                          </div>
-                          <div className="w-20 h-2 bg-gray-600 rounded-full">
-                            <div className="w-2/5 h-full bg-teal-400 rounded-full"></div>
-                          </div>
-                        </div>
-                      </div>
+                        ))
+                      ) : (
+                        <p className="text-gray-400">
+                          No courses enrolled yet.{" "}
+                          <Link href="/courses" className="text-blue-400 hover:text-blue-300">
+                            Browse courses
+                          </Link>
+                        </p>
+                      )}
                     </div>
                   </div>
 
-                  {/* Current Programs Section */}
-                  <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
-                    <div className="flex justify-between items-center mb-4">
-                      <h2 className="text-xl font-semibold">Current Programs</h2>
-                      <Link href="/programs">
-                        <div className="hover:scale-110 transition duration-300 bg-gray-700 rounded-full p-2">
-                          <Image
-                            src="/add sign.png"
-                            alt="Add Program"
-                            width={20}
-                            height={20}
-                            className="filter invert brightness-0"
-                          />
-                        </div>
-                      </Link>
-                    </div>
-                    <div className="space-y-4">
-                      {/* Example Program Items - Replace with actual data */}
-                      <div className="bg-gray-700 rounded-lg p-4">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <h3 className="font-medium">Full Stack Development</h3>
-                            <p className="text-sm text-gray-400">Progress: 30%</p>
-                          </div>
-                          <div className="w-20 h-2 bg-gray-600 rounded-full">
-                            <div className="w-1/3 h-full bg-teal-400 rounded-full"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+               
                 </div>
                 <ImageCarousel />
                 <CategoryCarousel />

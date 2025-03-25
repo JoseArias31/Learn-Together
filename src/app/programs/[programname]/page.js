@@ -24,6 +24,48 @@ export default function ProgramPage({ params }) {
   // Access the `programname` property from the unwrapped params
   const programname = unwrappedParams.programname.replace(/-/g, " ");
 
+  const enrollInProgram = async (userId) => {
+    try {
+      if (!session) {
+        setError("User must be logged in to enroll");
+        return;
+      }
+
+      if (!programData) {
+        setError("Program data not available");
+        return;
+      }
+
+      // Create enrollment entries for the program and its courses
+      const enrollments = coursesData.map(course => ({
+        user_id: userId,
+        program_id: programData.programid,
+        course_id: course.courseid,
+        enrolled_at: new Date().toISOString()
+      }));
+
+      // Insert enrollments into the database
+      const { data: enrollmentData, error: enrollmentError } = await supabase
+        .from('enrollments')
+        .insert(enrollments)
+        .select();
+
+      if (enrollmentError) {
+        if (enrollmentError.code === '23505') {  
+          setError("You are already enrolled in some of these courses");
+        } else {
+          setError(`Error creating enrollments: ${enrollmentError.message}`);
+        }
+        return;
+      }
+
+      // Show success message or update UI
+      alert("Successfully enrolled in program!");
+    } catch (error) {
+      setError(`Error enrolling in program: ${error.message}`);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -55,6 +97,40 @@ export default function ProgramPage({ params }) {
         }
 
         setCoursesData(coursesData);
+
+        // Wait for session to be available
+        if (session === null) {
+          // Session is still loading
+          return;
+        }
+
+        if (!session) {
+          setError("User must be logged in to enroll");
+          return;
+        }
+
+        // Create enrollment entries for the program and its courses
+        const enrollments = coursesData.map(course => ({
+          user_id: session.user.id,
+          program_id: programData.programid,
+          course_id: course.courseid,
+          enrolled_at: new Date().toISOString()
+        }));
+
+        // Insert enrollments into the database
+        const { data: enrollmentData, error: enrollmentError } = await supabase
+          .from('enrollments')
+          .insert(enrollments)
+          .select();
+
+        if (enrollmentError) {
+          if (enrollmentError.code === '23505') {  
+            setError("You are already enrolled in some of these courses");
+          } else {
+            setError(`Error creating enrollments: ${enrollmentError.message}`);
+          }
+          return;
+        }
 
         // 3. Fetch modules for each course
         const modulesPromises = coursesData.map(async (course) => {
@@ -154,6 +230,12 @@ export default function ProgramPage({ params }) {
         </div>
         <button className="border border-black text-black hover:bg-gray-700 hover:text-white font-semibold mt-4 py-2 px-2 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
           Enroll Now
+        </button>
+        <button 
+          onClick={() => enrollInProgram(session.user.id)}
+          className="border border-black text-black hover:bg-gray-700 hover:text-white font-semibold mt-4 ml-4 py-2 px-2 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Enroll in Full Program
         </button>
         {coursesData.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
