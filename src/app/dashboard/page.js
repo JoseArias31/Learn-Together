@@ -587,7 +587,7 @@ const Dashboard = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  
                     {/* Current Programs Section */}
-                    <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+                  <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
                     <div className="flex justify-between items-center mb-4">
                       <h2 className="text-xl font-semibold">Current Programs</h2>
                       <Link href="/programs">
@@ -603,35 +603,48 @@ const Dashboard = () => {
                       </Link>
                     </div>
                     <div className="space-y-4">
-                      {loading ? (
-                        <p>Loading your programs...</p>
-                      ) : enrolledPrograms.length > 0 ? (
-                        [...new Map(enrolledPrograms.map(program => [program.program_id, program])).values()]
-    .map((program) => (
-                          
-                          <div key={program.enrollment_id} className="bg-gray-700 rounded-lg p-4">
-                            <div className="flex justify-between items-center">
-                              
-                              <div>
-                                <h3 className="font-medium">{program.programname}</h3>
-                                <p className="text-sm text-gray-400">
-                                  Enrolled: {new Date(program.enrolled_at).toLocaleDateString()}
-                                </p>
-                              </div>
-                              <div className="w-20 h-2 bg-gray-600 rounded-full">
-                                <div className="w-1/3 h-full bg-teal-400 rounded-full"></div>
-                              </div>
-                            </div>
-                          </div>
-                        ))
-                      ) : (
-                        <p className="text-gray-400">
-                          No programs enrolled yet.{" "}
-                          <Link href="/programs" className="text-blue-400 hover:text-blue-300">
-                            Browse programs
-                          </Link>
-                        </p>
-                      )}
+                    {loading ? (
+  <p>Loading your programs...</p>
+) : enrolledPrograms.length > 0 ? (
+  (() => {
+    // Store unique program names
+    const uniquePrograms = new Map();
+    const uniqueCourses = [];
+
+    enrolledPrograms.forEach((item) => {
+      if (item.programname) {
+        uniquePrograms.set(item.programname, item); // Store only unique program names
+      } else {
+        uniqueCourses.push(item); // Store all courses
+      }
+    });
+
+    return [...uniquePrograms.values(), ...uniqueCourses].map((item) => (
+      <div key={item.enrollment_id} className="bg-gray-700 rounded-lg p-4">
+        <div className="flex justify-between items-center">
+          <div>
+            <h3 className="font-medium">{item.programname || item.coursename}</h3>
+            <p className="text-sm text-gray-400">
+              Enrolled: {new Date(item.enrolled_at).toLocaleDateString()}
+            </p>
+          </div>
+          <div className="w-20 h-2 bg-gray-600 rounded-full">
+            <div className="w-1/3 h-full bg-teal-400 rounded-full"></div>
+          </div>
+        </div>
+      </div>
+    ));
+  })()
+) : (
+  <p className="text-gray-400">
+    No programs enrolled yet.{" "}
+    <Link href="/programs" className="text-blue-400 hover:text-blue-300">
+      Browse programs
+    </Link>
+  </p>
+)}
+
+
                     </div>
                   </div>
                   {/* Current Courses Section */}
