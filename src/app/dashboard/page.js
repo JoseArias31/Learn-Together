@@ -30,12 +30,35 @@ const Dashboard = () => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
   const handleToggle = () => {
     setMenuOpen(!menuOpen);
   };
 
   useCharts();
   const session = useProtectedRoute();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        if (!session) return; // Si no hay sesión, no hacemos nada
+
+        const { data: userData, error: userError } = await supabase
+          .from("users")
+          .select("*")
+          .eq("email", session.user.email)
+          .single();
+
+        if (userError) throw userError;
+        setUser(userData);
+      } catch (error) {
+        console.error("Error fetching user data:", error.message);
+        setError(error);
+      }
+    };
+
+    fetchUserData();
+  }, [session]); // Se ejecuta cuando cambia la sesión
 
   useEffect(() => {
     const fetchEnrollments = async () => {
@@ -76,6 +99,8 @@ const Dashboard = () => {
 
         if (coursesError) throw coursesError;
 
+      
+
         // Extract program and course data with enrollment IDs
         const uniquePrograms = programsData
           .map(item => ({
@@ -100,6 +125,7 @@ const Dashboard = () => {
       } finally {
         setLoading(false);
       }
+      
     };
 
     fetchEnrollments();
@@ -163,46 +189,55 @@ const Dashboard = () => {
                       <h2 className="text-white text-sm font-medium text-gray-800">
                         Account Status
                       </h2>
-                      <h3 className=" text-sm text-green-600 font-semibold">
-                        Active
-                      </h3>
+                      {user ? (
+                        <h3 className=" text-sm text-green-600 font-semibold">
+                          {user.accountstatus}
+                        </h3>
+                      ) : (
+                        <h3>inactive</h3>
+                      )}
                     </div>
                     <div className="flex flex-row justify-between">
                       <h2 className="text-white text-sm font-medium text-gray-800">
                         Membership
                       </h2>
-                      <h3 className="text-sm text-blue-600 font-semibold">
-                        Student
-                      </h3>
+                      {user ? (
+                        <h3 className="text-sm text-blue-600 font-semibold">
+                          {user.membership}
+                        </h3>
+                      ) : (
+                        <h3>No membership</h3>
+                      )}
                     </div>
                     <div className="flex  flex-row justify-between">
                       <h2 className="text-white text-sm font-medium text-gray-800">
                         Subscription
                       </h2>
+                      {user ? (
                       <h3 className="text-sm text-purple-600 font-semibold">
-                        Monthly
+                        {user.subscription}
                       </h3>
+                      ) : (
+                        <h3>No subscription</h3>
+                      )}
                     </div>
                     {enrolledCourses.length > 0 ? (
-  <div className="flex flex-row justify-between">
-    <h2 className="text-white text-sm font-medium text-gray-800">
-      Current Courses
-    </h2>
-    <h3 className="text-sm font-semibold">
-      {enrolledCourses.length}
-    </h3>
-  </div>
-) : (
-  <div className="flex flex-row justify-between">
-    <h2 className="text-white text-sm font-medium text-gray-800">
-      Current Courses
-    </h2>
-    <h3 className="text-sm font-semibold">
-      0
-    </h3>
-  </div>
-)}
-
+                      <div className="flex flex-row justify-between">
+                        <h2 className="text-white text-sm font-medium text-gray-800">
+                          Current Courses
+                        </h2>
+                        <h3 className="text-sm font-semibold">
+                          {enrolledCourses.length}
+                        </h3>
+                      </div>
+                    ) : (
+                      <div className="flex flex-row justify-between">
+                        <h2 className="text-white text-sm font-medium text-gray-800">
+                          Current Courses
+                        </h2>
+                        <h3 className="text-sm font-semibold">0</h3>
+                      </div>
+                    )}
 
                     <div className="flex  flex-row justify-between">
                       <h2 className="text-white text-sm font-medium text-gray-800">
@@ -227,42 +262,39 @@ const Dashboard = () => {
                       </Link>
                     </div>
                     {(() => {
-  // Filter out duplicate programs based on programid
-  const uniquePrograms = enrolledPrograms.filter(
-    (program, index, self) => 
-      index === self.findIndex((p) => (
-        p.programid === program.programid
-      ))
-  );
+                      // Filter out duplicate programs based on programid
+                      const uniquePrograms = enrolledPrograms.filter(
+                        (program, index, self) =>
+                          index ===
+                          self.findIndex(
+                            (p) => p.programid === program.programid
+                          )
+                      );
 
-  return uniquePrograms.length > 0 ? (
-    <div className="flex flex-row justify-between">
-      <h2 className="text-white text-sm font-medium text-gray-800">
-        Current Programs
-      </h2>
-      <h3 className="text-sm font-semibold">
-        {uniquePrograms.length}
-      </h3>
-    </div>
-  ) : (
-    <div className="flex flex-row justify-between">
-      <h2 className="text-white text-sm font-medium text-gray-800">
-        Current Programs
-      </h2>
-      <h3 className="text-sm font-semibold">
-        0
-      </h3>
-    </div>
-  );
-})()}
-                 
+                      return uniquePrograms.length > 0 ? (
+                        <div className="flex flex-row justify-between">
+                          <h2 className="text-white text-sm font-medium text-gray-800">
+                            Current Programs
+                          </h2>
+                          <h3 className="text-sm font-semibold">
+                            {uniquePrograms.length}
+                          </h3>
+                        </div>
+                      ) : (
+                        <div className="flex flex-row justify-between">
+                          <h2 className="text-white text-sm font-medium text-gray-800">
+                            Current Programs
+                          </h2>
+                          <h3 className="text-sm font-semibold">0</h3>
+                        </div>
+                      );
+                    })()}
+
                     <div className="flex  flex-row justify-between">
                       <h2 className="text-white text-sm font-medium text-gray-800">
                         Programs Completed
                       </h2>
-                      <h3 className="text-sm  font-semibold">
-                        2
-                      </h3>
+                      <h3 className="text-sm  font-semibold">2</h3>
                     </div>
                     <div className="flex flex-row justify-between">
                       <h2 className="text-white text-sm font-medium text-gray-800">
@@ -473,45 +505,55 @@ const Dashboard = () => {
                       <h2 className=" text-xs font-bold text-gray-800">
                         Account Status
                       </h2>
-                      <h3 className=" text-xs text-green-600 font-semibold">
-                        Active
-                      </h3>
+                      {user ? (
+                        <h3 className=" text-sm text-green-600 font-semibold">
+                          {user.accountstatus}
+                        </h3>
+                      ) : (
+                        <h3>inactive</h3>
+                      )}
                     </div>
                     <div className="flex flex-row justify-between">
                       <h2 className=" text-xs font-bold text-gray-800">
                         Membership
                       </h2>
+                      {user ? (
                       <h3 className="text-xs text-blue-600 font-semibold">
-                        Student
+                        {user.membership}
                       </h3>
+                      ) : (
+                        <h3>inactive</h3>
+                      )}
                     </div>
                     <div className="flex  flex-row justify-between">
                       <h2 className=" text-xs font-bold text-gray-800">
                         Subscription
                       </h2>
+                      {user ? (
                       <h3 className="text-xs text-purple-600 font-semibold">
-                        Monthly
+                        {user.subscription}
                       </h3>
+                       ) : (
+                        <h3>inactive</h3>
+                      )}
                     </div>
                     {enrolledCourses.length > 0 ? (
-  <div className="flex flex-row justify-between">
-    <h2 className="text-xs font-bold text-gray-800">
-      Current Courses
-    </h2>
-    <h3 className="text-xs text-yellow-600 ">
-      {enrolledCourses.length}
-    </h3>
-  </div>
-) : (
-  <div className="flex flex-row justify-between">
-    <h2 className="text-black text-sm font-medium text-gray-800">
-      Current Courses
-    </h2>
-    <h3 className="text-sm font-semibold">
-      0
-    </h3>
-  </div>
-)}
+                      <div className="flex flex-row justify-between">
+                        <h2 className="text-xs font-bold text-gray-800">
+                          Current Courses
+                        </h2>
+                        <h3 className="text-xs text-yellow-600 ">
+                          {enrolledCourses.length}
+                        </h3>
+                      </div>
+                    ) : (
+                      <div className="flex flex-row justify-between">
+                        <h2 className="text-black text-sm font-medium text-gray-800">
+                          Current Courses
+                        </h2>
+                        <h3 className="text-sm font-semibold">0</h3>
+                      </div>
+                    )}
                     <div className="flex  flex-row justify-between">
                       <h2 className=" text-xs font-bold text-gray-800">
                         Courses Completed
@@ -537,35 +579,34 @@ const Dashboard = () => {
                       </Link>
                     </div>
                     {(() => {
-  // Filter out duplicate programs based on programid
-  const uniquePrograms = enrolledPrograms.filter(
-    (program, index, self) => 
-      index === self.findIndex((p) => (
-        p.programid === program.programid
-      ))
-  );
+                      // Filter out duplicate programs based on programid
+                      const uniquePrograms = enrolledPrograms.filter(
+                        (program, index, self) =>
+                          index ===
+                          self.findIndex(
+                            (p) => p.programid === program.programid
+                          )
+                      );
 
-  return uniquePrograms.length > 0 ? (
-    <div className="flex flex-row justify-between">
-      <h2 className="text-xs font-bold text-gray-800">
-        Current Programs
-      </h2>
-      <h3 className="text-sm text-yellow-600">
-        {uniquePrograms.length}
-      </h3>
-    </div>
-  ) : (
-    <div className="flex flex-row justify-between">
-      <h2 className="text-xs font-bold text-gray-800">
-        Current Programs
-      </h2>
-      <h3 className="text-sm font-semibold">
-        0
-      </h3>
-    </div>
-  );
-})()}
-                 
+                      return uniquePrograms.length > 0 ? (
+                        <div className="flex flex-row justify-between">
+                          <h2 className="text-xs font-bold text-gray-800">
+                            Current Programs
+                          </h2>
+                          <h3 className="text-sm text-yellow-600">
+                            {uniquePrograms.length}
+                          </h3>
+                        </div>
+                      ) : (
+                        <div className="flex flex-row justify-between">
+                          <h2 className="text-xs font-bold text-gray-800">
+                            Current Programs
+                          </h2>
+                          <h3 className="text-sm font-semibold">0</h3>
+                        </div>
+                      );
+                    })()}
+
                     <div className="flex  flex-row justify-between">
                       <h2 className=" text-xs font-bold text-gray-800">
                         Programs Completed
@@ -650,12 +691,13 @@ const Dashboard = () => {
             {/* Main Section */}
             <main className="flex-1 bg-custom-gradient flex gap-4 flex-col lg:flex-row ml-0 lg:ml-42">
               <section className="w-full lg:flex-1 p-4 space-y-6 bg-gray-800 flex flex-col rounded-lg justify-evenly">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 
-                    {/* Current Programs Section */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Current Programs Section */}
                   <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
                     <div className="flex justify-between items-center mb-4">
-                      <h2 className="text-xl font-semibold">Programs Enrolled</h2>
+                      <h2 className="text-xl font-semibold">
+                        Programs Enrolled
+                      </h2>
                       <Link href="/programs">
                         <div className="hover:scale-110 transition duration-300 bg-gray-700 rounded-full p-2">
                           <Image
@@ -669,54 +711,68 @@ const Dashboard = () => {
                       </Link>
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    {loading ? (
-  <p>Loading your programs...</p>
-) : enrolledPrograms.length > 0 ? (
-  (() => {
-    // Store unique program names
-    const uniquePrograms = new Map();
-    const uniqueCourses = [];
+                      {loading ? (
+                        <p>Loading your programs...</p>
+                      ) : enrolledPrograms.length > 0 ? (
+                        (() => {
+                          // Store unique program names
+                          const uniquePrograms = new Map();
+                          const uniqueCourses = [];
 
-    enrolledPrograms.forEach((item) => {
-      if (item.programname) {
-        uniquePrograms.set(item.programname, item); // Store only unique program names
-      } else {
-        uniqueCourses.push(item); // Store all courses
-      }
-    });
+                          enrolledPrograms.forEach((item) => {
+                            if (item.programname) {
+                              uniquePrograms.set(item.programname, item); // Store only unique program names
+                            } else {
+                              uniqueCourses.push(item); // Store all courses
+                            }
+                          });
 
-    return [...uniquePrograms.values(), ...uniqueCourses].map((item) => (
-      <div key={item.enrollment_id} className="bg-gray-700 rounded-lg p-1 pr-2 pl-2">
-        <div className="flex justify-between items-center">
-          <div>
-            <h3 className="font-medium text-sm">{item.programname || item.coursename}</h3>
-            <p className="text-xs text-gray-400">
-              Enrolled: {new Date(item.enrolled_at).toLocaleDateString()}
-            </p>
-          </div>
-          <div className="w-20 h-2 bg-gray-600 rounded-full">
-            <div className="w-1/3 h-full bg-teal-400 rounded-full"></div>
-          </div>
-        </div>
-      </div>
-    ));
-  })()
-) : (
-  <p className="text-gray-400">
-    No programs enrolled yet.{" "}
-    <Link href="/programs" className="text-blue-400 hover:text-blue-300">
-      Browse programs
-    </Link>
-  </p>
-)}
-
-
+                          return [
+                            ...uniquePrograms.values(),
+                            ...uniqueCourses,
+                          ].map((item) => (
+                            <div
+                              key={item.enrollment_id}
+                              className="bg-gray-700 rounded-lg p-1 pr-2 pl-2"
+                            >
+                              <div className="flex justify-between items-center">
+                                <div>
+                                  <h3 className="font-medium text-sm">
+                                    {item.programname || item.coursename}
+                                  </h3>
+                                  <p className="text-xs text-gray-400">
+                                    Enrolled:{" "}
+                                    {new Date(
+                                      item.enrolled_at
+                                    ).toLocaleDateString()}
+                                  </p>
+                                </div>
+                                <div className="w-20 h-2 bg-gray-600 rounded-full">
+                                  <div className="w-1/3 h-full bg-teal-400 rounded-full"></div>
+                                </div>
+                              </div>
+                            </div>
+                          ));
+                        })()
+                      ) : (
+                        <p className="text-gray-400">
+                          No programs enrolled yet.{" "}
+                          <Link
+                            href="/programs"
+                            className="text-blue-400 hover:text-blue-300"
+                          >
+                            Browse programs
+                          </Link>
+                        </p>
+                      )}
                     </div>
                   </div>
                   {/* Current Courses Section */}
                   <div className="bg-gray-800 rounded-lg p-6 shadow-lg ">
                     <div className="flex justify-between items-center mb-4 ">
-                      <h2 className="text-xl font-semibold">Courses Enrolled</h2>
+                      <h2 className="text-xl font-semibold">
+                        Courses Enrolled
+                      </h2>
                       <Link href="/courses">
                         <div className="hover:scale-110 transition duration-300 bg-gray-700 rounded-full p-2">
                           <Image
@@ -734,12 +790,20 @@ const Dashboard = () => {
                         <p>Loading your courses...</p>
                       ) : enrolledCourses.length > 0 ? (
                         enrolledCourses.map((course) => (
-                          <div key={course.enrollment_id} className="bg-gray-700 rounded-lg p-1 pr-2 pl-2 ">
+                          <div
+                            key={course.enrollment_id}
+                            className="bg-gray-700 rounded-lg p-1 pr-2 pl-2 "
+                          >
                             <div className="flex justify-between items-center ">
                               <div>
-                                <h3 className="font-medium text-xs ">{course.coursename}</h3>
+                                <h3 className="font-medium text-xs ">
+                                  {course.coursename}
+                                </h3>
                                 <p className="text-xs text-gray-400">
-                                  Enrolled: {new Date(course.enrolled_at).toLocaleDateString()}
+                                  Enrolled:{" "}
+                                  {new Date(
+                                    course.enrolled_at
+                                  ).toLocaleDateString()}
                                 </p>
                               </div>
                               <div className="w-20 h-2 bg-gray-600 rounded-full">
@@ -751,20 +815,19 @@ const Dashboard = () => {
                       ) : (
                         <p className="text-gray-400">
                           No courses enrolled yet.{" "}
-                          <Link href="/courses" className="text-blue-400 hover:text-blue-300">
+                          <Link
+                            href="/courses"
+                            className="text-blue-400 hover:text-blue-300"
+                          >
                             Browse courses
                           </Link>
                         </p>
                       )}
                     </div>
                   </div>
-
-               
                 </div>
                 <ImageCarousel />
                 <CategoryCarousel />
-
-             
 
                 <div className="flex gap-4 flex-col md:flex-row">
                   {/* Income Card */}
