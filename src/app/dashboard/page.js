@@ -589,7 +589,7 @@ const Dashboard = () => {
                     {/* Current Programs Section */}
                   <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
                     <div className="flex justify-between items-center mb-4">
-                      <h2 className="text-xl font-semibold">Current Programs</h2>
+                      <h2 className="text-xl font-semibold">Programs Enrolled</h2>
                       <Link href="/programs">
                         <div className="hover:scale-110 transition duration-300 bg-gray-700 rounded-full p-2">
                           <Image
@@ -602,7 +602,7 @@ const Dashboard = () => {
                         </div>
                       </Link>
                     </div>
-                    <div className="space-y-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {loading ? (
   <p>Loading your programs...</p>
 ) : enrolledPrograms.length > 0 ? (
@@ -620,11 +620,11 @@ const Dashboard = () => {
     });
 
     return [...uniquePrograms.values(), ...uniqueCourses].map((item) => (
-      <div key={item.enrollment_id} className="bg-gray-700 rounded-lg p-4">
+      <div key={item.enrollment_id} className="bg-gray-700 rounded-lg p-1 pr-2 pl-2">
         <div className="flex justify-between items-center">
           <div>
-            <h3 className="font-medium">{item.programname || item.coursename}</h3>
-            <p className="text-sm text-gray-400">
+            <h3 className="font-medium text-sm">{item.programname || item.coursename}</h3>
+            <p className="text-xs text-gray-400">
               Enrolled: {new Date(item.enrolled_at).toLocaleDateString()}
             </p>
           </div>
@@ -648,9 +648,9 @@ const Dashboard = () => {
                     </div>
                   </div>
                   {/* Current Courses Section */}
-                  <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
-                    <div className="flex justify-between items-center mb-4">
-                      <h2 className="text-xl font-semibold">Current Courses</h2>
+                  <div className="bg-gray-800 rounded-lg p-6 shadow-lg ">
+                    <div className="flex justify-between items-center mb-4 ">
+                      <h2 className="text-xl font-semibold">Courses Enrolled</h2>
                       <Link href="/courses">
                         <div className="hover:scale-110 transition duration-300 bg-gray-700 rounded-full p-2">
                           <Image
@@ -663,16 +663,16 @@ const Dashboard = () => {
                         </div>
                       </Link>
                     </div>
-                    <div className="space-y-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 ">
                       {loading ? (
                         <p>Loading your courses...</p>
                       ) : enrolledCourses.length > 0 ? (
                         enrolledCourses.map((course) => (
-                          <div key={course.enrollment_id} className="bg-gray-700 rounded-lg p-4">
-                            <div className="flex justify-between items-center">
+                          <div key={course.enrollment_id} className="bg-gray-700 rounded-lg p-1 pr-2 pl-2 ">
+                            <div className="flex justify-between items-center ">
                               <div>
-                                <h3 className="font-medium">{course.coursename}</h3>
-                                <p className="text-sm text-gray-400">
+                                <h3 className="font-medium text-xs ">{course.coursename}</h3>
+                                <p className="text-xs text-gray-400">
                                   Enrolled: {new Date(course.enrolled_at).toLocaleDateString()}
                                 </p>
                               </div>
