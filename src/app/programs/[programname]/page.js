@@ -219,13 +219,11 @@ export default function ProgramPage({ params }) {
             </div>
           </div>
         </div>
-        <button className="border border-black text-black hover:bg-gray-700 hover:text-white font-semibold mt-4 py-2 px-2 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-          Enroll Now
-        </button>
+        
         <button 
           onClick={() => enrollInProgram(session.user.id)}
           disabled={isEnrolled}
-          className={`px-4 py-2 rounded ${isEnrolled ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'}`}
+          className={`px-4 py-2 rounded ${isEnrolled ? 'bg-gray-400 cursor-not-allowed border border-black text-black  font-semibold mt-4 py-2 px-2 rounded-lg shadow-md' : 'bg-gray-400 hover:bg-blue-600 border border-black text-black hover:bg-gray-700 hover:text-white font-semibold mt-4 py-2 px-2 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'}`}
         >
           {isEnrolled ? 'Enrolled' : 'Enroll in Full Program'}
         </button>

@@ -183,14 +183,27 @@ const Dashboard = () => {
                         Monthly
                       </h3>
                     </div>
-                    <div className="flex  flex-row justify-between">
-                      <h2 className="text-white text-sm font-medium text-gray-800">
-                        Current Courses
-                      </h2>
-                      <h3 className="text-sm  font-semibold">
-                        1
-                      </h3>
-                    </div>
+                    {enrolledCourses.length > 0 ? (
+  <div className="flex flex-row justify-between">
+    <h2 className="text-white text-sm font-medium text-gray-800">
+      Current Courses
+    </h2>
+    <h3 className="text-sm font-semibold">
+      {enrolledCourses.length}
+    </h3>
+  </div>
+) : (
+  <div className="flex flex-row justify-between">
+    <h2 className="text-white text-sm font-medium text-gray-800">
+      Current Courses
+    </h2>
+    <h3 className="text-sm font-semibold">
+      0
+    </h3>
+  </div>
+)}
+
+
                     <div className="flex  flex-row justify-between">
                       <h2 className="text-white text-sm font-medium text-gray-800">
                         Courses Completed
@@ -213,14 +226,35 @@ const Dashboard = () => {
                         </div>
                       </Link>
                     </div>
-                    <div className="flex  flex-row justify-between">
-                      <h2 className="text-white text-sm font-medium text-gray-800">
-                        Current Programs
-                      </h2>
-                      <h3 className="text-sm font-semibold">
-                        1
-                      </h3>
-                    </div>
+                    {(() => {
+  // Filter out duplicate programs based on programid
+  const uniquePrograms = enrolledPrograms.filter(
+    (program, index, self) => 
+      index === self.findIndex((p) => (
+        p.programid === program.programid
+      ))
+  );
+
+  return uniquePrograms.length > 0 ? (
+    <div className="flex flex-row justify-between">
+      <h2 className="text-white text-sm font-medium text-gray-800">
+        Current Programs
+      </h2>
+      <h3 className="text-sm font-semibold">
+        {uniquePrograms.length}
+      </h3>
+    </div>
+  ) : (
+    <div className="flex flex-row justify-between">
+      <h2 className="text-white text-sm font-medium text-gray-800">
+        Current Programs
+      </h2>
+      <h3 className="text-sm font-semibold">
+        0
+      </h3>
+    </div>
+  );
+})()}
                  
                     <div className="flex  flex-row justify-between">
                       <h2 className="text-white text-sm font-medium text-gray-800">
@@ -459,14 +493,25 @@ const Dashboard = () => {
                         Monthly
                       </h3>
                     </div>
-                    <div className="flex  flex-row justify-between">
-                      <h2 className=" text-xs font-bold text-gray-800">
-                        Current Courses
-                      </h2>
-                      <h3 className="text-xs text-yellow-600 font-semibold">
-                        2
-                      </h3>
-                    </div>
+                    {enrolledCourses.length > 0 ? (
+  <div className="flex flex-row justify-between">
+    <h2 className="text-xs font-bold text-gray-800">
+      Current Courses
+    </h2>
+    <h3 className="text-xs text-yellow-600 ">
+      {enrolledCourses.length}
+    </h3>
+  </div>
+) : (
+  <div className="flex flex-row justify-between">
+    <h2 className="text-black text-sm font-medium text-gray-800">
+      Current Courses
+    </h2>
+    <h3 className="text-sm font-semibold">
+      0
+    </h3>
+  </div>
+)}
                     <div className="flex  flex-row justify-between">
                       <h2 className=" text-xs font-bold text-gray-800">
                         Courses Completed
@@ -491,14 +536,35 @@ const Dashboard = () => {
                         </div>
                       </Link>
                     </div>
-                    <div className="flex  flex-row justify-between">
-                      <h2 className=" text-xs font-bold text-gray-800">
-                        Current Programs
-                      </h2>
-                      <h3 className="text-xs text-yellow-600 font-semibold">
-                        2
-                      </h3>
-                    </div>
+                    {(() => {
+  // Filter out duplicate programs based on programid
+  const uniquePrograms = enrolledPrograms.filter(
+    (program, index, self) => 
+      index === self.findIndex((p) => (
+        p.programid === program.programid
+      ))
+  );
+
+  return uniquePrograms.length > 0 ? (
+    <div className="flex flex-row justify-between">
+      <h2 className="text-xs font-bold text-gray-800">
+        Current Programs
+      </h2>
+      <h3 className="text-sm text-yellow-600">
+        {uniquePrograms.length}
+      </h3>
+    </div>
+  ) : (
+    <div className="flex flex-row justify-between">
+      <h2 className="text-xs font-bold text-gray-800">
+        Current Programs
+      </h2>
+      <h3 className="text-sm font-semibold">
+        0
+      </h3>
+    </div>
+  );
+})()}
                  
                     <div className="flex  flex-row justify-between">
                       <h2 className=" text-xs font-bold text-gray-800">
