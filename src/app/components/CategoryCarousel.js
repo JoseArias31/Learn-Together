@@ -24,7 +24,7 @@ const CategoryCarousel = () => {
 
   return (
     <>
-      <h1>Browse Categories</h1>
+      <h1>Categories</h1>
       <div
         data-hs-carousel='{
         "loadingClasses": "opacity-0",

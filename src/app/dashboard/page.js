@@ -740,12 +740,14 @@ const Dashboard = () => {
                                   <h3 className="font-medium text-sm">
                                     {item.programname || item.coursename}
                                   </h3>
-                                  <p className="text-xs text-gray-400">
+                                  {/* <p className="text-xs text-gray-400">
                                     Enrolled:{" "}
                                     {new Date(
                                       item.enrolled_at
-                                    ).toLocaleDateString()}
-                                  </p>
+                                    ).toLoc
+                                    aleDateString()}
+                                  </p> */}
+                                  <p className="text-xs text-gray-400">In progress</p>
                                 </div>
                                 <div className="w-20 h-2 bg-gray-600 rounded-full">
                                   <div className="w-1/3 h-full bg-teal-400 rounded-full"></div>
@@ -785,7 +787,7 @@ const Dashboard = () => {
                         </div>
                       </Link>
                     </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 ">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 ">
                       {loading ? (
                         <p>Loading your courses...</p>
                       ) : enrolledCourses.length > 0 ? (
@@ -795,16 +797,17 @@ const Dashboard = () => {
                             className="bg-gray-700 rounded-lg p-1 pr-2 pl-2 "
                           >
                             <div className="flex justify-between items-center ">
-                              <div>
+                              <div className="w-5/6">
                                 <h3 className="font-medium text-xs ">
                                   {course.coursename}
                                 </h3>
-                                <p className="text-xs text-gray-400">
+                                {/* <p className="text-xs text-gray-400">
                                   Enrolled:{" "}
                                   {new Date(
                                     course.enrolled_at
                                   ).toLocaleDateString()}
-                                </p>
+                                </p> */}
+                                <p className="text-xs text-gray-400">In progress</p>
                               </div>
                               <div className="w-20 h-2 bg-gray-600 rounded-full">
                                 <div className="w-1/2 h-full bg-teal-400 rounded-full"></div>

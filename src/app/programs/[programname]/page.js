@@ -227,6 +227,18 @@ export default function ProgramPage({ params }) {
         >
           {isEnrolled ? 'Enrolled' : 'Enroll in Full Program'}
         </button>
+{isEnrolled && (
+  <button className=" ml-2 px-4 py-2 rounded bg-white-400 hover:bg-blue-600 border border-black text-black hover:bg-gray-700 hover:text-white font-semibold mt-4 py-2 px-2 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+    <Link href={`/dashboard`}>
+      Check Dashboard
+    </Link>
+  </button>
+)}
+          <p className="text-gray-600 mt-4">
+            Enroll to see your courses and modules.
+          </p>
+
+        
         {coursesData.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
             {/* Primer div: w-full on small screens, w-1/3 on large screens */}

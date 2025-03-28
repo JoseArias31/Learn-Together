@@ -9,7 +9,7 @@ import CourseCards from "./components/CourseCards";
 import ThirdButton from "./components/ThirdBotton";
 import dynamic from "next/dynamic";
 import { AutoChangingText } from "./components/autoChangingText";
-
+import ChatBot from "./components/ChatDeepSeekR1";
 import { useEffect, useState } from "react";
 import useProtectedRoute from "./auth/register/Hooks/useProtectedRoutes";
 import { supabase } from "./lib/supabaseClient";
@@ -70,7 +70,7 @@ const Home = () => {
           </h2>
         </div>
       )}
-
+<ChatBot />
       <h1 className="text-center mt-10 sm:mt-16 md:mt-20 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl px-4 sm:px-6">
         Choose literally any program and unlock your potential
       </h1>

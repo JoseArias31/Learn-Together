@@ -45,7 +45,7 @@ const ImageCarousel = () => {
 
   return (
     <>
-      <h1>Join a Program</h1>
+      <h1>Search more Program</h1>
       <div
         data-hs-carousel='{
         "loadingClasses": "opacity-0",
