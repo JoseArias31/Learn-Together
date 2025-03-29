@@ -19,20 +19,19 @@ const ChatBot = () => {
     setError(null);
 
     try {
-      const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPEN_ROUTER_KEY}`, // Use env variable
-          'HTTP-Referer': window.location.href,
-          'X-Title': 'MLL Website',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'deepseek/deepseek-r1:free',
-          messages: [{ role: 'user', content: input }],
-          
-        }),
-      });
+        const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPEN_ROUTER_KEY}`,
+            'HTTP-Referer': 'https://learn-together-six.vercel.app', // Hardcoded for production
+            'X-Title': 'Learn Together', // Updated app name
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            model: 'deepseek/deepseek-r1:free',
+            messages: [{ role: 'user', content: input }],
+          }),
+        });
 
       const data = await res.json();
       const markdownText = data.choices?.[0]?.message?.content || 'No response received.';
