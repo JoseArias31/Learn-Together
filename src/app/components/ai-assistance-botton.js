@@ -9,12 +9,12 @@ const AIAssistanceButton = () => {
   return (
     <div className="relative group">
       {/* Define the animation */}
-      <style jsx>{`
+      {/* <style jsx>{`
         @keyframes moveGradient {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-      `}</style>
+      `}</style> */}
       {/* Main button */}
       <Link href="/ai-assistance" className="inline-flex items-center">
         <div className="relative overflow-hidden rounded-full p-[1px] transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.4)]">
