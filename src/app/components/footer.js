@@ -18,12 +18,14 @@ export default function Component() {
           >
             <Image className="" src={logo} alt="Logo" width={41} />
             <span className="text-lg font-bold text-white">Learn Together</span>
+            
           </Link>
           <p className="text-gray-500 dark:text-gray-400 text-white">
             Learn Together is a powerful and leading website that provides
             literary any program and is guided by AI technology through both
             chat and voice. Make your learning journey an adventure.
           </p>
+          
         </div>
         <div className="grid gap-4">
           <h3 className="text-lg font-semibold text-white">Quick Links</h3>
@@ -77,7 +79,11 @@ export default function Component() {
             </Link>
           </div>
         </div>
+        
       </div>
+      <div className="text-center mt-4 text-xs text-gray-500">
+          <p>Learn Together © {new Date().getFullYear()} • All rights reserved</p>
+        </div>
     </footer>
   );
 }

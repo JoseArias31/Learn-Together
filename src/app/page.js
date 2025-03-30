@@ -13,6 +13,7 @@ import ChatBot from "./components/ChatDeepSeekR1";
 import { useEffect, useState } from "react";
 import useProtectedRoute from "./auth/register/Hooks/useProtectedRoutes";
 import { supabase } from "./lib/supabaseClient";
+import AiAssistanceBotton from './components/ai-assistance-botton';
 
 const Home = () => {
   const [user, setUser] = useState(null);
@@ -70,7 +71,9 @@ const Home = () => {
           </h2>
         </div>
       )}
-<ChatBot />
+       <div className="flex justify-center mb-12">
+<AiAssistanceBotton />
+</div>
       <h1 className="text-center mt-10 sm:mt-16 md:mt-20 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl px-4 sm:px-6">
         Choose literally any program and unlock your potential
       </h1>

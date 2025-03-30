@@ -209,7 +209,7 @@ const ChatAssistant = () => {
                   </svg>
                 </div>
                 <h4 className="text-lg font-medium text-white mb-2">How can I help you today?</h4>
-                <p className="text-gray-400 max-w-sm">
+                <p className="text-gray-400 max-w-2xl">
                   Ask me about any of our programs, coding challenges, or learning resources.
                 </p>
                 <div className="grid grid-cols-2 gap-2 mt-6 w-full max-w-md">
@@ -291,9 +291,7 @@ const ChatAssistant = () => {
         </div>
 
         {/* Bottom text */}
-        <div className="text-center mt-4 text-xs text-gray-500">
-          <p>Learn Together © {new Date().getFullYear()} • All rights reserved</p>
-        </div>
+        
       </div>
     </>
   )
