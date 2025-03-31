@@ -34,7 +34,7 @@ export default function MainButton() {
         <Link href="/dashboard" passHref>
           <Button
             color="default"
-            className="px-6 py-3 bg-transparent border border-gray-600 hover:border-gray-500 text-white font-medium rounded-md transition-colors"
+            className="px-6 py-3 bg-transparent border border-gray-600 hover:bg-gray-800 hover:border-gray-500 text-white font-medium rounded-md transition-colors"
             // style={baseStyle}
 
             onMouseEnter={() => setIsHovered(true)}
