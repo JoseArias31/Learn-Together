@@ -133,7 +133,20 @@ const Dashboard = () => {
 
 
   if (!session) {
-    return <p>Redirecting to login...</p>;
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
+        <div className="relative w-24 h-24 mb-8">
+          <div className="absolute w-full h-full bg-teal-400 rounded-full animate-ping"></div>
+          <div className="absolute w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center">
+            <svg className="w-12 h-12 text-teal-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+        </div>
+        <p className="text-gray-300 text-lg font-medium">Redirecting to Dashboard...</p>
+        <p className="text-gray-400 text-sm mt-2">Please wait while we prepare your experience</p>
+      </div>
+    );
   }
 
 
@@ -368,7 +381,7 @@ const Dashboard = () => {
             >
               <Link
                 href="/"
-                className="flex items-center space-x-3 text-gray-300  rounded-md justify-center"
+                className="flex items-center space-x-3 text-gray-300 hover:bg-gray-700 rounded-md justify-center"
               >
                 <span className="h-full  text-xs sm:text-xs md:text-xs  text-black font-semibold">
                   Sign Out
