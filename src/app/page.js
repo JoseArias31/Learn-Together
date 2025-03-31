@@ -71,7 +71,7 @@ const Home = () => {
           </h2>
         </div>
       )}
-       <div className="flex justify-center mb-12">
+       <div className=" flex lg:hidden mt-10  justify-center mb-12">
 <AiAssistanceBotton />
 </div>
       <h1 className="text-center mt-10 sm:mt-16 md:mt-20 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl px-4 sm:px-6">

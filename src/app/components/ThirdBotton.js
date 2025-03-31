@@ -25,8 +25,8 @@ export default function ThirdButton() {
         <Button
           href="login"
           color="default"
-          className="text-white"
-          style={style3}
+          className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-colors"
+          // style={style3}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
         >

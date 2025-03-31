@@ -7,7 +7,7 @@ const AIAssistanceButton = () => {
   const router = useRouter()
 
   return (
-    <div className="relative group">
+    <div className="relative group ">
       {/* Define the animation */}
       {/* <style jsx>{`
         @keyframes moveGradient {
@@ -20,18 +20,18 @@ const AIAssistanceButton = () => {
         <div className="relative overflow-hidden rounded-full p-[1px] transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.4)]">
           {/* Seamless looping border animation */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 via-green-500 to-green-400 animate-spin [animation-duration:8s]">
-            <div className="absolute inset-0 w-[200%] bg-gradient-to-r from-green-400 via-green-500 to-green-400 from-green-400 animate-[moveGradient_3s_linear_infinite] rounded-full"></div>
+            <div className="absolute inset-0 w-[150%] bg-gradient-to-r from-green-400 via-green-500 to-green-400 from-green-400 animate-[moveGradient_3s_linear_infinite] rounded-full"></div>
           </div>
 
           {/* Button content */}
-          <div className="relative flex items-center gap-2 px-5 py-3 bg-black rounded-full group-hover:bg-black/90 transition-all duration-300">
+          <div className="relative flex items-center  px-1 py-3 bg-black rounded-full group-hover:bg-black/90 transition-all duration-300">
             {/* AI Icon with pulse effect */}
-            <div className="relative flex items-center justify-center w-8 h-8 bg-green-500/10 rounded-full border border-green-500/30">
+            <div className="relative flex items-center justify-center  w-4 h-4 bg-green-500/10 rounded-full border border-green-500/30">
               <div className="absolute w-2 h-2 bg-green-500 rounded-full animate-ping opacity-75"></div>
               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
             </div>
 
-            <span className="text-white font-medium">AI Assistant</span>
+            <span className="text-white text-xs ml-1 mr-1 font-medium">AI Assistant</span>
 
             {/* Arrow icon with animation */}
             <svg

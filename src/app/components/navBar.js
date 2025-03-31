@@ -9,6 +9,7 @@ import { signOutUser } from "../auth/register/signOut";
 import { useEffect, useState } from "react";
 
 import { LaptopMinimalCheck, BookOpenCheck } from "lucide-react";
+import AIAssistanceButton from "./ai-assistance-botton";
 
 const NavBar = () => {
   const [user, setUser] = useState(null);
@@ -104,7 +105,7 @@ const NavBar = () => {
   </div>
 
   {/* Lista de enlaces */}
-  <ul className="flex flex-col items-center space-y-8 mt-16 text-white">
+  <ul className="flex flex-col  items-center space-y-8 mt-16 text-white">
     <li className="content-center">
       <Link href="/" className="relative group text-xl font-light hover:font-normal transition-all duration-200">
         Home
@@ -159,20 +160,23 @@ const NavBar = () => {
 
       {/* Menú horizontal (visible en pantallas grandes) */}
 
-      <ul className="flex hidden lg:flex gap-10">
+      <ul className="flex hidden lg:flex gap-4">
         <li className="content-center z-10 text-white">
-          <Link href="/programs" className="text-white relative group flex gap-2">
+          <Link href="/programs" className="text-white text-sm relative group flex gap-2">
             <LaptopMinimalCheck /> {/* Icono primero */}
             Programs {/* Texto después */}
             <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
           </Link>
         </li>
         <li className="content-center z-10 text-white">
-          <Link href="/courses" className="text-white relative group flex gap-2">
+          <Link href="/courses" className="text-white relative group flex gap-2 text-sm">
             <BookOpenCheck /> {/* Icono primero */}
             Courses {/* Texto después */}
             <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
           </Link>
+        </li>
+        <li className="content-center">
+          <AIAssistanceButton />
         </li>
       </ul>
 
@@ -180,22 +184,23 @@ const NavBar = () => {
         className="hidden lg:flex space-x-4 mr-6"
         style={{ justifyContent: "right" }}
       >
+       
         <li className="content-center">
-          <Link href="/" className="text-white relative group">
+          <Link href="/" className="text-white text-sm relative group">
             Home
             <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
           </Link>
         </li>
         
         <li className="content-center">
-          <Link href="/contact" className="text-white relative group">
+          <Link href="/contact" className="text-white text-sm relative group">
             Contact
             <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
           </Link>
         </li>
         {user && (
           <li className="content-center">
-            <Link href="/dashboard" className="text-white relative group">
+            <Link href="/dashboard" className="text-white text-sm relative group">
               Dashboard
               <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
             </Link>
@@ -205,7 +210,7 @@ const NavBar = () => {
           {user ? (
             <button
               onClick={handlgeSignOut}
-              className="flex w-full justify-center rounded-md bg-[#1e40af] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#4CAF50] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex w-full justify-center rounded-md bg-[#1e40af] px-3 py-1.5 text-xs font-semibold leading-6 text-white shadow-sm hover:bg-[#4CAF50] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Sign out
             </button>

@@ -34,8 +34,9 @@ export default function MainButton() {
         <Link href="/dashboard" passHref>
           <Button
             color="default"
-            className="text-white"
-            style={baseStyle}
+            className="px-6 py-3 bg-transparent border border-gray-600 hover:border-gray-500 text-white font-medium rounded-md transition-colors"
+            // style={baseStyle}
+
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -46,8 +47,8 @@ export default function MainButton() {
         <Link href="/login" passHref>
           <Button
             color="default"
-            className="text-white"
-            style={baseStyle}
+            className="px-6 py-3 bg-transparent bg-blue-600 border border-blue-600 hover:border-blue-500 text-white font-medium rounded-md transition-colors"
+            // style={baseStyle}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
