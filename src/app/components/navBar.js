@@ -39,10 +39,9 @@ const NavBar = () => {
   return (
     <nav className="relative p-4 flex justify-between items-center !bg-black">
       <div className="flex items-center gap-4">
-      <a href="/" 
-      className="flex gap-4 items-center">
-        <Image className="relative z-10" src={logo} alt="Logo" width={41} />
-        
+        <a href="/" className="flex gap-4 items-center">
+          <Image className="relative z-10" src={logo} alt="Logo" width={41} />
+
           <h1
             className="text-white font-bold text-2xl sm:text-3xl md:text-4xl font-sans tracking-wide"
             style={{
@@ -58,118 +57,152 @@ const NavBar = () => {
 
       {/* Icono de toggle en dispositivos móviles */}
       <div className="lg:hidden flex items-center">
-  {/* Botón para abrir el menú */}
-  <button onClick={handleToggle} className="text-white">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      className="w-6 h-6"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M4 6h16M4 12h16M4 18h16"
-      />
-    </svg>
-  </button>
-</div>
-
-{/* Menú desplegable - se superpone en móviles */}
-<div
-  className={`fixed top-0 right-0 w-full h-screen bg-black bg-opacity-95 transition-all duration-300 ease-in-out ${
-    menuOpen ? "translate-x-0" : "translate-x-full"
-  }`}
-  style={{ zIndex: 1000 }}
->
-  {/* Botón para cerrar el menú */}
-  <div className="flex justify-end p-6">
-    <button onClick={handleToggle} className="text-white text-3xl hover:text-gray-300 transition-colors duration-200">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        className="w-8 h-8"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M6 18L18 6M6 6l12 12"
-        />
-      </svg>
-    </button>
-  </div>
-
-  {/* Lista de enlaces */}
-  <ul className="flex flex-col  items-center space-y-8 mt-16 text-white">
-    <li className="content-center">
-      <Link href="/" className="relative group text-xl font-light hover:font-normal transition-all duration-200">
-        Home
-        <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
-      </Link>
-    </li>
-    <li className="content-center">
-      <Link href="/programs" className="relative group text-xl font-light hover:font-normal transition-all duration-200">
-        Programs
-        <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
-      </Link>
-    </li>
-    <li className="content-center">
-      <Link href="/courses" className="relative group text-xl font-light hover:font-normal transition-all duration-200">
-        Courses
-        <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
-      </Link>
-    </li>
-    <li className="content-center">
-      <Link href="/contact" className="relative group text-xl font-light hover:font-normal transition-all duration-200">
-        Contact
-        <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
-      </Link>
-    </li>
-    {user && (
-      <li className="content-center">
-        <Link href="/dashboard" className="relative group text-xl font-light hover:font-normal transition-all duration-200">
-          Dashboard
-          <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
-        </Link>
-      </li>
-    )}
-    <li className="mt-8">
-      {user ? (
-        <button
-          onClick={handlgeSignOut}
-          className="flex w-full justify-center rounded-md bg-gradient-to-r from-green-400 to-blue-500 px-6 py-3 text-lg font-semibold text-white shadow-lg hover:from-green-500 hover:to-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-        >
-          Sign out
+        {/* Botón para abrir el menú */}
+        <button onClick={handleToggle} className="text-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
         </button>
-      ) : (
-        <Link
-          href="/login"
-          className="flex w-full justify-center rounded-md bg-gradient-to-r from-green-400 to-blue-500 px-6 py-3 text-lg font-semibold text-white shadow-lg hover:from-green-500 hover:to-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-        >
-          Sign in
-        </Link>
-      )}
-    </li>
-  </ul>
-</div>
+      </div>
+
+      {/* Menú desplegable - se superpone en móviles */}
+      <div
+        className={`fixed top-0 right-0 w-full h-screen bg-black bg-opacity-95 transition-all duration-300 ease-in-out ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+        style={{ zIndex: 1000 }}
+      >
+        {/* Botón para cerrar el menú */}
+        <div className="flex justify-end p-6">
+          <button
+            onClick={handleToggle}
+            className="text-white text-3xl hover:text-gray-300 transition-colors duration-200"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="w-8 h-8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Lista de enlaces */}
+        <ul className="flex flex-col  items-center space-y-8 mt-16 text-white">
+          <li className="content-center">
+            <Link
+              href="/"
+              className="relative group text-xl font-light hover:font-normal transition-all duration-200"
+            >
+              Home
+              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+            </Link>
+          </li>
+          <li className="content-center">
+            <Link
+              href="/programs"
+              className="relative group text-xl font-light hover:font-normal transition-all duration-200"
+            >
+              Programs
+              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+            </Link>
+          </li>
+          <li className="content-center">
+            <Link
+              href="/courses"
+              className="relative group text-xl font-light hover:font-normal transition-all duration-200"
+            >
+              Courses
+              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+            </Link>
+          </li>
+          <li className="content-center">
+            <Link
+              href="/contact"
+              className="relative group text-xl font-light hover:font-normal transition-all duration-200"
+            >
+              Contact
+              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+            </Link>
+          </li>
+          {user && (
+            <li className="content-center">
+              <Link
+                href="/dashboard"
+                className="relative group text-xl font-light hover:font-normal transition-all duration-200"
+              >
+                Dashboard
+                <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+              </Link>
+            </li>
+          )}
+          <li>
+            <Link
+              href="/settings"
+              className="relative group text-xl font-light hover:font-normal transition-all duration-200 group"
+              aria-label="Settings"
+            >
+              Settings
+              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+            </Link>
+          </li>
+          <li className="mt-8">
+            {user ? (
+              <button
+                onClick={handlgeSignOut}
+                className="flex w-full justify-center rounded-md bg-gradient-to-r from-green-400 to-blue-500 px-6 py-3 text-lg font-semibold text-white shadow-lg hover:from-green-500 hover:to-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              >
+                Sign out
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                className="flex w-full justify-center rounded-md bg-gradient-to-r from-green-400 to-blue-500 px-6 py-3 text-lg font-semibold text-white shadow-lg hover:from-green-500 hover:to-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              >
+                Sign in
+              </Link>
+            )}
+          </li>
+        </ul>
+      </div>
 
       {/* Menú horizontal (visible en pantallas grandes) */}
 
       <ul className="flex hidden lg:flex gap-4">
         <li className="content-center z-10 text-white">
-          <Link href="/programs" className="text-white text-sm relative group flex gap-2">
+          <Link
+            href="/programs"
+            className="text-white text-sm relative group flex gap-2"
+          >
             <LaptopMinimalCheck /> {/* Icono primero */}
             Programs {/* Texto después */}
             <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
           </Link>
         </li>
         <li className="content-center z-10 text-white">
-          <Link href="/courses" className="text-white relative group flex gap-2 text-sm">
+          <Link
+            href="/courses"
+            className="text-white relative group flex gap-2 text-sm"
+          >
             <BookOpenCheck /> {/* Icono primero */}
             Courses {/* Texto después */}
             <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
@@ -184,14 +217,13 @@ const NavBar = () => {
         className="hidden lg:flex space-x-4 mr-6"
         style={{ justifyContent: "right" }}
       >
-       
         <li className="content-center">
           <Link href="/" className="text-white text-sm relative group">
             Home
             <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
           </Link>
         </li>
-        
+
         <li className="content-center">
           <Link href="/contact" className="text-white text-sm relative group">
             Contact
@@ -200,13 +232,40 @@ const NavBar = () => {
         </li>
         {user && (
           <li className="content-center">
-            <Link href="/dashboard" className="text-white text-sm relative group">
+            <Link
+              href="/dashboard"
+              className="text-white text-sm relative group"
+            >
               Dashboard
               <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
             </Link>
           </li>
         )}
         <li>
+          {/* Settings Button */}
+          <Link
+            href="/settings"
+            className="p-2 text-gray-300 hover:text-white transition-colors group"
+            aria-label="Settings"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </Link>
+        </li>
+        <li className="content-center">
           {user ? (
             <button
               onClick={handlgeSignOut}

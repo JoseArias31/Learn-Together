@@ -421,9 +421,9 @@ const Dashboard = () => {
           <div className=" flex items-center justify-center">
             <div className="text-center mt-20">
               <AutoChangingText />
-              <h1 className="mt-2 ml-4 mr-4 text-sm">
+              {/* <h1 className="mt-2 ml-4 mr-4 text-sm">
                 Type your preferable interests to build a route map
-              </h1>
+              </h1> */}
             </div>
           </div>
           {/* Agregar Toggle*/}
