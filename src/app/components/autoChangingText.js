@@ -48,13 +48,32 @@ export const AutoChangingText = () => {
   const [searchQuery, setSearchQuery] = useState("") // Stores input text
   const [programNamesList, setProgramNamesList] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("") // Error message state
   const router = useRouter()
 
-  function handleKeyPress(e) {
-    if (e.key === "Enter" && searchQuery.trim()) {
+  const handleSearch = () => {
+    const trimmedQuery = searchQuery.trim()
+    if (!trimmedQuery) return
+    
+    // Check if the query exactly matches any program (case insensitive)
+    const programExists = programNamesList.some(
+      program => program.toLowerCase() === trimmedQuery.toLowerCase()
+    )
+    
+    if (programExists) {
+      router.push(`/programs/${encodeURIComponent(trimmedQuery)}`)
+    } else {
+      // Show error message
+      setError('Program not found. Please select from suggestions.')
+      // Auto-clear error after some time
+      setTimeout(() => setError(''), 3000)
+    }
+  }
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
       e.preventDefault()
-      console.log("Searching for:", searchQuery)
-      router.push(`/programs/${encodeURIComponent(searchQuery.trim())}`)
+      handleSearch()
     }
   }
 
@@ -135,25 +154,35 @@ export const AutoChangingText = () => {
               type="text"
               placeholder={currentText || "Search for a program..."}
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value)
+                setError('') // Clear error when typing
+              }}
               onKeyDown={handleKeyPress}
               className="w-full pl-3 pr-9 py-1.5 h-9 text-sm rounded-lg border border-green-300 dark:border-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-800 dark:text-gray-100"
             />
             <div className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 transition-all duration-200">
-              {searchQuery.length > 0 ? (
+              {searchQuery.length ? (
                 <div
                   className="transition-all duration-200 transform translate-y-0 opacity-100 cursor-pointer"
-                  onClick={() =>
-                    searchQuery.trim() && router.push(`/programs/${encodeURIComponent(searchQuery.trim())}`)
-                  }
+                  onClick={handleSearch}
                 >
                   {sendIcon}
                 </div>
               ) : (
-                <div className="transition-all duration-200 transform translate-y-0 opacity-100">{searchIcon}</div>
+                <div className="transition-all duration-200 transform translate-y-0 opacity-100">
+                  {searchIcon}
+                </div>
               )}
             </div>
           </div>
+
+          {/* Error message */}
+          {error && (
+            <div className="text-red-500 text-xs mt-1 animate-fade-in">
+              {error}
+            </div>
+          )}
 
           {/* Live suggestions */}
           {searchQuery.trim() && suggestions.length > 0 && (
@@ -165,7 +194,8 @@ export const AutoChangingText = () => {
                     className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer text-sm text-gray-700 dark:text-gray-200 flex items-center"
                     onClick={() => {
                       setSearchQuery(suggestion)
-                      router.push(`/programs/${encodeURIComponent(suggestion).replace(/%20/g, "-")}`);
+                      setError('') // Clear any previous error
+                      router.push(`/programs/${encodeURIComponent(suggestion).replace(/%20/g, "-")}`)
                     }}
                   >
                     <span className="mr-2">{searchIcon}</span>
@@ -178,8 +208,8 @@ export const AutoChangingText = () => {
         </div>
 
         {/* Animated hint */}
-        <div className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400 animate-pulse">
-          Press Enter to search for programs
+        <div className="mt-4 text-center w-2/3 text-sm text-gray-500 dark:text-gray-400 animate-pulse">
+          Type and select a program name listed above to explore more about it.
         </div>
       </div>
     </div>
@@ -187,4 +217,3 @@ export const AutoChangingText = () => {
 }
 
 export default AutoChangingText
-

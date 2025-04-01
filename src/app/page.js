@@ -81,9 +81,9 @@ const Home = () => {
         <AutoChangingText />
       </div>
       <div className="mt-10">
-        <h2 className="text-center font-kodchasan text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-2xl mb-2 ">
+        {/* <h2 className="text-center font-kodchasan text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-2xl mb-2 ">
           Get help with AI assistance anytime, anywhere
-        </h2>
+        </h2> */}
 
         {/* <h2 className="text-center font-kodchasan text-base sm:text-lg md:text-xl lg:text-xl xl:text-xl">
           Don’t believe it? Try it yourself by clicking on the chat icon.

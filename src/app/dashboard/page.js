@@ -704,6 +704,73 @@ const Dashboard = () => {
             {/* Main Section */}
             <main className="flex-1 bg-custom-gradient flex gap-4 flex-col lg:flex-row ml-0 lg:ml-42">
               <section className="w-full lg:flex-1 p-4 space-y-6 bg-gray-800 flex flex-col rounded-lg justify-evenly">
+              <div className="flex gap-4 flex-col md:flex-row">
+                  {/* Income Card */}
+                  <div className="bg-gray-700 p-5 flex-1 rounded-md flex items-center justify-between">
+                    <div className="flex md:items-center gap-2 flex-col lg:flex-row items-start">
+                      <i className="bx bx-dollar-circle text-teal-400 text-2xl"></i>
+                      <h2 className="text-sm md:text-lg font-semibold text-gray-100">
+                        Total Programs
+                      </h2>
+                    </div>
+                    <div className="text-xl font-bold text-gray-100 flex flex-col items-end lg:flex-row lg:items-center gap-2">
+                    {(() => {
+                      // Filter out duplicate programs based on programid
+                     
+                      const uniquePrograms = enrolledPrograms.filter(
+                        (program, index, self) =>
+                          index ===
+                          self.findIndex(
+                            (p) => p.programid === program.programid
+                          )
+                      );
+
+                      return uniquePrograms.length > 0 ? (
+                        <span className="text-green-400 text-sm">
+                          {uniquePrograms.length}
+                        </span>
+                      ) : (
+                        <span className="text-green-400 text-sm">
+                        0
+                      </span>
+                      );
+                    })()}
+                    </div>
+                  </div>
+
+                  {/* Expense Card */}
+                  <div className="bg-gray-700 p-4 md:p-5 flex-1 rounded-md flex items-center justify-between">
+                    <div className="flex md:items-center gap-2 flex-col lg:flex-row items-start">
+                      <i className="bx bx-cart text-teal-400 text-2xl"></i>
+                      <h2 className="text-sm md:text-lg font-semibold text-gray-100">
+                        Total Courses
+                      </h2>
+                    </div>
+                    <div className="text-xl font-bold text-gray-100 flex flex-col items-end lg:flex-row lg:items-center gap-2">
+                    {(() => {
+                      // Filter out duplicate programs based on programid
+                     
+                      const uniqueCourses = enrolledCourses.filter(
+                        (course, index, self) =>
+                          index ===
+                          self.findIndex(
+                            (p) => p.courseid === course.courseid
+                          )
+                      );
+
+                      return uniqueCourses.length > 0 ? (
+                        <span className="text-green-400 text-sm">
+                          {uniqueCourses.length}
+                        </span>
+                      ) : (
+                        <span className="text-green-400 text-sm">
+                        0
+                      </span>
+                      );
+                    })()}
+                    </div>
+                  </div>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Current Programs Section */}
                   <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
@@ -845,33 +912,7 @@ const Dashboard = () => {
                 <ImageCarousel />
                 <CategoryCarousel />
 
-                <div className="flex gap-4 flex-col md:flex-row">
-                  {/* Income Card */}
-                  <div className="bg-gray-700 p-5 flex-1 rounded-md flex items-center justify-between">
-                    <div className="flex md:items-center gap-2 flex-col lg:flex-row items-start">
-                      <i className="bx bx-dollar-circle text-teal-400 text-2xl"></i>
-                      <h2 className="text-sm md:text-lg font-semibold text-gray-100">
-                        Total Categories
-                      </h2>
-                    </div>
-                    <div className="text-xl font-bold text-gray-100 flex flex-col items-end lg:flex-row lg:items-center gap-2">
-                      <span className="text-green-400 text-sm">10</span>
-                    </div>
-                  </div>
-
-                  {/* Expense Card */}
-                  <div className="bg-gray-700 p-4 md:p-5 flex-1 rounded-md flex items-center justify-between">
-                    <div className="flex md:items-center gap-2 flex-col lg:flex-row items-start">
-                      <i className="bx bx-cart text-teal-400 text-2xl"></i>
-                      <h2 className="text-sm md:text-lg font-semibold text-gray-100">
-                        Total Programs
-                      </h2>
-                    </div>
-                    <div className="text-xl font-bold text-gray-100 flex flex-col items-end lg:flex-row lg:items-center gap-2">
-                      <span className="text-green-400 text-sm">50</span>
-                    </div>
-                  </div>
-                </div>
+               
               </section>
 
               {/* Right Side Content */}
