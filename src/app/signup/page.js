@@ -7,6 +7,7 @@ import { supabase } from '../lib/supabaseClient';
 import { useRouter } from 'next/navigation';
 import NavBar from '../components/navBar';
 import Footer from '../components/footer';
+import Image from 'next/image';
 
 
 const Signup = () => {
@@ -19,7 +20,7 @@ const Signup = () => {
   const [success, setSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
-  const inputStyle = 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text-xs pl-3';
+  const inputStyle = 'block w-full rounded-md border-0 py-1.5 text-black font-semibold shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text-xs pl-3 h-12';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,8 +46,18 @@ const Signup = () => {
   return (
     <>
      <NavBar />  
-    <div className='flex min-h-full flex-1 flex-col  px-6 py-12 lg:px-8 items-center '>
-     
+     <div className="flex min-h-full flex-1 flex-col   items-center ">
+     <div className="flex flex-row w-full">
+     <div className='w-1/2 h-screen relative hidden md:flex'>
+     {/*This image can be replaced anytime with any other image*/}
+         <Image 
+           src={"/signingCover2.png"} 
+           alt="Sign-in Cover" 
+           layout="fill" 
+           objectFit="cover"
+         />
+     </div>
+     <div className='w-full content-center flex flex-col md:w-1/2  mt-20 mb-20 justify-center items-center'>
       <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">Create your Account</h2>
       <form onSubmit={handleSubmit} >
         <div style={{ marginBottom: '1rem', width: '350px', marginLeft:'0px' }} className="mt-10 w-full  sm:mx-auto sm:w-full sm:max-w-sm">
@@ -91,7 +102,8 @@ const Signup = () => {
                   </a>
                 </div>
       </form>
-     
+      </div>
+      </div>
     </div>
     <Footer />
     </>

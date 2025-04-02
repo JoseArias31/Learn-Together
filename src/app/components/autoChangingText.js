@@ -145,11 +145,11 @@ export const AutoChangingText = () => {
   return (
     <div className="w-full max-w-xl mx-auto">
       <div className="relative flex flex-col justify-start items-center">
-        <div className="w-full max-w-sm sticky top-0 bg-background z-10 pt-4 pb-1">
+        <div className="w-full max-w-sm sticky top-0 bg-background z-10 pt-4 pb-1 justify-items-center">
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1 block" htmlFor="search">
             Search Programs
           </label>
-          <div className="relative">
+          <div className="relative w-2/3 content-center ">
             <input
               type="text"
               placeholder={currentText || "Search for a program..."}
@@ -159,7 +159,7 @@ export const AutoChangingText = () => {
                 setError('') // Clear error when typing
               }}
               onKeyDown={handleKeyPress}
-              className="w-full pl-3 pr-9 py-1.5 h-9 text-sm rounded-lg border border-green-300 dark:border-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-800 dark:text-gray-100"
+              className="w-full pl-3 pr-9 py-1.5 h-12 text-sm rounded-lg border border-green-300 dark:border-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-800 dark:text-gray-100"
             />
             <div className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 transition-all duration-200">
               {searchQuery.length ? (

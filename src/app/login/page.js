@@ -5,6 +5,8 @@ import { supabase } from "../lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import NavBar from "../components/navBar";
 import Footer from "../components/footer";
+import Image from "next/image";
+import { Fullscreen } from "lucide-react";
 
 
 export default function Login() {
@@ -49,16 +51,28 @@ export default function Login() {
   return (
    <>
     <NavBar />
-   <div className="flex min-h-full flex-1 flex-col  px-6 py-12 lg:px-8 items-center ">
+   <div className="flex min-h-full flex-1 flex-col   items-center ">
+    <div className="flex flex-row w-full">
+    <div className="w-1/2 h-screen relative hidden md:flex">
+   
+   {/*This image can be replaced anytime with any other image*/}
+    <Image 
+      src={"/signingCover2.png"} 
+      alt="Sign-in Cover" 
+      layout="fill" 
+      objectFit="cover"
+    />
+  </div>
+     
+      <div className="mt-10 w-full px-4 sm:mx-auto sm:w-full sm:max-w-sm content-center">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">
+        <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-gray-900 mb-10">
           Sign in to your account
         </h2>
       </div>
-      <div className="mt-10 w-full px-4 sm:mx-auto sm:w-full sm:max-w-sm">
         <label
           htmlFor="email"
-          className="block text-sm font-medium leading-6 text-gray-900 font-semibold  "
+          className="block text-sm font-medium leading-6 text-gray-900 font-semibold"
         >
           Email:
         </label>
@@ -68,7 +82,7 @@ export default function Login() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text-xs pl-3"
+          className="block w-full rounded-md border-0 py-1.5 text-black font-semibold shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text-xs pl-3 h-12"
         />
         <div className="flex items-center justify-between">
           <label
@@ -84,7 +98,7 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text-xs pl-3"
+          className="block w-full rounded-md border-0 py-1.5 text-black font-semibold shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text-xs pl-3 h-12"
         />
         <div className="text-sm mt-2 mb-2">
           <a
@@ -103,7 +117,7 @@ export default function Login() {
           {loading ? "Logging in..." : "Login"}
         </button>
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <div className="text-base text-center mt-2">
+        <div className="text-base text-center mt-2 mb-10">
           <a
             href="/signup"
             className="font-semibold text-indigo-600 hover:text-indigo-500"
@@ -111,6 +125,7 @@ export default function Login() {
             Create an account!
           </a>
         </div>
+      </div>
       </div>
     </div>
     <Footer />
