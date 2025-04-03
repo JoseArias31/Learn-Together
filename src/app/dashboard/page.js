@@ -137,7 +137,7 @@ const Dashboard = () => {
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
         <div className="relative w-24 h-24 mb-8">
           <div className="absolute w-full h-full bg-teal-400 rounded-full animate-ping"></div>
-          <div className="absolute w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center">
+          <div className="absolute w-24 h-24  rounded-full flex items-center justify-center">
             <svg className="w-12 h-12 text-teal-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
             </svg>
@@ -168,7 +168,7 @@ const Dashboard = () => {
       <div className="bg-custom-gradient text-gray-100 overflow-x-clip min-h-screen flex">
         <aside
           id="sidebar"
-          className="hidden md:flex sticky top-0 h-screen w-64 bg-gray-800 p-4 flex-col justify-between"
+          className="hidden md:flex sticky top-0 h-screen w-64  p-4 flex-col justify-between"
         >
           <div className="flex flex-col items-center gap-2">
             <button
@@ -190,7 +190,7 @@ const Dashboard = () => {
                   className="rounded-full border-2 border-gray-300"
                 />
 
-                <h2 className="flex items-center px-4 py-2 text-white bg-gray-800  gap-2 shadow-md border-b ">
+                <h2 className="flex items-center px-4 py-2 text-white   gap-2 shadow-md border-b ">
                   Hello, {session.user.email.replace(/@[^@]+$/, "")}
                 </h2>
 
@@ -199,7 +199,7 @@ const Dashboard = () => {
                 <div className=" top-full right-0 border-b p-4  shadow-md w-64 z-10  mt-2">
                   <div className="flex flex-col gap-2">
                     <div className="flex flex-row justify-between">
-                      <h2 className="text-white text-sm font-medium text-gray-800">
+                      <h2 className="text-white text-sm font-medium text-black">
                         Account Status
                       </h2>
                       {user ? (
@@ -211,7 +211,7 @@ const Dashboard = () => {
                       )}
                     </div>
                     <div className="flex flex-row justify-between">
-                      <h2 className="text-white text-sm font-medium text-gray-800">
+                      <h2 className="text-white text-sm font-medium text-black">
                         Membership
                       </h2>
                       {user ? (
@@ -223,7 +223,7 @@ const Dashboard = () => {
                       )}
                     </div>
                     <div className="flex  flex-row justify-between">
-                      <h2 className="text-white text-sm font-medium text-gray-800">
+                      <h2 className="text-white text-sm font-medium text-black">
                         Subscription
                       </h2>
                       {user ? (
@@ -236,7 +236,7 @@ const Dashboard = () => {
                     </div>
                     {enrolledCourses.length > 0 ? (
                       <div className="flex flex-row justify-between">
-                        <h2 className="text-white text-sm font-medium text-gray-800">
+                        <h2 className="text-white text-sm font-medium text-black">
                           Current Courses
                         </h2>
                         <h3 className="text-sm font-semibold">
@@ -245,7 +245,7 @@ const Dashboard = () => {
                       </div>
                     ) : (
                       <div className="flex flex-row justify-between">
-                        <h2 className="text-white text-sm font-medium text-gray-800">
+                        <h2 className="text-white text-sm font-medium text-black">
                           Current Courses
                         </h2>
                         <h3 className="text-sm font-semibold">0</h3>
@@ -253,13 +253,13 @@ const Dashboard = () => {
                     )}
 
                     <div className="flex  flex-row justify-between">
-                      <h2 className="text-white text-sm font-medium text-gray-800">
+                      <h2 className="text-white text-sm font-medium text-black">
                         Courses Completed
                       </h2>
                       <h3 className="text-sm  font-semibold">2</h3>
                     </div>
                     <div className="flex flex-row justify-between">
-                      <h2 className="text-white text-sm font-medium text-gray-800">
+                      <h2 className="text-white text-sm font-medium text-black">
                         Add a new Course
                       </h2>
                       <Link href="/courses">
@@ -286,7 +286,7 @@ const Dashboard = () => {
 
                       return uniquePrograms.length > 0 ? (
                         <div className="flex flex-row justify-between">
-                          <h2 className="text-white text-sm font-medium text-gray-800">
+                          <h2 className="text-white text-sm font-medium text-black">
                             Current Programs
                           </h2>
                           <h3 className="text-sm font-semibold">
@@ -295,7 +295,7 @@ const Dashboard = () => {
                         </div>
                       ) : (
                         <div className="flex flex-row justify-between">
-                          <h2 className="text-white text-sm font-medium text-gray-800">
+                          <h2 className="text-white text-sm font-medium text-black">
                             Current Programs
                           </h2>
                           <h3 className="text-sm font-semibold">0</h3>
@@ -304,13 +304,13 @@ const Dashboard = () => {
                     })()}
 
                     <div className="flex  flex-row justify-between">
-                      <h2 className="text-white text-sm font-medium text-gray-800">
+                      <h2 className="text-white text-sm font-medium text-black">
                         Programs Completed
                       </h2>
                       <h3 className="text-sm  font-semibold">2</h3>
                     </div>
                     <div className="flex flex-row justify-between">
-                      <h2 className="text-white text-sm font-medium text-gray-800">
+                      <h2 className="text-white text-sm font-medium text-black">
                         Add a new Program
                       </h2>
                       <Link href="/programs">
@@ -377,7 +377,7 @@ const Dashboard = () => {
             </Link>
             <button
               onClick={handlgeSignOut}
-              className="flex cursor-pointer flex items-center text-gray-800 bg-green-500 hover:bg-blue-700  self-center p-2  rounded-md justify-self-center"
+              className="flex cursor-pointer flex items-center text-black bg-green-500 hover:bg-blue-700  self-center p-2  rounded-md justify-self-center"
             >
               <Link
                 href="/"
@@ -434,7 +434,7 @@ const Dashboard = () => {
 
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex justify-between text-xs items-center px-4 py-2 text-white bg-gray-800 rounded-md gap-2 shadow-md hover:bg-gray-700 transition min-w-[150px]"
+                className="flex justify-between text-xs items-center px-4 py-2 text-white  rounded-md gap-2 shadow-md hover:bg-gray-700 transition min-w-[150px]"
               >
                 Hello, {session.user.email.replace(/@[^@]+$/, "")}
                 <Image
@@ -515,7 +515,7 @@ const Dashboard = () => {
                   </ul>
                   <div className="flex flex-col gap-3 m-2 border-t border-black mt-2">
                     <div className="flex flex-row justify-between mt-4">
-                      <h2 className=" text-xs font-bold text-gray-800">
+                      <h2 className=" text-xs font-bold text-black">
                         Account Status
                       </h2>
                       {user ? (
@@ -527,7 +527,7 @@ const Dashboard = () => {
                       )}
                     </div>
                     <div className="flex flex-row justify-between">
-                      <h2 className=" text-xs font-bold text-gray-800">
+                      <h2 className=" text-xs font-bold text-black">
                         Membership
                       </h2>
                       {user ? (
@@ -539,7 +539,7 @@ const Dashboard = () => {
                       )}
                     </div>
                     <div className="flex  flex-row justify-between">
-                      <h2 className=" text-xs font-bold text-gray-800">
+                      <h2 className=" text-xs font-bold text-black">
                         Subscription
                       </h2>
                       {user ? (
@@ -552,7 +552,7 @@ const Dashboard = () => {
                     </div>
                     {enrolledCourses.length > 0 ? (
                       <div className="flex flex-row justify-between">
-                        <h2 className="text-xs font-bold text-gray-800">
+                        <h2 className="text-xs font-bold text-black">
                           Current Courses
                         </h2>
                         <h3 className="text-xs text-yellow-600 ">
@@ -561,14 +561,14 @@ const Dashboard = () => {
                       </div>
                     ) : (
                       <div className="flex flex-row justify-between">
-                        <h2 className="text-black text-sm font-medium text-gray-800">
+                        <h2 className="text-black text-sm font-medium text-black">
                           Current Courses
                         </h2>
                         <h3 className="text-sm font-semibold">0</h3>
                       </div>
                     )}
                     <div className="flex  flex-row justify-between">
-                      <h2 className=" text-xs font-bold text-gray-800">
+                      <h2 className=" text-xs font-bold text-black">
                         Courses Completed
                       </h2>
                       <h3 className="text-xs text-yellow-600 font-semibold">
@@ -576,7 +576,7 @@ const Dashboard = () => {
                       </h3>
                     </div>
                     <div className="flex flex-row justify-between">
-                      <h2 className=" text-xs  font-bold text-gray-800">
+                      <h2 className=" text-xs  font-bold text-black">
                         Add a new Course
                       </h2>
                       <Link href="/courses">
@@ -603,7 +603,7 @@ const Dashboard = () => {
 
                       return uniquePrograms.length > 0 ? (
                         <div className="flex flex-row justify-between">
-                          <h2 className="text-xs font-bold text-gray-800">
+                          <h2 className="text-xs font-bold text-black">
                             Current Programs
                           </h2>
                           <h3 className="text-sm text-yellow-600">
@@ -612,7 +612,7 @@ const Dashboard = () => {
                         </div>
                       ) : (
                         <div className="flex flex-row justify-between">
-                          <h2 className="text-xs font-bold text-gray-800">
+                          <h2 className="text-xs font-bold text-black">
                             Current Programs
                           </h2>
                           <h3 className="text-sm font-semibold">0</h3>
@@ -621,7 +621,7 @@ const Dashboard = () => {
                     })()}
 
                     <div className="flex  flex-row justify-between">
-                      <h2 className=" text-xs font-bold text-gray-800">
+                      <h2 className=" text-xs font-bold text-black">
                         Programs Completed
                       </h2>
                       <h3 className="text-xs text-yellow-600 font-semibold">
@@ -629,7 +629,7 @@ const Dashboard = () => {
                       </h3>
                     </div>
                     <div className="flex flex-row justify-between">
-                      <h2 className=" text-xs  font-bold text-gray-800">
+                      <h2 className=" text-xs  font-bold text-black">
                         Add a new Program
                       </h2>
                       <Link href="/programs">
@@ -647,7 +647,7 @@ const Dashboard = () => {
 
                     <button
                       onClick={handlgeSignOut}
-                      className="flex cursor-pointer flex items-center text-gray-800 bg-green-500 hover:bg-gray-700  self-center p-2  rounded-md justify-center"
+                      className="flex cursor-pointer flex items-center text-black bg-green-500 hover:bg-gray-700  self-center p-2  rounded-md justify-center"
                     >
                       <Link
                         href="/"
@@ -703,10 +703,10 @@ const Dashboard = () => {
 
             {/* Main Section */}
             <main className="flex-1 bg-custom-gradient flex gap-4 flex-col lg:flex-row ml-0 lg:ml-42">
-              <section className="w-full lg:flex-1 p-4 space-y-6 bg-gray-800 flex flex-col rounded-lg justify-evenly">
+              <section className="w-full lg:flex-1 p-4 space-y-6  flex flex-col rounded-lg justify-evenly">
               <div className="flex gap-4 flex-col md:flex-row">
                   {/* Income Card */}
-                  <div className="bg-gray-700 p-5 flex-1 rounded-md flex items-center justify-between">
+                  <div className="bg-gray-900 p-5 flex-1 rounded-md flex items-center justify-between">
                     <div className="flex md:items-center gap-2 flex-col lg:flex-row items-start">
                       <i className="bx bx-dollar-circle text-teal-400 text-2xl"></i>
                       <h2 className="text-sm md:text-lg font-semibold text-gray-100">
@@ -739,7 +739,7 @@ const Dashboard = () => {
                   </div>
 
                   {/* Expense Card */}
-                  <div className="bg-gray-700 p-4 md:p-5 flex-1 rounded-md flex items-center justify-between">
+                  <div className="bg-gray-900 p-4 md:p-5 flex-1 rounded-md flex items-center justify-between">
                     <div className="flex md:items-center gap-2 flex-col lg:flex-row items-start">
                       <i className="bx bx-cart text-teal-400 text-2xl"></i>
                       <h2 className="text-sm md:text-lg font-semibold text-gray-100">
@@ -773,7 +773,7 @@ const Dashboard = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Current Programs Section */}
-                  <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+                  <div className=" rounded-lg p-6 shadow-lg">
                     <div className="flex justify-between items-center mb-4">
                       <h2 className="text-xl font-semibold">
                         Programs Enrolled
@@ -813,7 +813,7 @@ const Dashboard = () => {
                           ].map((item) => (
                             <div
                               key={item.enrollment_id}
-                              className="bg-gray-700 rounded-lg p-1 pr-2 pl-2"
+                              className="bg-gray-800 rounded-lg p-1 pr-2 pl-2"
                             >
                               <div className="flex justify-between items-center">
                                 <div>
@@ -850,7 +850,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                   {/* Current Courses Section */}
-                  <div className="bg-gray-800 rounded-lg p-6 shadow-lg ">
+                  <div className=" rounded-lg p-6 shadow-lg ">
                     <div className="flex justify-between items-center mb-4 ">
                       <h2 className="text-xl font-semibold">
                         Courses Enrolled
@@ -874,7 +874,7 @@ const Dashboard = () => {
                         enrolledCourses.map((course) => (
                           <div
                             key={course.enrollment_id}
-                            className="bg-gray-700 rounded-lg p-1 pr-2 pl-2 "
+                            className="bg-gray-800 rounded-lg p-1 pr-2 pl-2 "
                           >
                             <div className="flex justify-between items-center ">
                               <div className="w-5/6">
@@ -929,7 +929,7 @@ const Dashboard = () => {
               </h1>
               <textarea
                 placeholder="What should I study?"
-                className="border-green-400 w-full md:w-[400px] content-center py-2 pl-10 pr-4 bg-gray-800 border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none min-h-[100px]"
+                className="border-green-400 w-full md:w-[400px] content-center py-2 pl-10 pr-4  border border-gray-600 rounded-md text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none min-h-[100px] bg-gray-800"
               />
             </div>
           </div>

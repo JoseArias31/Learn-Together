@@ -28,16 +28,16 @@ const CategoryCarousel = () => {
       <div
         data-hs-carousel='{
         "loadingClasses": "opacity-0",
-        "dotsItemClasses": "hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-full cursor-pointer",
+        "dotsItemClasses": " hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-full cursor-pointer",
         "isCentered": true,
         "slidesQty": { "xs": 1, "lg": 2 }
       }'
         className="relative"
       >
-        <div className="hs-carousel w-full overflow-hidden bg-white rounded-lg ">
+        <div className="hs-carousel w-full overflow-hidden  rounded-lg ">
           <div className="relative min-h-60 overflow-hidden ">
             <div
-              className="hs-carousel-body absolute top-0 bottom-0 left-0 flex transition-transform duration-700 bg-gray-800"
+              className="hs-carousel-body absolute top-0 bottom-0 left-0 flex transition-transform duration-700 "
               style={{
                 transform: `translateX(-${currentSlide * 200}px)`,
               }}
@@ -66,7 +66,7 @@ const CategoryCarousel = () => {
         <button
           type="button"
           onClick={prevSlide}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-400 p-2 rounded-full hover:bg-gray-700"
+          className="absolute left-0 top-1/2 transform -translate-y-1/2  p-2 rounded-full hover:bg-gray-700"
         >
           <span aria-hidden="true">
             <svg
