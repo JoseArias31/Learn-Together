@@ -31,22 +31,40 @@ export default function Login() {
         return;
       }
   
-      console.log('Login response:', data); // Debugging
-  
       if (data.session) {
-        console.log('Session found:', data.session); // Debugging
-        router.push('/dashboard');
+        const userId = data.session.user.id;
+  
+        // Query the membership info
+        const { data: membershipData, error: membershipError } = await supabase
+          .from("users")
+          .select("membership") // or whatever your column is called (maybe 'type')
+          .eq("id", userId)
+          .single();
+  
+        if (membershipError || !membershipData) {
+          console.error('Error fetching role:', membershipError);
+          setError('Could not determine user role.');
+          return;
+        }
+  
+        const role = membershipData.membership;
+  
+        if (role === 'Admin') {
+          router.push('/admin');
+        } else {
+          router.push('/dashboard');
+        }
       } else {
         setError('Login failed. No session found.');
       }
     } catch (err) {
-      console.error('Login error:', err); // Debugging
+      console.error('Login error:', err);
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
   };
-   
+  
 
   return (
    <>
