@@ -1,51 +1,122 @@
 import NavBar from "../components/navBar";
 import Footer from "../components/footer";
 
-const Contact = () => {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <NavBar />
-        <main className="flex-grow bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
-          <div className="max-w-6xl mx-auto px-6 py-12 text-center">
-            <h1 className="text-3xl font-bold text-gray-900 mb-8">
-              This is the Contact Page
-            </h1>
-  
-            {/* Joke Section */}
-            <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-              <p className="text-lg font-semibold text-gray-800">
-                Why was the Contact Page so shy?
-              </p>
-              <p className="text-gray-600">
-                Because it didn&apos;t want to be <strong>submitted</strong> to judgment! 😄
-              </p>
+import Link from "next/link"
+import { Mail, Phone, MapPin, Send } from "lucide-react"
+
+export default function Contact() {
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <NavBar />
+     
+      <div className="container mx-auto px-4 py-12">
+        <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">Get in Touch</h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          {/* Contact Information */}
+          <div className="space-y-8">
+            <h2 className="text-2xl font-semibold mb-6 text-teal-400">Contact Information</h2>
+
+            <div className="flex items-start space-x-4">
+              <Mail className="w-6 h-6 text-green-400 mt-1" />
+              <div>
+                <h3 className="font-medium">Email</h3>
+                <p className="text-gray-400">support@learntogether.com</p>
+              </div>
             </div>
-  
-            {/* Fun Fact Section */}
-            <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-              <p className="text-lg font-semibold text-gray-800">
-                Fun Fact:
-              </p>
-              <p className="text-gray-600">
-                The first-ever &quot;Contact Us&quot; form was likely created in the early days of the web, and it probably looked something like this: <br />
-                📧 <strong>Email:</strong> [your.email@example.com] <br />
-                📞 <strong>Phone:</strong> [123-456-7890] <br />
-                💬 <strong>Message:</strong> [Type here...] <br />
-                Thankfully, we&apos;ve come a long way since then! Now we have fancy gradients, animations, and even chatbots. 😎
-              </p>
+
+            <div className="flex items-start space-x-4">
+              <Phone className="w-6 h-6 text-green-400 mt-1" />
+              <div>
+                <h3 className="font-medium">Phone</h3>
+                <p className="text-gray-400">+1 (555) 123-4567</p>
+              </div>
             </div>
-  
-            {/* Placeholder for Contact Form */}
-            <div className="mt-8">
-              <p className="text-gray-600">
-                (Your amazing contact form will go here!)
-              </p>
+
+            <div className="flex items-start space-x-4">
+              <MapPin className="w-6 h-6 text-green-400 mt-1" />
+              <div>
+                <h3 className="font-medium">Office</h3>
+                <p className="text-gray-400">123 Education Street</p>
+                <p className="text-gray-400">San Francisco, CA 94103</p>
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-xl font-semibold mb-4">Office Hours</h3>
+              <p className="text-gray-400">Monday - Friday: 9:00 AM - 6:00 PM</p>
+              <p className="text-gray-400">Saturday: 10:00 AM - 4:00 PM</p>
+              <p className="text-gray-400">Sunday: Closed</p>
             </div>
           </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  };
 
-export default Contact;
+          {/* Contact Form */}
+          <div className="bg-gray-900 p-8 rounded-lg">
+            <h2 className="text-2xl font-semibold mb-6 text-teal-400">Send us a Message</h2>
+
+            <form className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-1">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
+                  placeholder="How can we help you?"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  rows="5"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
+                  placeholder="Your message..."
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full flex justify-center items-center px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white font-medium rounded-md hover:from-green-600 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              >
+                <Send className="w-5 h-5 mr-2" />
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+   
+      <Footer />
+    </div>
+  )
+}
